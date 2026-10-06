@@ -1,0 +1,7 @@
+.DS_Store
+.build/
+.swiftpm/
+ConcurrencyLabApp/.build/
+ConcurrencyLabApp/*.xcodeproj
+xcuserdata/
+DerivedData/
