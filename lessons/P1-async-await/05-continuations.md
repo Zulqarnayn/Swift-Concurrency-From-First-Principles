@@ -68,13 +68,15 @@ MAIN | got 15
 ```
 1. **MAIN.** The callback ran on T1 and called `resume`, and the task continued on its own executor, the main actor. Thread hops back are handled for you; no `DispatchQueue.main.async` needed.
 2. **Body returns first.** The closure runs synchronously and returns immediately; the callback comes 30 ms later.
-3. ```
+3. Console output:
+   ```
    legacy callback fires for Atlantis
    SWIFT TASK CONTINUATION MISUSE: temperature(city:) leaked its continuation without resuming it. This may cause tasks waiting on it to remain suspended forever.
    Timed out after 1.0s (hang / deadlock / never-resumed continuation?)
    ```
    The warning appears when the dropped closure (and with it the continuation) is destroyed. Without our 1 s timeout the caller would wait **forever**. (Here the trace shows T1 instead of MAIN only because the timeout helper runs the work in its own Task.)
-4. ```
+4. Console output:
+   ```
    Fatal error: SWIFT TASK CONTINUATION MISUSE: p1_05c() tried to resume its continuation more than once, returning 15!
    ```
 </details>

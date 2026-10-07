@@ -46,7 +46,8 @@ free function in MainActor-default module → MainActor
 launches = 1, theme = dark
 ```
 2. **Yes:** the global is `@MainActor`, so it's safe.
-3. ```
+3. Compiler error:
+   ```
    error: main actor-isolated conformance of 'User' to 'Decodable' cannot be used in nonisolated context
    ```
    You'll meet this in real Xcode 26 projects. Fix: `nonisolated struct User: Decodable`.

@@ -5,3 +5,6 @@ ConcurrencyLabApp/.build/
 ConcurrencyLabApp/*.xcodeproj
 xcuserdata/
 DerivedData/
+.site-build/
+.venv-site/
+.claude/
