@@ -79,7 +79,8 @@ def lesson_front_matter(text: str, folder: str, position: int, total: int) -> tu
         text = text[: heading.start()] + text[heading.end() :]
     dek = DEK.search(text)
     if dek:
-        meta["dek"] = dek.group(1)
+        meta["dek"] = dek.group(1).replace("`", "")
+        meta["dek_html"] = re.sub(r"`([^`]+)`", r"<code>\1</code>", html.escape(dek.group(1), quote=False))
         text = text[: dek.start()] + text[dek.end() :]
     line = META_LINE.search(text)
     if line:

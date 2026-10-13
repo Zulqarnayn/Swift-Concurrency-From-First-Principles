@@ -4,33 +4,33 @@
 [← Roadmap](../../ROADMAP.md) · [P0.02 →](./02-data-race.md)
 <!-- nav:end -->
 
+<!-- dek: A Mac with 8 cores was running 3,812 threads while this lesson was written. Both numbers are true, and the gap between them explains most of this course. -->
+
 ⏱ 30 min · Demo `p0.01` · Exercise `P0_01`
 
 ## 1. Concept (5 min)
 
-Start at the bottom. Everything later in this course is built on these four things.
+Run `ps -M -A | wc -l` in Terminal. On the 8-core Mac this course was written on, it counted 3,812 threads, and nothing was wrong. That works because a thread and a core are different things, and everything later in this course is built on the difference.
 
-| Thing | What it is | Who controls it |
-|---|---|---|
-| **Core** | Hardware that runs one stream of instructions at a time. Your Mac has 8 (4 fast "P" cores, 4 efficient "E" cores). | Silicon |
-| **Thread** | One stream of instructions: a program counter, registers, and a stack (~512 KB on secondary threads). Must be on a core to make progress. | The OS scheduler |
-| **Scheduler** | Picks which threads run on which cores. When there are more threads than cores, it **time-slices**: runs a thread for a few ms, saves its registers, switches to another (a *context switch*). | The kernel |
-| **Queue / Task** | Your *description* of work. GCD queues and Swift tasks are not threads. A system library picks a thread to run your work on. | libdispatch / Swift runtime |
+A **core** is hardware that runs one stream of instructions at a time. Your Mac has 8 of them: 4 fast "P" cores and 4 efficient "E" cores.
 
-Two words people mix up:
+A **thread** is one of those streams: a program counter, registers, and a stack (about 512 KB on secondary threads). A thread makes progress only while it sits on a core.
 
-- **Concurrency** is about *structure*: several jobs are **in progress** in the same period. Possible on a single core, by interleaving.
-- **Parallelism** is about *execution*: several jobs **running at the same instant** on different cores. Needs more than one core.
+The **scheduler**, inside the kernel, decides which threads run on which cores. When there are more threads than cores, it **time-slices**: it runs a thread for a few milliseconds, saves its registers, and switches to another. That switch is a *context switch*.
+
+A **queue** or a **task** is your *description* of work, not a thread. GCD queues and Swift tasks go to a system library (libdispatch or the Swift runtime), and the library picks a thread to run your work on.
+
+Two words get mixed up here. *Concurrency* is about structure: several jobs are in progress during the same period, which one core can manage by interleaving them. *Parallelism* is about execution: several jobs run at the same instant on different cores, which needs more than one core.
 
 > Rob Pike: "Concurrency is about *dealing with* lots of things at once. Parallelism is about *doing* lots of things at once."
 
-A GCD serial queue gives you concurrency with your caller (your code keeps going while the block waits its turn) but zero parallelism *inside* the queue. `DispatchQueue.concurrentPerform` gives parallelism.
+A GCD serial queue gives you concurrency with your caller, because your code keeps going while the block waits its turn, but no parallelism *inside* the queue. `DispatchQueue.concurrentPerform` gives you parallelism.
 
-**Speedup has a ceiling.** If 5% of a program can't be parallelized, no number of cores makes it more than 20× faster. That's **Amdahl's law**: `speedup = 1 / ((1 − p) + p / n)`, with `p` the parallel fraction and `n` the cores. It's why "just add threads" stops helping.
+Speedup has a ceiling. If 5% of a program can't run in parallel, no number of cores makes it more than 20× faster, because that 5% still runs one step at a time. This is **Amdahl's law**: `speedup = 1 / ((1 − p) + p / n)`, where `p` is the fraction that can run in parallel and `n` is the number of cores. It is why adding threads stops helping.
 
 ## 2. Predict (5 min)
 
-The demo uses `burnCPU(ms:)` (spins a core for that long) and `crunch(units:)` (a fixed amount of work: a thread that gets half a core takes twice as long). Write your guesses down **before** running.
+The demo uses `burnCPU(ms:)`, which keeps a core busy for that long, and `crunch(units:)`, a fixed amount of work: a thread that gets half a core takes twice as long to finish it. Write your guesses down before running anything.
 
 1. 8 × `burnCPU(100)` on **one** thread. Total wall time? ______
 2. 8 × `burnCPU(100)` via `concurrentPerform` on 8 cores? ______
@@ -61,14 +61,16 @@ crunch(units: 200) alone on one thread:         210ms
 16 threads × crunch(200): end times   (ms) 757,900,909,916,923,927,932,955,958,961,962,975,975,978,979,984
 ```
 
-1. **800 ms.** One thread can only use one core.
-2. **~100 ms.** 8 jobs, 8 cores, all at once. That's parallelism.
-3. **~400 ms.** `concurrentPerform` uses about one thread per core, so the jobs run in 4 rounds of 8. Same arithmetic as the exercise.
-4. **All 16 start immediately, and they all finish together, at ~4–5×X (not 2×).**
-   - The OS doesn't make threads wait in line. It time-slices: all 16 are *concurrent* (in progress), but only 8 are *parallel* at any moment. Every thread gets a fair share, so they finish as a pack instead of in two waves.
-   - Why worse than 2×? Half the cores are **E-cores**, roughly 2–3× slower. The run measured "alone" on a P-core. On top of that there are context switches and cache misses. Real hardware is never the clean model.
+1. 800 ms. One thread can use only one core.
+2. About 100 ms: 8 jobs on 8 cores, all at once. That is parallelism.
+3. About 400 ms. `concurrentPerform` uses roughly one thread per core, so the 32 jobs run in 4 rounds of 8. The exercise asks you for the same arithmetic.
+4. All 16 start immediately, and they all finish together, at about 4–5×X rather than 2×.
 
-**Takeaway:** more threads than cores doesn't make anything faster. It gives you time-slicing overhead and more memory used by stacks. Keep this in mind: Swift's concurrency runtime is built on exactly this observation (P1.03).
+   The OS doesn't make threads wait in line. It time-slices, so all 16 are *concurrent* (in progress) while only 8 are *parallel* at any moment. Each thread gets a fair share of the cores, and they finish as a pack instead of in two waves.
+
+   It comes out worse than 2× because half the cores are E-cores, roughly 2–3× slower, while the run "alone" measured a P-core. Context switches and cache misses account for the rest. Real hardware never matches the clean model.
+
+So more threads than cores makes nothing faster. You pay for the time-slicing and for the memory of every extra stack. Swift's concurrency runtime is built on exactly this observation, as you will see in P1.03.
 </details>
 
 ## 5. Exercise (10 min)

@@ -41,7 +41,7 @@
         </p>
         <h1>{{ meta.heading_html or meta.heading }}</h1>
         {%- if meta.dek %}
-        <p class="dek">{{ meta.dek }}</p>
+        <p class="dek">{{ meta.dek_html or meta.dek }}</p>
         {%- endif %}
       </header>
       {% endif %}

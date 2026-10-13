@@ -4,13 +4,13 @@
 [← P0.02](./02-data-race.md) · [Roadmap](../../ROADMAP.md) · [P0.04 →](./04-locks-race-conditions.md)
 <!-- nav:end -->
 
+<!-- dek: The hardware can do load, add and store as one indivisible step. That fixes a counter, and it fixes much less than you would hope. -->
+
 ⏱ 30 min · Demo `p0.03` · Exercise `P0_03`
 
 ## 1. Concept (5 min)
 
-**Atomic** means indivisible: other threads see either all of the operation or none of it, never a half-done state.
-
-Modern CPUs have instructions that do a read-modify-write as **one atomic step** (on ARM64: `LDADD`, `CAS`, or `LDXR`/`STXR` pairs). Swift exposes them through the `Synchronization` module (Swift 6, iOS 18 / macOS 15):
+In P0.02 the counter lost updates because `count += 1` is three separate steps. Modern CPUs have instructions that do a read-modify-write as one step (on ARM64: `LDADD`, `CAS`, or `LDXR`/`STXR` pairs), and Swift exposes them through the `Synchronization` module (Swift 6, iOS 18 / macOS 15):
 
 ```swift
 import Synchronization
@@ -19,9 +19,11 @@ counter.add(1, ordering: .relaxed)              // atomic load+add+store
 let (exchanged, original) = counter.compareExchange(expected: 5, desired: 6, ordering: .relaxed)
 ```
 
-**Compare-and-exchange (CAS)** is the building block of all lock-free code: *"if the value is still `expected`, replace it with `desired`, and tell me whether you did."* If another thread got there first, you retry with the value it wrote. That's the **CAS loop**.
+An operation like this is **atomic**: indivisible. Other threads see all of it or none of it, never a half-done state.
 
-**The second problem is visibility and ordering.** Compilers and CPUs reorder memory operations for speed. ARM (your iPhone and Mac) does it aggressively. So:
+The second line of the example is the important one. Compare-and-exchange (**CAS**) says: "if the value is still `expected`, replace it with `desired`, and tell me whether you did." If another thread got there first, you read the value it wrote and try again. That retry is the **CAS loop**, and every piece of lock-free code is built on it.
+
+Atomicity is half the problem. The other half is visibility and ordering. Compilers and CPUs reorder memory operations for speed, and ARM, which runs your iPhone and your Mac, does it aggressively:
 
 ```swift
 // Thread A                // Thread B
@@ -29,11 +31,9 @@ data = 42                  if ready { print(data) }   // may print 0!
 ready = true
 ```
 
-Thread B can see `ready == true` *before* it sees `data = 42`. Atomics with **acquire/release** ordering (`.releasing` on the store, `.acquiring` on the load) or locks set up a *happens-before* edge: everything A did before releasing is visible to B after it acquires. **Locks, serial queues and actors all give you this for free.** That's a big reason to prefer them.
+Thread B can see `ready == true` *before* it sees `data = 42`. To rule that out you need a *happens-before* edge: everything Thread A did before releasing becomes visible to Thread B after it acquires. Atomics with acquire/release ordering (`.releasing` on the store, `.acquiring` on the load) give you that edge, and so do locks. Locks, serial queues and actors all give it to you for free, which is a big reason to prefer them.
 
-**Atomic vs lock:**
-- An atomic protects **one word** (an Int, a pointer). Fast, never blocks.
-- A lock protects **an invariant across many values** (e.g. "balance ≥ 0 and the history matches the balance"). Two separate atomics can't keep two values consistent with each other.
+When do you want an atomic, and when a lock? An atomic protects **one word**, such as an Int or a pointer; it is fast and never blocks. A lock protects **an invariant across several values**, such as "the balance is never negative and the history matches the balance". Two separate atomics can't keep two values consistent with each other.
 
 ## 2. Predict (5 min)
 
@@ -60,9 +60,11 @@ NSLock: 4000000  in 835ms
 Atomic: 4000000  in 300ms
 ```
 1. Wrong, as in P0.02.
-2. Correct, and about 6× slower. All 4 threads fight over one lock (**contention**). Every handoff can involve the kernel.
-3. Correct, and faster than the lock. It's one hardware instruction, but the threads still fight over the same cache line, so it's slower than the racy version. Correctness costs something; the question is how much.
-4. **No.** Atomic steps don't make a sequence of steps atomic. `load` → check → `store` leaves a gap where another thread can do the same thing. Two threads both see 999, both store 1000, and both return `true`. Same bug as `count += 1`, one level up. **This is the most important idea in the lesson.** It comes back at the actor level as *actor reentrancy* (P2).
+2. Correct, and about 6× slower than the racy version. All 4 threads fight over one lock, which is called *contention*, and every handoff can involve the kernel.
+3. Correct, and faster than the lock, because it's one hardware instruction. It's still slower than the racy version: the threads fight over the same cache line. Correctness always costs something; the question is how much.
+4. No. Atomic steps don't make a sequence of steps atomic. `load` → check → `store` leaves a gap in which another thread can do the same thing. Two threads both see 999, both store 1000, and both return `true`. It's the bug from `count += 1`, one level up.
+
+   This is the most important idea in the lesson. It comes back at the actor level as *actor reentrancy* in P2.
 </details>
 
 ## 5. Exercise (10 min)
