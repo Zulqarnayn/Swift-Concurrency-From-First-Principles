@@ -1,0 +1,38 @@
+<details class="rail" open>
+  <summary class="rail-label">Contents</summary>
+  <nav aria-label="Contents">
+    <ol class="rail-groups">
+      {%- for item in nav.items if item.is_section %}
+      {%- set parts = item.title.split(' · ', 1) %}
+      <li class="rail-group{% if item.active %} is-active{% endif %}">
+        <details{% if item.active %} open{% endif %}>
+          <summary>
+            {%- if parts | length == 2 %}<span class="rail-code">{{ parts[0] }}</span> {{ parts[1] }}{% else %}{{ item.title }}{% endif %}
+            <span class="rail-count">{{ item.children | length }}</span>
+          </summary>
+          <ol class="rail-pages">
+            {%- for child in item.children if child.is_page %}
+            <li{% if child.active %} class="is-current"{% endif %}>
+              <a href="{{ child.url | url }}"{% if parts | length != 2 %} class="no-n"{% endif %}{% if child.active %} aria-current="page"{% endif %}>
+                {%- if parts | length == 2 %}<span class="rail-n">{{ '%02d' % loop.index }}</span>{% endif %}
+                <span class="rail-title">{{ child.title }}</span>
+              </a>
+              {%- if child.active and page.toc %}
+              <ol class="rail-steps">
+                {%- for entry in page.toc %}
+                {%- for step in ([entry] if entry.level == 2 else entry.children) %}
+                <li><a href="{{ step.url }}">{{ step.title | striptags }}</a></li>
+                {%- endfor %}
+                {%- endfor %}
+              </ol>
+              {%- endif %}
+            </li>
+            {%- endfor %}
+          </ol>
+        </details>
+      </li>
+      {%- endfor %}
+    </ol>
+    <p class="rail-extra"><a href="{{ 'reading-list/' | url }}"{% if page and page.url == 'reading-list/' %} aria-current="page"{% endif %}>Reading list</a></p>
+  </nav>
+</details>

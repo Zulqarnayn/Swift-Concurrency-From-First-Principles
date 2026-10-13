@@ -1,0 +1,16 @@
+{%- if page and (page.previous_page or page.next_page) %}
+<nav class="pager" aria-label="Previous and next">
+  {%- if page.previous_page %}
+  <a class="pager-prev" href="{{ page.previous_page.url | url }}" rel="prev">
+    <span class="pager-label">Previous</span>
+    <span class="pager-title">{{ page.previous_page.title }}</span>
+  </a>
+  {%- else %}<span></span>{% endif %}
+  {%- if page.next_page %}
+  <a class="pager-next" href="{{ page.next_page.url | url }}" rel="next">
+    <span class="pager-label">Next</span>
+    <span class="pager-title">{{ page.next_page.title }}</span>
+  </a>
+  {%- endif %}
+</nav>
+{%- endif %}

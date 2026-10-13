@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="{{ config.theme.locale or 'en' }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {%- set meta = page.meta if page else {} %}
+  {%- set heading = meta.heading or (page.title if page else '') %}
+  <title>{% if page and page.is_homepage %}{{ config.site_name }}{% else %}{{ heading | striptags }} · {{ config.extra.wordmark }}{% endif %}</title>
+  <meta name="description" content="{{ meta.dek or config.site_description }}">
+  {%- if page and page.canonical_url %}
+  <link rel="canonical" href="{{ page.canonical_url }}">
+  {%- endif %}
+  <meta property="og:title" content="{{ heading | striptags if page and not page.is_homepage else config.site_name }}">
+  <meta property="og:description" content="{{ meta.dek or config.site_description }}">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#F4F1EA" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#17150F" media="(prefers-color-scheme: dark)">
+  <link rel="preload" href="{{ 'fonts/source-serif-4.woff2' | url }}" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="{{ 'fonts/fraunces.woff2' | url }}" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="{{ 'assets/site.css' | url }}">
+  <link rel="icon" href="{{ 'assets/favicon.svg' | url }}" type="image/svg+xml">
+  <script>
+    try { var s = localStorage.getItem("scheme"); if (s === "light" || s === "dark") document.documentElement.dataset.scheme = s; } catch (e) {}
+  </script>
+</head>
+<body class="{% block body_class %}{% if meta.lesson %}is-lesson{% else %}is-page{% endif %}{% endblock %}">
+  <a class="skip" href="#content">Skip to the text</a>
+  {% include "partials/topbar.html" %}
+
+  {% block layout %}
+  <div class="layout">
+    {% include "partials/rail.html" %}
+    <main id="content" class="column">
+      {% if meta.lesson %}
+      <header class="lesson-head">
+        <p class="eyebrow">
+          <span>Phase {{ meta.phase_code[1:] }} · {{ meta.phase_name }}</span>
+          <span>{{ '%02d' % meta.position }} of {{ '%02d' % meta.total }}</span>
+          {%- if meta.minutes %}<span>{{ meta.minutes }} min</span>{% endif %}
+          {%- if meta.fast_track %}<span class="fast">Fast track</span>{% endif %}
+        </p>
+        <h1>{{ meta.heading_html or meta.heading }}</h1>
+        {%- if meta.dek %}
+        <p class="dek">{{ meta.dek }}</p>
+        {%- endif %}
+      </header>
+      {% endif %}
+      <article class="prose" data-pagefind-body data-pagefind-meta="title:{{ heading | striptags | e }}">
+        {%- if meta.lesson %}<span data-pagefind-filter="phase" hidden>{{ meta.phase_code }} · {{ meta.phase_name }}</span>{% endif %}
+        {% block content %}{{ page.content }}{% endblock %}
+      </article>
+      {% include "partials/pager.html" %}
+    </main>
+  </div>
+  {% endblock %}
+
+  <footer class="colophon">
+    <p>
+      <a href="{{ config.repo_url }}">Source on GitHub</a>
+      {%- if page and page.edit_url %} · <a href="{{ page.edit_url }}">Suggest an edit to this page</a>{% endif %}
+    </p>
+    <p>{{ config.extra.license }}. Set in Fraunces, Source Serif and JetBrains Mono.</p>
+  </footer>
+
+  <dialog class="search" id="search" aria-label="Search the course">
+    <form method="dialog" class="search-close"><button aria-label="Close search">Close</button></form>
+    <div id="search-ui" data-bundle="{{ 'pagefind/' | url }}"></div>
+  </dialog>
+  <script src="{{ 'assets/site.js' | url }}" defer></script>
+</body>
+</html>

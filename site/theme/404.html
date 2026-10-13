@@ -1,0 +1,13 @@
+{% extends "main.html" %}
+
+{% block body_class %}is-home{% endblock %}
+
+{% block layout %}
+<main id="content" class="home">
+  <article class="prose home-intro">
+    <h1>Not here</h1>
+    <p>This page does not exist, or it moved when the lessons were renumbered.
+      The <a href="{{ config.site_url }}">table of contents</a> lists every session, and search (press <kbd>/</kbd>) finds the rest.</p>
+  </article>
+</main>
+{% endblock %}

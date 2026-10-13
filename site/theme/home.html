@@ -1,0 +1,34 @@
+{% extends "main.html" %}
+
+{% block body_class %}is-home{% endblock %}
+
+{% block layout %}
+<main id="content" class="home">
+  <article class="prose home-intro" data-pagefind-body data-pagefind-meta="title:{{ config.site_name | e }}">
+    {{ page.content }}
+  </article>
+
+  <section class="toc" aria-labelledby="toc-title">
+    <h2 id="toc-title" class="toc-title">Contents</h2>
+    <ol class="toc-rows">
+      {%- for phase in config.extra.contents %}
+      <li>
+        <a href="{{ phase.url | url }}">
+          <span class="toc-code">{{ phase.code }}</span>
+          <span class="toc-body">
+            <span class="toc-name">{{ phase.name }}</span>
+            <span class="toc-blurb">{{ phase.blurb }}</span>
+          </span>
+          <span class="toc-count">{{ phase.count }} sessions</span>
+        </a>
+      </li>
+      {%- endfor %}
+    </ol>
+    <p class="toc-after">
+      Also: the <a href="{{ 'interview/flashcards/' | url }}">interview bank</a>
+      (flashcards, a question bank, output puzzles and timed katas) and a
+      <a href="{{ 'reading-list/' | url }}">reading list</a>.
+    </p>
+  </section>
+</main>
+{% endblock %}
