@@ -4,22 +4,24 @@
 [← P0.04](./04-locks-race-conditions.md) · [Roadmap](../../ROADMAP.md) · [P0.06 →](./06-starvation-inversion-explosion.md)
 <!-- nav:end -->
 
+<!-- dek: Two threads, two locks, opposite order. Neither will ever move again, and the fix costs one line. -->
+
 ⏱ 30 min · Demo `p0.05` (+ opt-in `p0.05b`, `p0.05c`) · Exercise `P0_05`
 
 ## 1. Concept (5 min)
 
-**Deadlock** means a set of threads where each one waits for something another one holds, so none of them can ever move.
+Thread 1 locks A and then wants B. Thread 2 locks B and then wants A. Each holds what the other needs, and neither will let go. That is a **deadlock**: a set of threads where each waits for something another holds, so none of them can ever move.
 
-A deadlock needs **all four Coffman conditions** at the same time. Break **any one** and deadlock is impossible:
+A deadlock needs all four *Coffman conditions* at once. Break any one of them and deadlock becomes impossible:
 
 | # | Condition | How you break it |
 |---|---|---|
 | 1 | **Mutual exclusion**: a resource is held by one thread | Use lock-free or immutable data |
 | 2 | **Hold and wait**: hold one, wait for another | Take all locks at once, or never hold one while waiting |
 | 3 | **No preemption**: you can't take a lock away | `tryLock` with back-off (risk: livelock) |
-| 4 | **Circular wait**: A waits for B, B waits for A | **Global lock order.** The cheapest fix by far. |
+| 4 | **Circular wait**: A waits for B, B waits for A | A global lock order. The cheapest fix by far. |
 
-The deadlocks you'll actually meet on iOS:
+These are the deadlocks you will actually meet on iOS:
 
 ```swift
 // 1. Lock-order inversion (this lesson's exercise)
@@ -38,9 +40,9 @@ queueA.sync { queueB.sync { queueA.sync { } } }
 // 5. (Swift concurrency) blocking a pool thread to wait for async work. P1.03.
 ```
 
-GCD sometimes **detects** case 2 and crashes on purpose (`EXC_BREAKPOINT`, "dispatch_sync called on queue already owned by current thread"). A crash is the *good* outcome. A silent hang is worse.
+GCD sometimes detects the second case and crashes on purpose, with `EXC_BREAKPOINT` and "dispatch_sync called on queue already owned by current thread". The crash is the *good* outcome. A silent hang is worse.
 
-**Debugging a hang:** pause in the debugger (or take a spindump/sample) and look at every thread's stack. Threads parked in `__psynch_mutexwait`, `_dispatch_sync_f_slow` or `semaphore_wait_trap` tell you who is waiting on what. Draw the wait-for graph and find the cycle.
+To debug a hang, pause in the debugger (or take a spindump or sample) and read every thread's stack. Threads parked in `__psynch_mutexwait`, `_dispatch_sync_f_slow` or `semaphore_wait_trap` tell you who is waiting on what. Draw the wait-for graph from that and look for the cycle.
 
 ## 2. Predict (5 min)
 
@@ -66,10 +68,10 @@ T1: holds A, wants B
 T2: holds B, wants A
 DEADLOCK. Nobody progressed for 2s. Both threads are parked forever.
 ```
-1. **Deadlock**, every time: the 50 ms sleep guarantees each thread grabs its first lock. Without the sleep it would deadlock *sometimes*, which is worse because it only shows up in production.
-2. **Crash** (SIGTRAP). libdispatch sees that the current thread already owns this serial queue and traps rather than hang. `DispatchQueue.main.sync` from the main thread is the most famous case.
-3. **Crash** (the process is killed). `Mutex` isn't recursive; the underlying `os_unfair_lock` detects re-locking by the owner and aborts. `NSLock` would just **hang** silently instead.
-4. **Circular wait.** If everyone locks the lower id first, no cycle can form in the wait-for graph.
+1. Deadlock, every time: the 50 ms sleep guarantees that each thread grabs its first lock. Without the sleep it would deadlock only *sometimes*, which is worse, because then it shows up only in production.
+2. A crash (SIGTRAP). libdispatch sees that the current thread already owns this serial queue and traps rather than hang. `DispatchQueue.main.sync` from the main thread is the most famous case.
+3. A crash: the process is killed. `Mutex` isn't recursive, and the underlying `os_unfair_lock` detects re-locking by its owner and aborts. `NSLock` would just hang silently instead.
+4. Circular wait. If everyone locks the lower id first, no cycle can form in the wait-for graph.
 </details>
 
 ## 5. Exercise (10 min)
