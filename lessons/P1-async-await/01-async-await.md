@@ -4,14 +4,13 @@
 [← P0.08](../P0-foundations/08-review.md) · [Roadmap](../../ROADMAP.md) · [P1.02 →](./02-under-the-hood.md)
 <!-- nav:end -->
 
+<!-- dek: In P0.07 you split a function in two by hand at every wait. `async/await` lets the compiler make that cut, and checks the parts you used to get wrong. -->
+
 ⏱ 30 min · Demo `p1.01`, `p1.01b` · Diagnostics `P1_01_async_from_sync.swift` · Exercise `P1_01`
 
 ## 1. Concept (5 min)
 
-In P0.07 you split functions by hand at every wait point, using completion handlers. `async/await` has the **compiler** do that split for you.
-
-- **`async`** on a function means *"this function is allowed to **suspend**"*: pause partway through, give up its thread, and resume later.
-- **`await`** marks a **potential suspension point**: *"at this line my function may pause; the world may change before the next line runs."*
+Here is the profile loader from P0.07 again, without the completion handler:
 
 ```swift
 func loadProfile(id: String) async throws -> Profile {
@@ -20,20 +19,22 @@ func loadProfile(id: String) async throws -> Profile {
 }
 ```
 
-Four rules to memorize:
+The compiler now does the split you did by hand. `async` on the function means it is allowed to **suspend**: pause partway through, give up its thread, and resume later. `await` marks a **potential suspension point**, a line where the function may pause and the world may change before the next line runs.
 
-1. **Suspending ≠ blocking.** While suspended, the function holds **no thread**. The thread goes off and runs other work. (Blocking parks the thread: P0.07.)
-2. **`async` doesn't make code run in the background.** It only *allows* suspension. A CPU loop inside an `async` function hogs its thread just like sync code does.
-3. **Between two `await`s, your code runs straight through,** like any sync code. Only at an `await` can other work interleave *in your isolation domain*. (This is the root of actor reentrancy, P2.)
-4. **After an `await`, you may be on a different thread** unless something (like `@MainActor`) pins you. Never rely on thread identity: no `Thread.current`, no thread-local storage.
+Four rules follow from that, and they are worth memorizing:
 
-**Where does async code run?** (The full answer is "isolation", P2. For now, the working rules for this package, which match a new Xcode 26 project:)
+1. Suspending is not blocking. While suspended, the function holds no thread; the thread goes off and runs other work. Blocking parks the thread (P0.07).
+2. `async` doesn't make code run in the background. It only *allows* suspension. A CPU loop inside an `async` function hogs its thread exactly as sync code does.
+3. Between two `await`s, your code runs straight through, like any sync code. Only at an `await` can other work interleave *in your isolation domain*. This is the root of actor reentrancy (P2).
+4. After an `await` you may be on a different thread, unless something such as `@MainActor` pins you. Never rely on thread identity: no `Thread.current`, no thread-local storage.
+
+So where does async code run? The full answer is "isolation", and it takes up P2. For now, these are the working rules for this package, which match a new Xcode 26 project:
 
 | Declaration | Runs on |
 |---|---|
 | `@MainActor func f() async` | The main thread, always, before and after every `await` |
 | `@concurrent func f() async` | The shared background pool (the "cooperative pool") |
-| plain `func f() async` | **Wherever the caller is running** (Swift 6.2 `nonisolated(nonsending)` behavior) |
+| plain `func f() async` | Wherever the caller is running (Swift 6.2 `nonisolated(nonsending)` behavior) |
 
 ## 2. Predict (5 min)
 
@@ -68,23 +69,23 @@ MAIN | M: after  await #2
 32 async tasks that BLOCK 100ms each:   419ms
 32 async tasks that SUSPEND 100ms each: 106ms
 ```
-1. **No.** A resumed on whichever pool thread was free. The async frame (A's local variables) lives on the heap, not on a thread's stack, so any thread can pick it up (P1.02 explains how).
-2. **Yes.** `@MainActor` code always resumes on the main thread.
-3. **Blocking ≈ 400 ms** (32 tasks / 8 pool threads = 4 rounds). **Suspending ≈ 100 ms**, because nobody holds a thread while waiting. Same code shape, 4× difference, and both functions are marked `async`.
-4. Diagnostics:
+1. No. A resumed on whichever pool thread was free. Its async frame, which holds A's local variables, lives on the heap rather than on a thread's stack, so any thread can pick it up. P1.02 explains how.
+2. Yes. `@MainActor` code always resumes on the main thread.
+3. Blocking takes about 400 ms: 32 tasks on 8 pool threads is 4 rounds. Suspending takes about 100 ms, because nobody holds a thread while waiting. Same code shape, a 4× difference, and both functions are marked `async`.
+4. The compiler reports:
    ```
    error: 'async' call in a function that does not support concurrency      ← #1
    error: expression is 'async' but is not marked with 'await'              ← #2
    ```
-   - #1: a sync function can't wait for async work. It has no way to suspend. Either make it `async` too ("async is contagious"), or *start* the work with `Task {}` without waiting (#4).
-   - #2: `await` is mandatory. It's there for the **reader**: every place your function might pause and let other code run is marked.
+   - #1: a sync function can't wait for async work, because it has no way to suspend. Either make it `async` too ("async is contagious"), or *start* the work with `Task {}` without waiting for it (#4).
+   - #2: `await` is mandatory. It is there for the reader: every place where your function might pause and let other code run is marked.
    - #3 compiles: async code calls sync code freely, with no `await`.
    - #4 compiles: `Task {}` is the bridge from sync to async (P1.04).
 </details>
 
 ## 5. Exercise (10 min)
 
-File: `Sources/Exercises/P1_01_Suspend.swift`. `slowSquare` is `async` but **blocks**. Make it suspend. Also: should you use `try` or `try?` on `Task.sleep`? One of the tests decides.
+File: `Sources/Exercises/P1_01_Suspend.swift`. `slowSquare` is `async` but **blocks**. Make it suspend. And should you use `try` or `try?` on `Task.sleep`? One of the tests decides.
 
 ```bash
 swift test --filter P1_01

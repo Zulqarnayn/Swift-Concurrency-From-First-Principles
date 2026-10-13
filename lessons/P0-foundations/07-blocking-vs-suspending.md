@@ -4,14 +4,13 @@
 [← P0.06](./06-starvation-inversion-explosion.md) · [Roadmap](../../ROADMAP.md) · [P0.08 →](./08-review.md)
 <!-- nav:end -->
 
+<!-- dek: While your app waits for the network, no thread needs to wait with it. Completion handlers get that right and leave everything else to convention. -->
+
 ⏱ 30 min · Demo `p0.07` · Exercise `P0_07`
 
 ## 1. Concept (5 min)
 
-Two kinds of slow:
-
-- **CPU-bound** means *working*: decoding an image, parsing JSON, sorting. It needs a core, and more cores help (up to Amdahl's limit).
-- **I/O-bound** means *waiting*: network, disk, a timer, user input. **No thread needs to be involved while you wait.** The network card and the kernel do the work and raise an event when they're done.
+Decoding a large image is slow because the CPU has a lot to do. Downloading it is slow because the CPU has nothing to do: the network card and the kernel do the work, and raise an event when the bytes have arrived. The first kind of slow is **CPU-bound**: it needs a core, and more cores help, up to Amdahl's limit. The second is **I/O-bound**: network, disk, a timer, user input. No thread needs to be involved while you wait for it.
 
 While you wait for I/O, you have two options:
 
@@ -21,7 +20,7 @@ While you wait for I/O, you have two options:
 | Thread cost while waiting | 1 thread, doing nothing | 0 threads |
 | Example | `Data(contentsOf: url)`, `semaphore.wait()` | `URLSession.dataTask(completion:)`, `await` |
 
-A **completion handler** is suspension done by hand. You cut your function in two at the wait point, and pass the second half ("the rest of the function", a **continuation**) as a closure:
+A **completion handler** is suspension done by hand. You cut your function in two at the point where it waits, and pass the second half, "the rest of the function", as a closure. That second half is called a **continuation**:
 
 ```swift
 func loadProfile(id: String, completion: @escaping (Result<Profile, Error>) -> Void) {
@@ -32,13 +31,13 @@ func loadProfile(id: String, completion: @escaping (Result<Profile, Error>) -> V
 }
 ```
 
-That works, but the compiler can't check the contract you rely on:
+That works, but the code relies on a contract the compiler can't check:
 
-1. **Called exactly once.** Forget it on one path and the caller waits forever, silently. Call it twice and the caller's logic runs twice: duplicate UI updates, crashes on `group.leave()`.
-2. **Called on the right thread/queue.** The callback arrives wherever the library felt like delivering it, and UIKit work there crashes or corrupts state.
-3. Errors, cancellation, `[weak self]`, and nested callbacks ("pyramid of doom") are all handled by convention only.
+1. The handler is called exactly once. Forget it on one path and the caller waits forever, silently. Call it twice and the caller's logic runs twice: duplicate UI updates, or a crash on `group.leave()`.
+2. The handler is called on the right thread or queue. The callback arrives wherever the library chose to deliver it, and UIKit work done there crashes or corrupts state.
+3. Errors, cancellation, `[weak self]` and nested callbacks (the "pyramid of doom") are handled by convention alone.
 
-`async/await` turns every one of these into **compiler-checked** structure: a function returns or throws **exactly once** on every path, and isolation decides where code runs. That's the motivation for all of Phase 1.
+`async/await` turns each of these into structure the compiler checks: a function returns or throws exactly once on every path, and isolation decides where the code runs. That is the motivation for all of Phase 1.
 
 ## 2. Predict (5 min)
 
@@ -68,9 +67,9 @@ id="42" → callback called 1 time(s)
 id="dup" → callback called 2 time(s)
 id="" → callback called 0 time(s)
 ```
-- `"42"`: once, but on a **global background queue**, not main as the docs promised.
-- `"dup"`: **twice**, because of a missing `return`. Real APIs do this *on purpose*, too: `PHImageManager.requestImage` calls your handler once with a low-quality image and again with the full one. You'll wrap one of those in P1.05.
-- `""`: **never.** The caller hangs with no error, no log, no crash. The worst kind of bug.
+- `"42"` calls back once, but on a global background queue, not on main as the docs promised.
+- `"dup"` calls back twice, because of a missing `return`. Real APIs do this on purpose too: `PHImageManager.requestImage` calls your handler once with a low-quality image and again with the full one. You'll wrap one of those in P1.05.
+- `""` never calls back. The caller hangs with no error, no log and no crash, which is the worst kind of bug.
 
 All three compile cleanly. The type system has no notion of "exactly once".
 </details>
@@ -79,7 +78,7 @@ All three compile cleanly. The type system has no notion of "exactly once".
 
 File: `Sources/Exercises/P0_07_Completion.swift`. `loadProfile` breaks its contract three ways. Fix all of them.
 
-Pattern worth remembering: send **every** exit path through one local `finish(_:)` closure.
+One pattern is worth remembering: send **every** exit path through a single local `finish(_:)` closure.
 
 ```bash
 swift test --filter P0_07
