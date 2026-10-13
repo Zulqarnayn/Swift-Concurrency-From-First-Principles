@@ -1,0 +1,24 @@
+# Netlify builds the course site on every push to main. Settings here override the ones in the Netlify UI.
+[build]
+  command = "pip install -r site/requirements.txt && python scripts/build-site.py && python scripts/check-site.py"
+  publish = ".site-build/out"
+
+[build.environment]
+  PYTHON_VERSION = "3.12"
+  NO_MKDOCS_2_WARNING = "true"
+
+[[headers]]
+  for = "/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/pagefind/*"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
