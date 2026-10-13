@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="dg" viewBox="-16 -14 712 298" width="712" height="298">
+<style>
+.dg{--dg-paper:#F4F1EA;--dg-ink:#1D1B16;--dg-muted:#6B665C;--dg-rule:#BFB6A4;--dg-fill:#EBE6DA;--dg-green:#0E5A47;--dg-hl:#CFE3D2;--dg-warn:#8A4512}
+@media (prefers-color-scheme:dark){.dg{--dg-paper:#17150F;--dg-ink:#E8E2D4;--dg-muted:#A39C8C;--dg-rule:#5A5446;--dg-fill:#211E17;--dg-green:#6FBF9F;--dg-hl:#27453A;--dg-warn:#DDA56E}}
+.dg text{font-family:var(--font-ui,-apple-system,"Segoe UI",system-ui,sans-serif);font-size:15px;fill:var(--ink,var(--dg-ink))}
+.dg .bg{fill:var(--paper,var(--dg-paper))}
+.dg .t{font-weight:600}
+.dg .mono,.dg .mono text{font-family:var(--font-mono,ui-monospace,Menlo,monospace);font-size:13px}
+.dg .m,.dg .m text{fill:var(--muted,var(--dg-muted));font-size:13px}
+.dg .gt{fill:var(--green,var(--dg-green))}
+.dg .wt{fill:var(--tok-string,var(--dg-warn))}
+.dg .g{fill:var(--green,var(--dg-green))}
+.dg .w{fill:var(--tok-string,var(--dg-warn))}
+.dg .ln{stroke:var(--muted,var(--dg-muted));stroke-width:1.5;fill:none}
+.dg .box{fill:var(--code-bg,var(--dg-fill));stroke:var(--muted,var(--dg-rule));stroke-width:1}
+.dg .hl{fill:var(--highlight,var(--dg-hl));stroke:var(--green,var(--dg-green));stroke-width:1}
+.dg .lock{fill:var(--code-bg,var(--dg-fill));stroke:var(--green,var(--dg-green));stroke-width:2}
+.dg .idle{fill:none;stroke:var(--muted,var(--dg-rule));stroke-width:1.5;stroke-dasharray:5 4}
+.dg .region{fill:none;stroke:var(--muted,var(--dg-rule));stroke-width:1.5;stroke-dasharray:6 4}
+.dg .gs{stroke:var(--green,var(--dg-green));fill:none;stroke-width:2}
+.dg .gsd{stroke:var(--green,var(--dg-green));fill:none;stroke-width:1.5;stroke-dasharray:4 3}
+.dg .ws{stroke:var(--tok-string,var(--dg-warn));fill:none;stroke-width:1.5}
+.dg .wsd{stroke:var(--tok-string,var(--dg-warn));fill:none;stroke-width:2;stroke-dasharray:6 4}
+</style>
+<rect class="bg" x="-16" y="-14" width="712" height="298" rx="8"/>
+<defs><marker id="id-g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" class="g"/></marker></defs>
+<rect class="region" x="1" y="10" width="190" height="170" rx="10"/>
+<text x="18" y="40" class="mono gt">@MainActor</text>
+<rect class="hl" x="18" y="62" width="156" height="38" rx="4"/><text x="96" y="86" text-anchor="middle">view model state</text>
+<text x="96" y="130" text-anchor="middle" class="m">sync access</text>
+<text x="96" y="148" text-anchor="middle" class="m">inside the domain</text>
+<rect class="region" x="245" y="10" width="190" height="170" rx="10"/>
+<text x="262" y="40" class="mono gt">actor Vault</text>
+<rect class="hl" x="262" y="62" width="156" height="38" rx="4"/><text x="340" y="86" text-anchor="middle">balance</text>
+<text x="340" y="130" text-anchor="middle" class="m">each instance is</text>
+<text x="340" y="148" text-anchor="middle" class="m">its own domain</text>
+<rect class="region" x="489" y="10" width="190" height="170" rx="10"/>
+<text x="506" y="40" class="mono gt">nonisolated</text>
+<rect class="box" x="506" y="62" width="156" height="38" rx="4"/><text x="584" y="86" text-anchor="middle">plain functions</text>
+<text x="584" y="130" text-anchor="middle" class="m">owns no shared</text>
+<text x="584" y="148" text-anchor="middle" class="m">mutable state</text>
+<path class="gs" d="M193,81 H241" marker-end="url(#id-g)"/>
+<text x="217" y="72" text-anchor="middle" class="m gt">await</text>
+<path class="gs" d="M487,81 H439" marker-end="url(#id-g)"/>
+<text x="463" y="72" text-anchor="middle" class="m gt">await</text>
+<text x="340" y="220" text-anchor="middle">Crossing a boundary takes an await,</text>
+<text x="340" y="242" text-anchor="middle">and only Sendable values may cross.</text>
+</svg>

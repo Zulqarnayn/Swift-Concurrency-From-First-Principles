@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="dg" viewBox="-16 -14 712 278" width="712" height="278">
+<style>
+.dg{--dg-paper:#F4F1EA;--dg-ink:#1D1B16;--dg-muted:#6B665C;--dg-rule:#BFB6A4;--dg-fill:#EBE6DA;--dg-green:#0E5A47;--dg-hl:#CFE3D2;--dg-warn:#8A4512}
+@media (prefers-color-scheme:dark){.dg{--dg-paper:#17150F;--dg-ink:#E8E2D4;--dg-muted:#A39C8C;--dg-rule:#5A5446;--dg-fill:#211E17;--dg-green:#6FBF9F;--dg-hl:#27453A;--dg-warn:#DDA56E}}
+.dg text{font-family:var(--font-ui,-apple-system,"Segoe UI",system-ui,sans-serif);font-size:15px;fill:var(--ink,var(--dg-ink))}
+.dg .bg{fill:var(--paper,var(--dg-paper))}
+.dg .t{font-weight:600}
+.dg .mono,.dg .mono text{font-family:var(--font-mono,ui-monospace,Menlo,monospace);font-size:13px}
+.dg .m,.dg .m text{fill:var(--muted,var(--dg-muted));font-size:13px}
+.dg .gt{fill:var(--green,var(--dg-green))}
+.dg .wt{fill:var(--tok-string,var(--dg-warn))}
+.dg .g{fill:var(--green,var(--dg-green))}
+.dg .w{fill:var(--tok-string,var(--dg-warn))}
+.dg .ln{stroke:var(--muted,var(--dg-muted));stroke-width:1.5;fill:none}
+.dg .box{fill:var(--code-bg,var(--dg-fill));stroke:var(--muted,var(--dg-rule));stroke-width:1}
+.dg .hl{fill:var(--highlight,var(--dg-hl));stroke:var(--green,var(--dg-green));stroke-width:1}
+.dg .lock{fill:var(--code-bg,var(--dg-fill));stroke:var(--green,var(--dg-green));stroke-width:2}
+.dg .idle{fill:none;stroke:var(--muted,var(--dg-rule));stroke-width:1.5;stroke-dasharray:5 4}
+.dg .region{fill:none;stroke:var(--muted,var(--dg-rule));stroke-width:1.5;stroke-dasharray:6 4}
+.dg .gs{stroke:var(--green,var(--dg-green));fill:none;stroke-width:2}
+.dg .gsd{stroke:var(--green,var(--dg-green));fill:none;stroke-width:1.5;stroke-dasharray:4 3}
+.dg .ws{stroke:var(--tok-string,var(--dg-warn));fill:none;stroke-width:1.5}
+.dg .wsd{stroke:var(--tok-string,var(--dg-warn));fill:none;stroke-width:2;stroke-dasharray:6 4}
+</style>
+<rect class="bg" x="-16" y="-14" width="712" height="278" rx="8"/>
+<text x="0" y="45">Thread A</text>
+<text x="0" y="105">Thread B</text>
+<text x="0" y="175">count</text>
+<g class="mono">
+<rect class="box" x="90" y="22" width="85" height="34" rx="3"/><text x="132" y="44" text-anchor="middle">load r=5</text>
+<rect class="box" x="350" y="22" width="75" height="34" rx="3"/><text x="387" y="44" text-anchor="middle">add r=6</text>
+<rect class="hl" x="430" y="22" width="115" height="34" rx="3"/><text x="487" y="44" text-anchor="middle">store count=6</text>
+<rect class="box" x="180" y="82" width="85" height="34" rx="3"/><text x="222" y="104" text-anchor="middle">load r=5</text>
+<rect class="box" x="270" y="82" width="75" height="34" rx="3"/><text x="307" y="104" text-anchor="middle">add r=6</text>
+<rect class="hl" x="550" y="82" width="115" height="34" rx="3"/><text x="607" y="104" text-anchor="middle">store count=6</text>
+<rect class="box" x="90" y="152" width="455" height="34" rx="3"/><text x="317" y="174" text-anchor="middle">5</text>
+<rect class="box" x="545" y="152" width="120" height="34" rx="3"/><text x="605" y="174" text-anchor="middle">6</text>
+</g>
+<path class="gsd" d="M545,56 V152"/>
+<path class="wsd" d="M665,116 V152"/>
+<text x="665" y="212" text-anchor="end" class="wt">count is 6, not 7: one update lost</text>
+<text x="0" y="240" class="m">Both threads read 5 before either writes, so the second store overwrites the first.</text>
+</svg>

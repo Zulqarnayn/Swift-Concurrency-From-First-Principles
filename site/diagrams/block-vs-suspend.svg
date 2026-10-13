@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="dg" viewBox="-16 -14 712 288" width="712" height="288">
+<style>
+.dg{--dg-paper:#F4F1EA;--dg-ink:#1D1B16;--dg-muted:#6B665C;--dg-rule:#BFB6A4;--dg-fill:#EBE6DA;--dg-green:#0E5A47;--dg-hl:#CFE3D2;--dg-warn:#8A4512}
+@media (prefers-color-scheme:dark){.dg{--dg-paper:#17150F;--dg-ink:#E8E2D4;--dg-muted:#A39C8C;--dg-rule:#5A5446;--dg-fill:#211E17;--dg-green:#6FBF9F;--dg-hl:#27453A;--dg-warn:#DDA56E}}
+.dg text{font-family:var(--font-ui,-apple-system,"Segoe UI",system-ui,sans-serif);font-size:15px;fill:var(--ink,var(--dg-ink))}
+.dg .bg{fill:var(--paper,var(--dg-paper))}
+.dg .t{font-weight:600}
+.dg .mono,.dg .mono text{font-family:var(--font-mono,ui-monospace,Menlo,monospace);font-size:13px}
+.dg .m,.dg .m text{fill:var(--muted,var(--dg-muted));font-size:13px}
+.dg .gt{fill:var(--green,var(--dg-green))}
+.dg .wt{fill:var(--tok-string,var(--dg-warn))}
+.dg .g{fill:var(--green,var(--dg-green))}
+.dg .w{fill:var(--tok-string,var(--dg-warn))}
+.dg .ln{stroke:var(--muted,var(--dg-muted));stroke-width:1.5;fill:none}
+.dg .box{fill:var(--code-bg,var(--dg-fill));stroke:var(--muted,var(--dg-rule));stroke-width:1}
+.dg .hl{fill:var(--highlight,var(--dg-hl));stroke:var(--green,var(--dg-green));stroke-width:1}
+.dg .lock{fill:var(--code-bg,var(--dg-fill));stroke:var(--green,var(--dg-green));stroke-width:2}
+.dg .idle{fill:none;stroke:var(--muted,var(--dg-rule));stroke-width:1.5;stroke-dasharray:5 4}
+.dg .region{fill:none;stroke:var(--muted,var(--dg-rule));stroke-width:1.5;stroke-dasharray:6 4}
+.dg .gs{stroke:var(--green,var(--dg-green));fill:none;stroke-width:2}
+.dg .gsd{stroke:var(--green,var(--dg-green));fill:none;stroke-width:1.5;stroke-dasharray:4 3}
+.dg .ws{stroke:var(--tok-string,var(--dg-warn));fill:none;stroke-width:1.5}
+.dg .wsd{stroke:var(--tok-string,var(--dg-warn));fill:none;stroke-width:2;stroke-dasharray:6 4}
+</style>
+<rect class="bg" x="-16" y="-14" width="712" height="288" rx="8"/>
+<defs><marker id="bs-t" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="var(--muted,var(--dg-muted))"/></marker></defs>
+<text x="0" y="20" class="t">Blocking</text>
+<text x="0" y="57" class="m">thread</text>
+<g class="mono">
+<rect class="box" x="90" y="34" width="110" height="36" rx="3"/><text x="145" y="57" text-anchor="middle">loadProfile</text>
+<rect class="idle" x="204" y="34" width="312" height="36" rx="3"/><text x="360" y="57" text-anchor="middle" class="m mono">parked, waiting for the network</text>
+<rect class="box" x="520" y="34" width="120" height="36" rx="3"/><text x="580" y="57" text-anchor="middle">decode</text>
+</g>
+<text x="0" y="112" class="t">Suspending at await</text>
+<text x="0" y="149" class="m">thread</text>
+<g class="mono">
+<rect class="box" x="90" y="126" width="110" height="36" rx="3"/><text x="145" y="149" text-anchor="middle">loadProfile</text>
+<rect class="hl" x="204" y="126" width="140" height="36" rx="3"/><text x="274" y="149" text-anchor="middle">other task</text>
+<rect class="hl" x="348" y="126" width="168" height="36" rx="3"/><text x="432" y="149" text-anchor="middle">other task</text>
+<rect class="box" x="520" y="126" width="120" height="36" rx="3"/><text x="580" y="149" text-anchor="middle">decode</text>
+</g>
+<path class="gs" d="M202,118 V172"/>
+<text x="202" y="190" text-anchor="middle" class="m gt">await: gives up the thread</text>
+<path class="gs" d="M518,118 V172"/>
+<text x="640" y="190" text-anchor="end" class="m gt">resumes</text>
+<path class="ln" d="M90,214 H655" marker-end="url(#bs-t)"/>
+<text x="90" y="236" class="m">time</text>
+<text x="0" y="256" class="m">The same wait costs a whole thread when blocking, and nothing when suspended.</text>
+</svg>

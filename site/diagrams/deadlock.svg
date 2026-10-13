@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="dg" viewBox="-16 -14 712 348" width="712" height="348">
+<style>
+.dg{--dg-paper:#F4F1EA;--dg-ink:#1D1B16;--dg-muted:#6B665C;--dg-rule:#BFB6A4;--dg-fill:#EBE6DA;--dg-green:#0E5A47;--dg-hl:#CFE3D2;--dg-warn:#8A4512}
+@media (prefers-color-scheme:dark){.dg{--dg-paper:#17150F;--dg-ink:#E8E2D4;--dg-muted:#A39C8C;--dg-rule:#5A5446;--dg-fill:#211E17;--dg-green:#6FBF9F;--dg-hl:#27453A;--dg-warn:#DDA56E}}
+.dg text{font-family:var(--font-ui,-apple-system,"Segoe UI",system-ui,sans-serif);font-size:15px;fill:var(--ink,var(--dg-ink))}
+.dg .bg{fill:var(--paper,var(--dg-paper))}
+.dg .t{font-weight:600}
+.dg .mono,.dg .mono text{font-family:var(--font-mono,ui-monospace,Menlo,monospace);font-size:13px}
+.dg .m,.dg .m text{fill:var(--muted,var(--dg-muted));font-size:13px}
+.dg .gt{fill:var(--green,var(--dg-green))}
+.dg .wt{fill:var(--tok-string,var(--dg-warn))}
+.dg .g{fill:var(--green,var(--dg-green))}
+.dg .w{fill:var(--tok-string,var(--dg-warn))}
+.dg .ln{stroke:var(--muted,var(--dg-muted));stroke-width:1.5;fill:none}
+.dg .box{fill:var(--code-bg,var(--dg-fill));stroke:var(--muted,var(--dg-rule));stroke-width:1}
+.dg .hl{fill:var(--highlight,var(--dg-hl));stroke:var(--green,var(--dg-green));stroke-width:1}
+.dg .lock{fill:var(--code-bg,var(--dg-fill));stroke:var(--green,var(--dg-green));stroke-width:2}
+.dg .idle{fill:none;stroke:var(--muted,var(--dg-rule));stroke-width:1.5;stroke-dasharray:5 4}
+.dg .region{fill:none;stroke:var(--muted,var(--dg-rule));stroke-width:1.5;stroke-dasharray:6 4}
+.dg .gs{stroke:var(--green,var(--dg-green));fill:none;stroke-width:2}
+.dg .gsd{stroke:var(--green,var(--dg-green));fill:none;stroke-width:1.5;stroke-dasharray:4 3}
+.dg .ws{stroke:var(--tok-string,var(--dg-warn));fill:none;stroke-width:1.5}
+.dg .wsd{stroke:var(--tok-string,var(--dg-warn));fill:none;stroke-width:2;stroke-dasharray:6 4}
+</style>
+<rect class="bg" x="-16" y="-14" width="712" height="348" rx="8"/>
+<defs><marker id="dl-g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" class="g"/></marker>
+<marker id="dl-w" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" class="w"/></marker></defs>
+<rect class="box" x="140" y="30" width="130" height="48" rx="4"/><text x="205" y="59" text-anchor="middle" class="mono">lock A</text>
+<rect class="hl" x="410" y="30" width="130" height="48" rx="24"/><text x="475" y="59" text-anchor="middle">Thread 1</text>
+<rect class="box" x="410" y="210" width="130" height="48" rx="4"/><text x="475" y="239" text-anchor="middle" class="mono">lock B</text>
+<rect class="hl" x="140" y="210" width="130" height="48" rx="24"/><text x="205" y="239" text-anchor="middle">Thread 2</text>
+<path class="gs" d="M272,54 H406" marker-end="url(#dl-g)"/>
+<text x="340" y="44" text-anchor="middle" class="m gt">held by</text>
+<path class="wsd" d="M475,80 V206" marker-end="url(#dl-w)"/>
+<text x="487" y="148" class="m wt">waits for</text>
+<path class="gs" d="M408,234 H274" marker-end="url(#dl-g)"/>
+<text x="340" y="276" text-anchor="middle" class="m gt">held by</text>
+<path class="wsd" d="M205,208 V82" marker-end="url(#dl-w)"/>
+<text x="193" y="148" text-anchor="end" class="m wt">waits for</text>
+<text x="340" y="140" text-anchor="middle">circular wait:</text>
+<text x="340" y="160" text-anchor="middle">nobody can move</text>
+<text x="0" y="310" class="m">Each thread holds the lock the other needs. A global lock order removes the cycle.</text>
+</svg>

@@ -20,6 +20,8 @@ if account.balance >= 100 {      // check: lock, read, unlock
 
 There is no data race, because no two threads ever touch `balance` at the same time, and Swift 6 compiles it without a warning. It is still wrong. Between the check and the act, other threads run the same check against the same old balance. This bug is called **check-then-act**, or TOCTOU ("time of check to time of use"), and it is the one this course keeps coming back to.
 
+![Two threads each check a balance of 100 under a lock, release it, then withdraw 100 under a lock: the balance ends at minus 100](../../site/diagrams/check-then-act.svg)
+
 Code that must not run on two threads at once is a **critical section**, and a lock gives it *mutual exclusion*. A lock prevents data races, but it doesn't make your logic atomic. The critical section has to cover the whole operation that keeps your invariant true, not each access on its own. Draw the lock boundaries around meaning, not around variables.
 
 You will meet this bug again at the actor level (reentrancy across `await`), in UI code (stale search results) and in caches (duplicate downloads).

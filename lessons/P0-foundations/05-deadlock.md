@@ -12,6 +12,8 @@
 
 Thread 1 locks A and then wants B. Thread 2 locks B and then wants A. Each holds what the other needs, and neither will let go. That is a **deadlock**: a set of threads where each waits for something another holds, so none of them can ever move.
 
+![Wait-for cycle: lock A is held by Thread 1, which waits for lock B, which is held by Thread 2, which waits for lock A](../../site/diagrams/deadlock.svg)
+
 A deadlock needs all four *Coffman conditions* at once. Break any one of them and deadlock becomes impossible:
 
 | # | Condition | How you break it |

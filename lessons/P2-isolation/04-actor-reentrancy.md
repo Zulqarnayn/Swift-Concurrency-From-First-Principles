@@ -63,6 +63,8 @@ B: debited 80 → balance -60
 approved: [true, true]  final balance: -60
 downloads performed: 10
 ```
+
+![Actor timeline: call A checks 100 ≥ 80 and suspends at the fraud check, call B checks the same 100, then both debit 80 and the balance ends at minus 60](../../site/diagrams/reentrancy.svg)
 No data race anywhere, and Swift 6 compiles it all cleanly. Every access happened *inside* the actor. It's a pure logic race, exactly P0.04's shape.
 
 Fixes for the bank, from best to worst:

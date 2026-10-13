@@ -18,6 +18,8 @@ A **thread** is one of those streams: a program counter, registers, and a stack 
 
 The **scheduler**, inside the kernel, decides which threads run on which cores. When there are more threads than cores, it **time-slices**: it runs a thread for a few milliseconds, saves its registers, and switches to another. That switch is a *context switch*.
 
+![Two cores running five threads in turns: each core runs one thread at a time, and a context switch separates the slices](../../site/diagrams/threads-cores.svg)
+
 A **queue** or a **task** is your *description* of work, not a thread. GCD queues and Swift tasks go to a system library (libdispatch or the Swift runtime), and the library picks a thread to run your work on.
 
 Two words get mixed up here. *Concurrency* is about structure: several jobs are in progress during the same period, which one core can manage by interleaving them. *Parallelism* is about execution: several jobs run at the same instant on different cores, which needs more than one core.

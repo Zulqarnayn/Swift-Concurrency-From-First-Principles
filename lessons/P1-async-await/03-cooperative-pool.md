@@ -16,6 +16,8 @@ In P0.06, GCD reacted to every blocked block by creating another thread, and you
 
 That means no explosion, little context switching and a small memory footprint. In exchange, the runtime assumes every task makes forward progress: it either runs or suspends, and never blocks waiting for something else to happen. That assumption is the "cooperative" part, a contract between you and the runtime.
 
+![Left: GCD creates many threads, most of them blocked. Right: the cooperative pool keeps one thread per core and tasks take turns on them](../../site/diagrams/pool-vs-explosion.svg)
+
 Break the contract and you get one of two failures. The first is starvation: blocked threads reduce the pool's throughput, and blocking 1 of 8 threads removes 12.5% of all async capacity. The second is deadlock: a task blocks waiting for work that needs a pool thread to run, and if every pool thread is in that state, nothing can ever wake them. GCD would have spawned a rescue thread. The cooperative pool won't.
 
 These break the contract:

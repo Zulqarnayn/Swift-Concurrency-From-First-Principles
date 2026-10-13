@@ -28,6 +28,8 @@ Four rules follow from that, and they are worth memorizing:
 3. Between two `await`s, your code runs straight through, like any sync code. Only at an `await` can other work interleave *in your isolation domain*. This is the root of actor reentrancy (P2).
 4. After an `await` you may be on a different thread, unless something such as `@MainActor` pins you. Never rely on thread identity: no `Thread.current`, no thread-local storage.
 
+![Two timelines: a blocking call parks its thread while waiting for the network; a suspending call gives the thread to other tasks and resumes afterwards](../../site/diagrams/block-vs-suspend.svg)
+
 So where does async code run? The full answer is "isolation", and it takes up P2. For now, these are the working rules for this package, which match a new Xcode 26 project:
 
 | Declaration | Runs on |

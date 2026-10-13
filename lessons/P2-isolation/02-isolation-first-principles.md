@@ -26,6 +26,8 @@ The rules that come out of that table:
 2. **Crossing into another domain requires `await`.** The call may have to wait its turn (the actor might be busy), so it's a potential suspension point.
 3. **Only `Sendable` values can cross** (P2.06), because a value that crosses is now reachable from two domains.
 
+![Three isolation domains, MainActor, an actor instance and nonisolated code, with await arrows crossing between them](../../site/diagrams/isolation-domains.svg)
+
 A good mental model (Massicotte): isolation is a property of **declarations**, not threads. `@MainActor` *happens* to mean "main thread", but an actor instance runs on whatever pool thread is free, and a different one each time. Ask "which domain?", not "which thread?".
 
 `#isolation` is a macro that evaluates to the **current domain's actor**, or `nil` when nonisolated. LabKit's `isolationLabel()` uses it to show you where you are:

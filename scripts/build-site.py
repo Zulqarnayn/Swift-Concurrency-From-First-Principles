@@ -56,6 +56,7 @@ TIMEBOX = re.compile(r"\s*\((\d+(?:–\d+)?)\s*min\b[^)]*\)")
 FAST_TRACK_TAG = '<span class="tag">Fast track</span>'
 INTERVIEW_HEADING = re.compile(r"^#{2,3} (?:\d+\.\s+)?(Interview cards|Flashcards)\b")
 BUG_HEADING = re.compile(r"^## Bug report\b")
+DIAGRAM = re.compile(r"^!\[([^\]]*)\]\((?:\.\./)+site/diagrams/([\w-]+)\.svg\)[ \t]*$", re.MULTILINE)
 EMOJI = re.compile(
     "[\U0001F000-\U0001FAFF\u2600-\u27BF\u2B00-\u2BFF\u2300-\u23FF\uFE0F\u200D]+"
 )
@@ -104,6 +105,19 @@ def transform_lesson(text: str) -> str:
     text = re.sub(r"<summary>Spoiler:\s*", "<summary>Answer, ", text)
     text = re.sub(r"<summary>(.*?)</summary>", lambda m: f"<summary>{strip_emoji(m.group(1))}</summary>", text)
     return text
+
+
+def inline_diagrams(text: str) -> str:
+    """Lessons link diagrams as images so GitHub shows them; the site inlines the SVG so it follows the theme's colours."""
+
+    def replace(match: re.Match) -> str:
+        svg = (ROOT / "site" / "diagrams" / f"{match.group(2)}.svg").read_text().strip()
+        svg = svg.replace("<svg ", '<svg aria-hidden="true" focusable="false" ', 1)
+        label = html.escape(match.group(1))
+        name = match.group(2)
+        return f'<figure class="diagram" data-diagram="{name}" role="img" aria-label="{label}" data-pagefind-ignore="all">\n{svg}\n</figure>'
+
+    return DIAGRAM.sub(replace, text)
 
 
 def transform_headings(text: str) -> str:
@@ -279,7 +293,7 @@ def stage() -> dict[str, list[tuple[str, str]]]:
         text = fix_list_spacing(text)
         text = harden_blockquotes(text)
         if page in lesson_meta:
-            text = with_front_matter(lesson_meta[page], transform_headings(transform_lesson(text)))
+            text = with_front_matter(lesson_meta[page], inline_diagrams(transform_headings(transform_lesson(text))))
         elif page.name != "index.md":
             text = transform_headings(text)
         page.write_text(text)

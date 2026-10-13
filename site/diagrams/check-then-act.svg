@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="dg" viewBox="-16 -14 712 298" width="712" height="298">
+<style>
+.dg{--dg-paper:#F4F1EA;--dg-ink:#1D1B16;--dg-muted:#6B665C;--dg-rule:#BFB6A4;--dg-fill:#EBE6DA;--dg-green:#0E5A47;--dg-hl:#CFE3D2;--dg-warn:#8A4512}
+@media (prefers-color-scheme:dark){.dg{--dg-paper:#17150F;--dg-ink:#E8E2D4;--dg-muted:#A39C8C;--dg-rule:#5A5446;--dg-fill:#211E17;--dg-green:#6FBF9F;--dg-hl:#27453A;--dg-warn:#DDA56E}}
+.dg text{font-family:var(--font-ui,-apple-system,"Segoe UI",system-ui,sans-serif);font-size:15px;fill:var(--ink,var(--dg-ink))}
+.dg .bg{fill:var(--paper,var(--dg-paper))}
+.dg .t{font-weight:600}
+.dg .mono,.dg .mono text{font-family:var(--font-mono,ui-monospace,Menlo,monospace);font-size:13px}
+.dg .m,.dg .m text{fill:var(--muted,var(--dg-muted));font-size:13px}
+.dg .gt{fill:var(--green,var(--dg-green))}
+.dg .wt{fill:var(--tok-string,var(--dg-warn))}
+.dg .g{fill:var(--green,var(--dg-green))}
+.dg .w{fill:var(--tok-string,var(--dg-warn))}
+.dg .ln{stroke:var(--muted,var(--dg-muted));stroke-width:1.5;fill:none}
+.dg .box{fill:var(--code-bg,var(--dg-fill));stroke:var(--muted,var(--dg-rule));stroke-width:1}
+.dg .hl{fill:var(--highlight,var(--dg-hl));stroke:var(--green,var(--dg-green));stroke-width:1}
+.dg .lock{fill:var(--code-bg,var(--dg-fill));stroke:var(--green,var(--dg-green));stroke-width:2}
+.dg .idle{fill:none;stroke:var(--muted,var(--dg-rule));stroke-width:1.5;stroke-dasharray:5 4}
+.dg .region{fill:none;stroke:var(--muted,var(--dg-rule));stroke-width:1.5;stroke-dasharray:6 4}
+.dg .gs{stroke:var(--green,var(--dg-green));fill:none;stroke-width:2}
+.dg .gsd{stroke:var(--green,var(--dg-green));fill:none;stroke-width:1.5;stroke-dasharray:4 3}
+.dg .ws{stroke:var(--tok-string,var(--dg-warn));fill:none;stroke-width:1.5}
+.dg .wsd{stroke:var(--tok-string,var(--dg-warn));fill:none;stroke-width:2;stroke-dasharray:6 4}
+</style>
+<rect class="bg" x="-16" y="-14" width="712" height="298" rx="8"/>
+<path class="ws" d="M220,36 V26 H360 V36"/>
+<text x="290" y="18" text-anchor="middle" class="m wt">gap: no lock held</text>
+<text x="0" y="67">Thread 1</text>
+<text x="0" y="127">Thread 2</text>
+<text x="0" y="197">balance</text>
+<g class="mono">
+<rect class="lock" x="90" y="44" width="130" height="34" rx="3"/><text x="155" y="66" text-anchor="middle">check 100 &#8805; 100</text>
+<rect class="lock" x="360" y="44" width="130" height="34" rx="3"/><text x="425" y="66" text-anchor="middle">balance &#8722;= 100</text>
+<rect class="lock" x="225" y="104" width="130" height="34" rx="3"/><text x="290" y="126" text-anchor="middle">check 100 &#8805; 100</text>
+<rect class="lock" x="495" y="104" width="130" height="34" rx="3"/><text x="560" y="126" text-anchor="middle">balance &#8722;= 100</text>
+<rect class="box" x="90" y="174" width="400" height="34" rx="3"/><text x="290" y="196" text-anchor="middle">100</text>
+<rect class="box" x="490" y="174" width="135" height="34" rx="3"/><text x="557" y="196" text-anchor="middle">0</text>
+<rect class="box" x="625" y="174" width="55" height="34" rx="3"/><text x="652" y="196" text-anchor="middle" class="wt">&#8722;100</text>
+</g>
+<rect class="lock" x="0" y="232" width="22" height="14" rx="2"/>
+<text x="30" y="244" class="m">lock held. Every access is locked, yet both checks see 100 before either withdrawal lands.</text>
+</svg>

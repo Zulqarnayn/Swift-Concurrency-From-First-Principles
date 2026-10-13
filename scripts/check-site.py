@@ -182,6 +182,19 @@ def check_theme(problems: list[str]) -> None:
     print(f"fonts: {len(fonts)} files, {total // 1024} KB")
 
 
+def check_diagrams(problems: list[str]) -> None:
+    """Every diagram in site/diagrams is linked from a lesson and inlined exactly once; none is left as an <img>."""
+    names = sorted(path.stem for path in (ROOT / "site" / "diagrams").glob("*.svg"))
+    built = "".join(path.read_text() for path in OUT.rglob("*.html"))
+    if "site/diagrams/" in built:
+        problems.append("a diagram link was not inlined (site/diagrams/ appears in the output)")
+    for name in names:
+        count = built.count(f'data-diagram="{name}"')
+        if count != 1:
+            problems.append(f"diagram {name}.svg is inlined {count} times, expected once")
+    print(f"diagrams: {len(names)} inlined")
+
+
 def main() -> int:
     if not OUT.exists():
         print("no build output: run scripts/build-site.py first")
@@ -231,6 +244,7 @@ def main() -> int:
                 problems.append(f"{label}: broken link {href}")
 
     check_theme(problems)
+    check_diagrams(problems)
     report = check_contrast(problems)
     print(f"checked {len(pages)} pages, {checked_links} links, {len(report)} contrast pairs")
     if "-v" in sys.argv:

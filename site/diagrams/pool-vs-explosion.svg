@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="dg" viewBox="-16 -14 712 338" width="712" height="338">
+<style>
+.dg{--dg-paper:#F4F1EA;--dg-ink:#1D1B16;--dg-muted:#6B665C;--dg-rule:#BFB6A4;--dg-fill:#EBE6DA;--dg-green:#0E5A47;--dg-hl:#CFE3D2;--dg-warn:#8A4512}
+@media (prefers-color-scheme:dark){.dg{--dg-paper:#17150F;--dg-ink:#E8E2D4;--dg-muted:#A39C8C;--dg-rule:#5A5446;--dg-fill:#211E17;--dg-green:#6FBF9F;--dg-hl:#27453A;--dg-warn:#DDA56E}}
+.dg text{font-family:var(--font-ui,-apple-system,"Segoe UI",system-ui,sans-serif);font-size:15px;fill:var(--ink,var(--dg-ink))}
+.dg .bg{fill:var(--paper,var(--dg-paper))}
+.dg .t{font-weight:600}
+.dg .mono,.dg .mono text{font-family:var(--font-mono,ui-monospace,Menlo,monospace);font-size:13px}
+.dg .m,.dg .m text{fill:var(--muted,var(--dg-muted));font-size:13px}
+.dg .gt{fill:var(--green,var(--dg-green))}
+.dg .wt{fill:var(--tok-string,var(--dg-warn))}
+.dg .g{fill:var(--green,var(--dg-green))}
+.dg .w{fill:var(--tok-string,var(--dg-warn))}
+.dg .ln{stroke:var(--muted,var(--dg-muted));stroke-width:1.5;fill:none}
+.dg .box{fill:var(--code-bg,var(--dg-fill));stroke:var(--muted,var(--dg-rule));stroke-width:1}
+.dg .hl{fill:var(--highlight,var(--dg-hl));stroke:var(--green,var(--dg-green));stroke-width:1}
+.dg .lock{fill:var(--code-bg,var(--dg-fill));stroke:var(--green,var(--dg-green));stroke-width:2}
+.dg .idle{fill:none;stroke:var(--muted,var(--dg-rule));stroke-width:1.5;stroke-dasharray:5 4}
+.dg .region{fill:none;stroke:var(--muted,var(--dg-rule));stroke-width:1.5;stroke-dasharray:6 4}
+.dg .gs{stroke:var(--green,var(--dg-green));fill:none;stroke-width:2}
+.dg .gsd{stroke:var(--green,var(--dg-green));fill:none;stroke-width:1.5;stroke-dasharray:4 3}
+.dg .ws{stroke:var(--tok-string,var(--dg-warn));fill:none;stroke-width:1.5}
+.dg .wsd{stroke:var(--tok-string,var(--dg-warn));fill:none;stroke-width:2;stroke-dasharray:6 4}
+</style>
+<rect class="bg" x="-16" y="-14" width="712" height="338" rx="8"/>
+<text x="0" y="20" class="t">GCD under blocking</text>
+<g>
+<rect class="box" x="0" y="40" width="66" height="18" rx="2"/><rect class="idle" x="76" y="40" width="66" height="18" rx="2"/><rect class="idle" x="152" y="40" width="66" height="18" rx="2"/><rect class="idle" x="228" y="40" width="66" height="18" rx="2"/>
+<rect class="idle" x="0" y="68" width="66" height="18" rx="2"/><rect class="box" x="76" y="68" width="66" height="18" rx="2"/><rect class="idle" x="152" y="68" width="66" height="18" rx="2"/><rect class="idle" x="228" y="68" width="66" height="18" rx="2"/>
+<rect class="idle" x="0" y="96" width="66" height="18" rx="2"/><rect class="idle" x="76" y="96" width="66" height="18" rx="2"/><rect class="box" x="152" y="96" width="66" height="18" rx="2"/><rect class="idle" x="228" y="96" width="66" height="18" rx="2"/>
+<rect class="idle" x="0" y="124" width="66" height="18" rx="2"/><rect class="idle" x="76" y="124" width="66" height="18" rx="2"/><rect class="idle" x="152" y="124" width="66" height="18" rx="2"/><rect class="box" x="228" y="124" width="66" height="18" rx="2"/>
+<rect class="box" x="0" y="152" width="66" height="18" rx="2"/><rect class="idle" x="76" y="152" width="66" height="18" rx="2"/><rect class="idle" x="152" y="152" width="66" height="18" rx="2"/><rect class="idle" x="228" y="152" width="66" height="18" rx="2"/>
+<rect class="idle" x="0" y="180" width="66" height="18" rx="2"/><rect class="idle" x="76" y="180" width="66" height="18" rx="2"/><rect class="box" x="152" y="180" width="66" height="18" rx="2"/><rect class="idle" x="228" y="180" width="66" height="18" rx="2"/>
+<rect class="idle" x="0" y="208" width="66" height="18" rx="2"/><rect class="idle" x="76" y="208" width="66" height="18" rx="2"/><rect class="idle" x="152" y="208" width="66" height="18" rx="2"/><rect class="idle" x="228" y="208" width="66" height="18" rx="2"/>
+</g>
+<text x="0" y="252" class="m">A new thread for every blocked block.</text>
+<text x="0" y="270" class="m">Most of them sit waiting (dashed) and cost memory.</text>
+<text x="360" y="20" class="t">Cooperative pool</text>
+<g class="mono">
+<text x="360" y="53">T1</text><text x="360" y="81">T2</text><text x="360" y="109">T3</text><text x="360" y="137">T4</text>
+<text x="360" y="165">T5</text><text x="360" y="193">T6</text><text x="360" y="221">T7</text><text x="360" y="249">T8</text>
+</g>
+<g>
+<rect class="hl" x="390" y="40" width="58" height="18" rx="2"/><rect class="box" x="452" y="40" width="70" height="18" rx="2"/><rect class="hl" x="526" y="40" width="44" height="18" rx="2"/><rect class="box" x="574" y="40" width="62" height="18" rx="2"/>
+<rect class="box" x="390" y="68" width="76" height="18" rx="2"/><rect class="hl" x="470" y="68" width="50" height="18" rx="2"/><rect class="box" x="524" y="68" width="66" height="18" rx="2"/><rect class="hl" x="594" y="68" width="42" height="18" rx="2"/>
+<rect class="hl" x="390" y="96" width="44" height="18" rx="2"/><rect class="box" x="438" y="96" width="64" height="18" rx="2"/><rect class="hl" x="506" y="96" width="72" height="18" rx="2"/><rect class="box" x="582" y="96" width="54" height="18" rx="2"/>
+<rect class="box" x="390" y="124" width="62" height="18" rx="2"/><rect class="hl" x="456" y="124" width="62" height="18" rx="2"/><rect class="box" x="522" y="124" width="48" height="18" rx="2"/><rect class="hl" x="574" y="124" width="62" height="18" rx="2"/>
+<rect class="hl" x="390" y="152" width="70" height="18" rx="2"/><rect class="box" x="464" y="152" width="46" height="18" rx="2"/><rect class="hl" x="514" y="152" width="60" height="18" rx="2"/><rect class="box" x="578" y="152" width="58" height="18" rx="2"/>
+<rect class="box" x="390" y="180" width="50" height="18" rx="2"/><rect class="hl" x="444" y="180" width="76" height="18" rx="2"/><rect class="box" x="524" y="180" width="56" height="18" rx="2"/><rect class="hl" x="584" y="180" width="52" height="18" rx="2"/>
+<rect class="hl" x="390" y="208" width="64" height="18" rx="2"/><rect class="box" x="458" y="208" width="58" height="18" rx="2"/><rect class="hl" x="520" y="208" width="46" height="18" rx="2"/><rect class="box" x="570" y="208" width="66" height="18" rx="2"/>
+<rect class="box" x="390" y="236" width="56" height="18" rx="2"/><rect class="hl" x="450" y="236" width="68" height="18" rx="2"/><rect class="box" x="522" y="236" width="62" height="18" rx="2"/><rect class="hl" x="588" y="236" width="48" height="18" rx="2"/>
+</g>
+<text x="360" y="280" class="m">One thread per core, never more. Tasks take</text>
+<text x="360" y="298" class="m">turns, swapping in and out at each await.</text>
+</svg>

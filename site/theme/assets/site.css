@@ -542,6 +542,14 @@ h1 code {
   vertical-align: top;
 }
 
+/* diagrams: inline SVG coloured by the tokens above, scaled to the column so the whole picture stays visible */
+.prose .diagram { margin: 2rem 0 2.2rem; }
+.prose .diagram svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 /* task lists (roadmap) */
 .task-list-item { list-style: none; margin-left: -1.4rem; }
 .task-list-item input { accent-color: var(--green); margin: 0 0.6rem 0 0; transform: translateY(0.1em); cursor: pointer; }

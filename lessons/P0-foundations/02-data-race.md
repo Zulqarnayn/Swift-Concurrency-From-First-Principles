@@ -26,6 +26,8 @@ Thread B:          load r=5  add r=6                      store count=6
                                                      → count is 6, not 7. One update LOST.
 ```
 
+![Timeline of two threads incrementing count from 5: both load 5, both store 6, and count ends at 6 instead of 7](../../site/diagrams/lost-update.svg)
+
 Both threads read 5, both write 6, and one of the two increments is gone. This is a **data race**, and it has a precise definition that interviewers expect you to know word for word:
 
 > Two or more threads access the **same memory location** at the same time, **at least one access is a write**, and there is **no synchronization** ordering them (no "happens-before" relationship).
