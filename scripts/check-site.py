@@ -13,6 +13,9 @@ Checks (stdlib only):
   5. per page: number of <table> == number of markdown tables in the source, and every row has the header's cell count
      (catches Python-Markdown vs GitHub differences, e.g. pipes inside backticks)
   6. every relative <a href> in the built HTML points at a file that exists
+  7. theme: every lesson has an eyebrow and a pager, no heading contains emoji, the Pagefind index exists,
+     every font the stylesheet references exists and the fonts weigh < 300 KB together
+  8. contrast: every text colour in site.css meets WCAG AA on the ground it is used on, in both schemes
 """
 import re
 import sys
@@ -28,6 +31,27 @@ FENCE = re.compile(r"^\s*```")
 LIST_ITEM = re.compile(r"^\s*([-*+]|\d+\.)\s+\S")
 ARTICLE = re.compile(r"<article.*?</article>", re.DOTALL)
 TABLE_SEPARATOR = re.compile(r"^\s*\|?\s*:?-{3,}:?\s*(\|\s*:?-{3,}:?\s*)+\|?\s*$")
+HEADING = re.compile(r"<h[1-6][^>]*>(.*?)</h[1-6]>", re.DOTALL)
+EMOJI = re.compile("[\U0001F000-\U0001FAFF\u2600-\u27BF\u2B00-\u2BFF\u2300-\u23FF]")
+STYLESHEET = ROOT / "site" / "theme" / "assets" / "site.css"
+FONT_BUDGET = 300 * 1024
+
+# (text token, ground token, minimum ratio). 4.5 for body-size text, 3 for large or purely decorative-adjacent text.
+CONTRAST_PAIRS = [
+    ("ink", "paper", 4.5),
+    ("muted", "paper", 4.5),
+    ("green", "paper", 4.5),
+    ("ink", "code-bg", 4.5),
+    ("muted", "code-bg", 4.5),
+    ("green", "code-bg", 4.5),
+    ("ink", "highlight", 4.5),
+    ("tok-keyword", "code-bg", 4.5),
+    ("tok-type", "code-bg", 4.5),
+    ("tok-string", "code-bg", 4.5),
+    ("tok-number", "code-bg", 4.5),
+    ("tok-comment", "code-bg", 4.5),
+    ("tok-attr", "code-bg", 4.5),
+]
 
 
 def output_for(source: Path) -> Path:
@@ -101,6 +125,63 @@ def link_target_exists(page_html: Path, href: str) -> bool:
     return candidate.exists() or (candidate / "index.html").exists()
 
 
+def relative_luminance(hex_colour: str) -> float:
+    channels = [int(hex_colour[i : i + 2], 16) / 255 for i in (1, 3, 5)]
+    linear = [c / 12.92 if c <= 0.03928 else ((c + 0.055) / 1.055) ** 2.4 for c in channels]
+    return 0.2126 * linear[0] + 0.7152 * linear[1] + 0.0722 * linear[2]
+
+
+def contrast(a: str, b: str) -> float:
+    la, lb = sorted((relative_luminance(a), relative_luminance(b)), reverse=True)
+    return (la + 0.05) / (lb + 0.05)
+
+
+def scheme_tokens(css: str) -> dict[str, dict[str, str]]:
+    """Light tokens from the first :root block; dark tokens from the explicit [data-scheme="dark"] block."""
+    def tokens(block: str) -> dict[str, str]:
+        return dict(re.findall(r"--([\w-]+):\s*(#[0-9A-Fa-f]{6})\s*;", block))
+
+    light = re.search(r":root\s*\{(.*?)\}", css, re.DOTALL)
+    dark = re.search(r':root\[data-scheme="dark"\]\s*\{(.*?)\}', css, re.DOTALL)
+    return {"light": tokens(light.group(1)) if light else {}, "dark": tokens(dark.group(1)) if dark else {}}
+
+
+def check_contrast(problems: list[str]) -> list[str]:
+    css = STYLESHEET.read_text()
+    report = []
+    automatic = re.search(r':root:not\(\[data-scheme="light"\]\)\s*\{(.*?)\}', css, re.DOTALL)
+    explicit = re.search(r':root\[data-scheme="dark"\]\s*\{(.*?)\}', css, re.DOTALL)
+    if not automatic or not explicit or automatic.group(1).split() != explicit.group(1).split():
+        problems.append("dark tokens differ between the prefers-color-scheme block and the [data-scheme=dark] block")
+    for scheme, tokens in scheme_tokens(css).items():
+        for text, ground, minimum in CONTRAST_PAIRS:
+            if text not in tokens or ground not in tokens:
+                problems.append(f"contrast ({scheme}): token --{text} or --{ground} missing")
+                continue
+            ratio = contrast(tokens[text], tokens[ground])
+            report.append(f"  {scheme:5} {text:>12} on {ground:<9} {ratio:5.2f}")
+            if ratio < minimum:
+                problems.append(f"contrast ({scheme}): --{text} on --{ground} is {ratio:.2f}, needs {minimum}")
+    return report
+
+
+def check_theme(problems: list[str]) -> None:
+    if not (OUT / "pagefind" / "pagefind.js").exists():
+        problems.append("no Pagefind index (out/pagefind/pagefind.js missing)")
+    css = STYLESHEET.read_text()
+    fonts = sorted(set(re.findall(r'url\("\.\./(fonts/[^"]+)"\)', css)))
+    total = 0
+    for font in fonts:
+        built = OUT / font
+        if not built.exists():
+            problems.append(f"stylesheet references {font}, which is not in the build")
+        else:
+            total += built.stat().st_size
+    if total > FONT_BUDGET:
+        problems.append(f"fonts weigh {total // 1024} KB, budget is {FONT_BUDGET // 1024} KB")
+    print(f"fonts: {len(fonts)} files, {total // 1024} KB")
+
+
 def main() -> int:
     if not OUT.exists():
         print("no build output: run scripts/build-site.py first")
@@ -119,9 +200,17 @@ def main() -> int:
             problems.append(f"{label}: no built page")
             continue
         html = out.read_text()
-        for leak in ("<!-- nav", 'markdown="1"', "&lt;details", "&lt;summary", "{ .lesson-meta }", "{: .lesson-meta"):
+        for leak in ("<!-- nav", 'markdown="1"', "&lt;details", "&lt;summary", "{: .kit }", "data-step=&quot;", "⭐"):
             if leak in html:
                 problems.append(f"{label}: leaked '{leak}'")
+        if label.startswith("lessons/"):
+            if 'class="eyebrow"' not in html:
+                problems.append(f"{label}: no eyebrow")
+            if 'class="pager"' not in html:
+                problems.append(f"{label}: no pager")
+        for heading in HEADING.findall(html):
+            if EMOJI.search(heading):
+                problems.append(f"{label}: emoji in heading {re.sub(r'<[^>]+>', '', heading)[:60]!r}")
         parser = PageParser()
         parser.feed(html)
         fences, tables, items = source_stats(source.read_text())
@@ -141,7 +230,11 @@ def main() -> int:
             if not link_target_exists(out, href):
                 problems.append(f"{label}: broken link {href}")
 
-    print(f"checked {len(pages)} pages, {checked_links} links")
+    check_theme(problems)
+    report = check_contrast(problems)
+    print(f"checked {len(pages)} pages, {checked_links} links, {len(report)} contrast pairs")
+    if "-v" in sys.argv:
+        print("\n".join(report))
     for problem in problems:
         print("✘", problem)
     if not problems:
