@@ -56,6 +56,11 @@ TIMEBOX = re.compile(r"\s*\((\d+(?:–\d+)?)\s*min\b[^)]*\)")
 FAST_TRACK_TAG = '<span class="tag">Fast track</span>'
 INTERVIEW_HEADING = re.compile(r"^#{2,3} (?:\d+\.\s+)?(Interview cards|Flashcards)\b")
 BUG_HEADING = re.compile(r"^## Bug report\b")
+SITE_PAGES = {f"interview/{name}": f"interview/{name}" for _, name in INTERVIEW_PAGES} | {
+    "ROADMAP.md": "roadmap.md",
+    "reading-list.md": "reading-list.md",
+}
+REPO_FILE_SPAN = re.compile(r"(?<!\[)`([\w./-]+\.(?:swift|md|sh|py|yml|json|txt|plist))`(?!\])")
 DIAGRAM = re.compile(r"^!\[([^\]]*)\]\((?:\.\./)+site/diagrams/([\w-]+)\.svg\)[ \t]*$", re.MULTILINE)
 EMOJI = re.compile(
     "[\U0001F000-\U0001FAFF\u2600-\u27BF\u2B00-\u2BFF\u2300-\u23FF\uFE0F\u200D]+"
@@ -118,6 +123,50 @@ def inline_diagrams(text: str) -> str:
         return f'<figure class="diagram" data-diagram="{name}" role="img" aria-label="{label}" data-pagefind-ignore="all">\n{svg}\n</figure>'
 
     return DIAGRAM.sub(replace, text)
+
+
+def repo_file_index() -> dict[str, list[str]]:
+    """Every tracked file, keyed by each of its path suffixes: `Timeout.swift`, `LabKit/Timeout.swift`, …"""
+    tracked = subprocess.run(["git", "ls-files"], cwd=ROOT, capture_output=True, text=True, check=True).stdout.split()
+    index: dict[str, list[str]] = {}
+    for path in tracked:
+        parts = path.split("/")
+        for start in range(len(parts)):
+            index.setdefault("/".join(parts[start:]), []).append(path)
+    return index
+
+
+def link_repo_files(text: str, index: dict[str, list[str]], repo_url: str, page: Path) -> str:
+    """Turn `Sources/Exercises/P0_01_Cores.swift`-style code spans into links to the file on GitHub.
+    A bare name that matches several files means the learner's copy, not the one in solutions/, and a label right
+    before it ("Diagnostics `P2_11_globals.swift`", "**Fixme** `…`") picks the folder. Anything still ambiguous stays
+    plain text; code blocks and existing links are left alone."""
+
+    def replace(match: re.Match) -> str:
+        span = match.group(1)
+        paths = index.get(span.removeprefix("./"), [])
+        if len(paths) > 1:
+            paths = [path for path in paths if not path.startswith("solutions/")]
+        if len(paths) > 1:
+            label = re.findall(r"(\w+)\W*$", match.string[: match.start()])
+            if label:
+                paths = [path for path in paths if f"/{label[0]}/" in path]
+        if len(paths) != 1:
+            return match.group(0)
+        if paths[0] in SITE_PAGES:
+            target = os.path.relpath(DOCS / SITE_PAGES[paths[0]], page.parent)
+            return f"[`{span}`]({target})"
+        return f"[`{span}`]({repo_url}/blob/main/{paths[0]}){{ .repo-file }}"
+
+    out: list[str] = []
+    inside_fence = False
+    for line in text.split("\n"):
+        if line.lstrip().startswith("```"):
+            inside_fence = not inside_fence
+        if not inside_fence:
+            line = REPO_FILE_SPAN.sub(replace, line)
+        out.append(line)
+    return "\n".join(out)
 
 
 def transform_headings(text: str) -> str:
@@ -285,9 +334,12 @@ def stage() -> dict[str, list[tuple[str, str]]]:
             lesson_meta[path] = meta
             lessons[folder].append((nav_title(meta.get("heading", path.stem)), path.relative_to(DOCS).as_posix()))
 
+    files = repo_file_index()
+    repo_url = yaml.safe_load((ROOT / "site" / "mkdocs.template.yml").read_text())["repo_url"].rstrip("/")
     for page in DOCS.rglob("*.md"):
         text = page.read_text()
         text = LINK_TO_ROADMAP.sub(r"\1roadmap.md", text)
+        text = link_repo_files(text, files, repo_url, page)
         text = fix_table_spacing(text)
         text = fix_numbered_indent(text)
         text = fix_list_spacing(text)

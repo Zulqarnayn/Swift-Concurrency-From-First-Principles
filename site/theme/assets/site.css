@@ -569,6 +569,8 @@ h1 code {
   overflow-wrap: break-word;
 }
 .prose h2 code, .prose h3 code { font-size: 0.8em; background: none; padding: 0; }
+.prose a code { color: var(--green); }
+.prose a.repo-file::after { content: "\2197"; font-family: var(--font-ui); font-size: 0.7em; margin-left: 0.15em; color: var(--muted); }
 
 .prose pre {
   background: var(--code-bg);
