@@ -543,7 +543,11 @@ h1 code {
 
 /* task lists (roadmap) */
 .task-list-item { list-style: none; margin-left: -1.4rem; }
-.task-list-item input { accent-color: var(--green); margin: 0 0.6rem 0 0; transform: translateY(0.1em); }
+.task-list-item input { accent-color: var(--green); margin: 0 0.6rem 0 0; transform: translateY(0.1em); cursor: pointer; }
+.task-list-item input:disabled { cursor: default; }
+.task-list-item a { color: var(--ink); text-decoration-color: var(--rule); }
+.task-list-item a:hover { color: var(--green); text-decoration-color: currentColor; }
+.task-list-item:has(input:checked) a { color: var(--muted); }
 
 /* ---------- code ---------- */
 

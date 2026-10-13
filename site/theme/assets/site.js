@@ -64,6 +64,25 @@
     headings.forEach(function (h) { observer.observe(h); });
   }
 
+  // Roadmap checklist: ticks are kept in this browser, keyed by the lesson each item links to.
+  var boxes = document.querySelectorAll(".task-list-item input[type=checkbox]");
+  if (boxes.length) {
+    var done = {};
+    try { done = JSON.parse(localStorage.getItem("done") || "{}"); } catch (e) { done = {}; }
+    boxes.forEach(function (box) {
+      var link = box.parentElement.querySelector("a");
+      if (!link) return;
+      var key = link.getAttribute("href").replace(/^(\.\.\/)+/, "");
+      box.disabled = false;
+      box.checked = !!done[key];
+      box.setAttribute("aria-label", "Done: " + link.textContent);
+      box.addEventListener("change", function () {
+        if (box.checked) done[key] = true; else delete done[key];
+        try { localStorage.setItem("done", JSON.stringify(done)); } catch (e) {}
+      });
+    });
+  }
+
   // Search: Pagefind is loaded the first time the dialog opens.
   var dialog = document.getElementById("search");
   var opener = document.querySelector(".search-open");
