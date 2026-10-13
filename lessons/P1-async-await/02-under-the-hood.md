@@ -4,15 +4,13 @@
 [← P1.01](./01-async-await.md) · [Roadmap](../../ROADMAP.md) · [P1.03 →](./03-cooperative-pool.md)
 <!-- nav:end -->
 
+<!-- dek: A function stops halfway, gives its thread away, and carries on later on another one. Here is what the compiler builds to make that possible. -->
+
 ⏱ 30 min · Demo `p1.02` · Exercise `P1_02`
 
 ## 1. Concept (5 min)
 
-How can a function stop halfway, release its thread, and continue on a different thread? Here's what the compiler does.
-
-**Normal (sync) function:** local variables live in a **stack frame** on the thread's stack. The function must finish before the thread can do anything else, because the frame sits in the middle of that thread's stack.
-
-**Async function:** the compiler splits it at every `await` into **partial functions** ("funclets"):
+How can a function stop halfway, release its thread, and continue on a different thread? Start with a function that has two waits in it:
 
 ```swift
 func checkout(cartID: String) async throws -> Receipt {
@@ -22,21 +20,25 @@ func checkout(cartID: String) async throws -> Receipt {
     return Receipt(paymentID: payment.id, total: total)
 }
 ```
-- Partial 1: start the `fetchCart` call, then **return to the executor** (the thread is free).
-- Partial 2 (runs when `fetchCart` finishes): compute `total`, start `charge`, return to the executor.
-- Partial 3: build the receipt, return to the caller.
 
-Variables that must survive a split (`total` lives across the second `await`) go into an **async frame** allocated on the heap (in a fast per-task allocator), **not on any thread's stack**. That's why the function can resume on any thread.
+The compiler cuts it at every `await` into **partial functions**, sometimes called funclets:
 
-Vocabulary:
-- A **Task** is a chain of these partials plus its async frames: one logical "thread of execution", not an OS thread.
+- Partial 1 starts the `fetchCart` call, then returns to the executor, which frees the thread.
+- Partial 2 runs when `fetchCart` finishes. It computes `total`, starts `charge`, and returns to the executor.
+- Partial 3 builds the receipt and returns to the caller.
+
+A normal, synchronous function keeps its local variables in a **stack frame** on the thread's stack. It must finish before the thread can do anything else, because that frame sits in the middle of the thread's stack. An async function can't work that way. Variables that must survive a split, such as `total`, which lives across the second `await`, go into an **async frame** allocated on the heap by a fast per-task allocator. The frame is on no thread's stack, which is why the function can resume on any thread.
+
+Four words describe the machinery, and the rest of the course uses them:
+
+- A **task** is a chain of these partials plus their async frames: one logical thread of execution, not an OS thread.
 - A **job** is one partial, ready to run.
-- An **executor** runs jobs: the main actor's executor (the main thread), the global concurrent executor (the cooperative pool), or an actor's serial executor.
-- A **continuation** is "the rest of the task from here". When you wrote completion handlers in P0.07, the closure was the continuation, written by hand.
+- An **executor** runs jobs. The main actor's executor runs them on the main thread, the global concurrent executor runs them on the cooperative pool, and each actor has a serial executor of its own.
+- A **continuation** is "the rest of the task from here". The completion handlers you wrote in P0.07 were continuations written by hand.
 
-So `await` doesn't block a thread waiting. It ends the current job. When the awaited thing finishes, the next partial is enqueued as a new job on the right executor.
+So `await` doesn't make a thread wait. It ends the current job. When the awaited work finishes, the next partial is enqueued as a new job on the right executor.
 
-**Consequence:** while a `@MainActor` function is suspended at an `await`, the main thread is **free** to process touches, layout and other main-actor tasks. While it **blocks**, nothing else runs on main, and the UI freezes.
+This has a practical consequence. While a `@MainActor` function is suspended at an `await`, the main thread is free to process touches, layout and other main-actor work. While it blocks, nothing else runs on main, and the UI freezes.
 
 ## 2. Predict (5 min)
 
@@ -68,21 +70,18 @@ swift run lab p1.02
 [ +1077ms] MAIN | ♥ 7
 [ +1183ms] MAIN | ♥ 8
 ```
-1. **About 5.** The main thread was free while the function was suspended, so the heartbeat's jobs ran in between.
-2. **Zero.** A 500 ms gap. On iOS that's a visible hang, and the system logs it.
-3. **No catch-up.** One beat at +1077 (the delayed job finally runs), then the normal rhythm resumes. Missed time is just lost.
+1. About 5. The main thread was free while the function was suspended, so the heartbeat's jobs ran in between.
+2. Zero, which leaves a 500 ms gap. On iOS that is a visible hang, and the system logs it.
+3. No catch-up. One beat arrives at +1077, when the delayed job finally runs, and then the normal rhythm resumes. Missed time is simply lost.
 
-This is the most practical fact in the course: **`await` on the main actor = UI stays responsive. Blocking on the main actor = UI freezes.**
+This is the most practical fact in the course. An `await` on the main actor keeps the UI responsive; blocking on the main actor freezes it.
 </details>
 
 ## 5. Exercise (10 min)
 
 File: `Sources/Exercises/P1_02_Desugar.swift`. Write `checkoutCPS`, the callback version of `checkout`, using only the callback APIs. You're doing the compiler's job: each `await` turns into "the rest of the function as a closure".
 
-As you write it, notice:
-- `total` gets **captured** by the inner closure. That's the async frame done by hand.
-- `throw` turns into "call completion with `.failure` and stop".
-- How much harder "exactly once" is to see than in the async version.
+As you write it, notice three things. `total` gets captured by the inner closure, which is the async frame done by hand. `throw` turns into "call completion with `.failure` and stop". And "exactly once" is much harder to see than in the async version.
 
 ```bash
 swift test --filter P1_02

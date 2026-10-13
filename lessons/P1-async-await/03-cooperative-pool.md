@@ -4,29 +4,30 @@
 [← P1.02](./02-under-the-hood.md) · [Roadmap](../../ROADMAP.md) · [P1.04 →](./04-task.md)
 <!-- nav:end -->
 
+<!-- dek: GCD answers a blocked thread by starting another one. Swift concurrency refuses, and asks you to keep a promise in return. -->
+
 ⏱ 30 min · Demo `p1.03` (+ opt-in `p1.03c`) · Diagnostics `P1_03_blocking_in_async.swift` · Exercise `P1_03`
 
 ## 1. Concept (5 min)
 
-Remember P0.06: GCD reacts to a blocking block by **creating another thread**, which leads to thread explosion. Swift concurrency makes the opposite trade:
+In P0.06, GCD reacted to every blocked block by creating another thread, and you got thread explosion. Swift concurrency makes the opposite trade:
 
 > The **cooperative pool** (the global concurrent executor) has **about one thread per core** and **never adds more**.
 
-No explosion, minimal context switching, small memory use. In exchange, **the runtime assumes every task makes forward progress: it either runs or suspends, and never blocks waiting for something else to happen.** That's the "cooperative" part, a contract between you and the runtime.
+That means no explosion, little context switching and a small memory footprint. In exchange, the runtime assumes every task makes forward progress: it either runs or suspends, and never blocks waiting for something else to happen. That assumption is the "cooperative" part, a contract between you and the runtime.
 
-Break the contract and you get one of two failures:
-1. **Starvation:** blocked threads reduce the pool's throughput. Blocking 1 of 8 threads = 12.5% of all async capacity gone.
-2. **Deadlock:** a task blocks waiting for work that needs a pool thread to run. If every pool thread is in that state, nothing can ever wake them. GCD would have spawned a rescue thread; the cooperative pool won't.
+Break the contract and you get one of two failures. The first is starvation: blocked threads reduce the pool's throughput, and blocking 1 of 8 threads removes 12.5% of all async capacity. The second is deadlock: a task blocks waiting for work that needs a pool thread to run, and if every pool thread is in that state, nothing can ever wake them. GCD would have spawned a rescue thread. The cooperative pool won't.
 
-**Things that break the contract:**
-- `DispatchSemaphore.wait()`, `DispatchGroup.wait()`, `Thread.sleep`, `usleep`: waiting for *future* events
-- Sync I/O: `Data(contentsOf:)` on a URL, sync file reads of large files, sync XPC
-- Holding a lock **while waiting for async work** (short locks around memory are fine; they're held, not waited on)
-- **The "sync wrapper" anti-pattern:** `semaphore.wait()` inside a sync helper that bridges to async. The compiler bans the direct call in async code but **can't see through a sync function**.
+These break the contract:
 
-**Tooling:** set the environment variable `LIBDISPATCH_COOPERATIVE_POOL_STRICT=1` (Xcode: Scheme → Run → Arguments → Environment) to shrink the pool to **1 thread**. Any task that blocks waiting on another task deadlocks immediately and every time. That's how you find these bugs before your users do.
+- `DispatchSemaphore.wait()`, `DispatchGroup.wait()`, `Thread.sleep`, `usleep`: anything that waits for a *future* event
+- Synchronous I/O: `Data(contentsOf:)` on a URL, synchronous reads of large files, synchronous XPC
+- Holding a lock while waiting for async work. Short locks around memory are fine, because they are held, not waited on.
+- The "sync wrapper": `semaphore.wait()` inside a sync helper that bridges to async. The compiler bans the direct call in async code, but it can't see through a sync function.
 
-> **A real bug from building this course:** Swift Testing runs even *synchronous* `@Test` functions on the cooperative pool. The first version of this repo's P0 tests blocked with semaphores inside sync tests, starved the pool, and made unrelated async tests time out at random, ~1.1 s each. The fix is in `LabKit/Timeout.swift` → `onDedicatedThread`: run blocking code on its own OS thread and `await` the result.
+To find these bugs, set the environment variable `LIBDISPATCH_COOPERATIVE_POOL_STRICT=1` (in Xcode: Scheme → Run → Arguments → Environment). It shrinks the pool to one thread, so any task that blocks waiting on another task deadlocks immediately, every time. You find the bug before your users do.
+
+> A real bug from building this course: Swift Testing runs even *synchronous* `@Test` functions on the cooperative pool. The first version of this repo's P0 tests blocked with semaphores inside sync tests, starved the pool, and made unrelated async tests time out at random, ~1.1 s each. The fix is in `LabKit/Timeout.swift` → `onDedicatedThread`: run blocking code on its own OS thread and `await` the result.
 
 ## 2. Predict (5 min)
 
@@ -53,23 +54,24 @@ scripts/typecheck.sh ConcurrencyLab/Diagnostics/P1_03_blocking_in_async.swift
 64 tasks SUSPENDING 200ms: 5 threads, 211ms   (cores: 8)
 64 tasks BLOCKING 200ms:   8 threads, 1633ms
 ```
-1. **≤ 8 threads, ~200 ms.** Suspended tasks hold no thread, so a handful of threads juggle all 64.
-2. **8 threads, ~1.6 s** (64 × 200 / 8). No explosion, but 8× slower than GCD here. The pool refuses to grow; blocking just queues everything behind it.
-3. **Deadlock.** The first 8 tasks take all 8 pool threads and park in `wait()`. The signaller is a task too, so it needs a pool thread, and there are none left. The watchdog (a plain OS thread, outside the pool) reports it after 3 s. Under GCD this would have worked, because GCD would have spawned a 9th thread.
-4. **~13 s.** One thread, 64 × 200 ms in sequence. Strict mode turns *"slow under load"* into *"obviously broken in the debugger"*.
-5. Compile errors: **A** (`semaphore.wait`), **B** (`group.wait`), **C** (`Thread.sleep`), and **E** (`NSLock.lock()`/`unlock()`: *"Use async-safe scoped locking instead"*, i.e. `lock.withLock { }`, so the lock can't be held across an `await`).
-   Not caught: **D** (`usleep`), **F** (sync network I/O), **G/H** (the sync-helper loophole). The compiler's checks are a seatbelt, not autopilot.
+1. At most 8 threads (≤ 8) and about 200 ms. Suspended tasks hold no thread, so a handful of threads juggle all 64.
+2. 8 threads and about 1.6 s (64 × 200 / 8). There is no explosion, but it is 8× slower than GCD here: the pool refuses to grow, and blocking just queues everything behind it.
+3. Deadlock. The first 8 tasks take all 8 pool threads and park in `wait()`. The signaller is a task too, so it needs a pool thread, and none are left. The watchdog, a plain OS thread outside the pool, reports it after 3 s. Under GCD this would have worked, because GCD would have started a ninth thread.
+4. About 13 s: one thread, 64 × 200 ms in sequence. Strict mode turns *"slow under load"* into *"obviously broken in the debugger"*.
+5. The compile errors are **A** (`semaphore.wait`), **B** (`group.wait`), **C** (`Thread.sleep`) and **E** (`NSLock.lock()`/`unlock()`, with *"Use async-safe scoped locking instead"*, meaning `lock.withLock { }`, so that the lock can't be held across an `await`).
+
+   Not caught: **D** (`usleep`), **F** (synchronous network I/O) and **G/H** (the sync-helper loophole). The compiler's checks are a seatbelt, not an autopilot.
 </details>
 
 ## 5. Exercise (10 min)
 
-File: `Sources/Exercises/P1_03_NeverBlock.swift`. `total(for:)` uses a "sync wrapper" bridge. Under concurrent load it deadlocks (we added a 1 s escape hatch so your test run doesn't hang). Fix it.
+File: `Sources/Exercises/P1_03_NeverBlock.swift`. `total(for:)` uses a "sync wrapper" bridge. Under concurrent load it deadlocks (a 1 s escape hatch keeps your test run from hanging). Fix it.
 
 ```bash
 swift test --filter P1_03
 ```
 
-Then ask yourself: if old sync code *really* needs that price, what are its honest options? (Become async. Or kick off a `Task` and deliver the result later with a callback or state update. Never wait.)
+Then ask yourself: if old synchronous code really needs that price, what are its honest options? It can become async, or it can start a `Task` and deliver the result later through a callback or a state update. It must never wait.
 
 ## 6. Interview cards
 
