@@ -4,11 +4,13 @@
 [← P1.05](./05-continuations.md) · [Roadmap](../../ROADMAP.md) · [P1.07 →](./07-errors.md)
 <!-- nav:end -->
 
+<!-- dek: Notifications, sensor readings and progress updates arrive many times. A `for await` loop consumes them, and AsyncStream has four habits that cause real bugs. -->
+
 ⏱ 30 min · Demo `p1.06` · Exercise `P1_06`
 
 ## 1. Concept (5 min)
 
-A continuation (P1.05) bridges **one** callback to **one** value. For **many values over time** (notifications, sensor readings, download progress, websocket messages) you use an **AsyncSequence**:
+A continuation (P1.05) turns one callback into one value. Notifications, sensor readings, download progress and websocket messages keep arriving, and for those you write a loop:
 
 ```swift
 for await notification in NotificationCenter.default.notifications(named: .NSCalendarDayChanged) {
@@ -16,9 +18,9 @@ for await notification in NotificationCenter.default.notifications(named: .NSCal
 }                                   // ends when the sequence ends (or throws, for throwing sequences)
 ```
 
-`AsyncSequence` is `Sequence` with `async next()`. `map`, `filter`, `prefix`, `first(where:)` and friends all work.
+`notifications(named:)` returns an `AsyncSequence`: a `Sequence` with `async next()`. `map`, `filter`, `prefix`, `first(where:)` and the rest all work on it.
 
-**`AsyncStream`** turns any push-based source (delegate, callback, NotificationCenter) into an AsyncSequence:
+To make your own from any push-based source, such as a delegate, a callback or NotificationCenter, use **AsyncStream**:
 
 ```swift
 let (stream, continuation) = AsyncStream.makeStream(of: Int.self)
@@ -27,12 +29,12 @@ continuation.finish()                   // end the stream: the consumer's loop e
 continuation.onTermination = { reason in /* .finished or .cancelled: release resources */ }
 ```
 
-Facts that cause real bugs:
+Four facts about AsyncStream cause real bugs:
 
-1. **No backpressure.** `yield` never waits for the consumer. Values pile up in a buffer: `.unbounded` (the default; memory grows forever if the consumer is slow), `.bufferingOldest(n)` (new values dropped when full), `.bufferingNewest(n)` (old values dropped).
-2. **Unicast.** One stream, one consumer. Two `for await` loops on the same stream **split** the values between them. Neither sees all of them. Need broadcasting? Give each consumer its own stream.
-3. **`onTermination` runs when the stream is *terminated*:** `finish()` was called, the consuming task was cancelled, or the stream was destroyed. **Breaking out of a loop doesn't terminate a stream you're still holding in a variable.** The producer keeps yielding into a buffer nobody reads. That's a leak.
-4. **`finish()` matters.** If the producer never calls it, the consumer's `for await` never ends, and that task (and everything it captures) lives forever.
+1. There is no backpressure. `yield` never waits for the consumer, so values pile up in a buffer. The default, `.unbounded`, grows forever if the consumer is slow; `.bufferingOldest(n)` drops new values when full, and `.bufferingNewest(n)` drops old ones.
+2. A stream is unicast: one stream, one consumer. Two `for await` loops on the same stream *split* the values between them, and neither sees all of them. If you need broadcasting, give each consumer its own stream.
+3. `onTermination` runs when the stream is terminated: `finish()` was called, the consuming task was cancelled, or the stream was destroyed. Breaking out of a loop doesn't terminate a stream you are still holding in a variable. The producer keeps yielding into a buffer nobody reads, and that is a leak.
+4. `finish()` matters. If the producer never calls it, the consumer's `for await` never ends, and that task, with everything it captures, lives forever.
 
 ## 2. Predict (5 min)
 
@@ -60,10 +62,11 @@ after break. producer yields again → enqueued(remaining: 9223372036854775807)
 ('kept' is still a live variable here)
   onTermination(kept): cancelled          ← only when the function returned and `kept` was destroyed
 ```
-1. **[2, 3].** The newest two were kept and 1 was dropped. `bufferingOldest(2)` would give [1, 2].
-2. **Split:** each value went to exactly one consumer. The alternating pattern here is a coincidence of timing; the split isn't guaranteed to be even or alternating.
-3. **No.** After `break` the stream is still referenced by `kept`, so it isn't terminated, and `yield(4)` returns `.enqueued`. A producer here (a sensor, a timer) would keep running and buffering into memory. Termination only happened when the function returned.
-   **Fix:** don't keep the stream in a variable you outlive. Consume it directly (`for await v in makeStream()`), or cancel the consuming task, or call `finish()`. P1.10 puzzle 7 shows the inline version terminating right at the `break`.
+1. [2, 3]. The newest two were kept and 1 was dropped. `bufferingOldest(2)` would give [1, 2].
+2. The values were split: each went to exactly one consumer. The alternating pattern here is a coincidence of timing; the split isn't guaranteed to be even or alternating.
+3. No. After `break` the stream is still referenced by `kept`, so it isn't terminated, and `yield(4)` returns `.enqueued`. A real producer here, a sensor or a timer, would keep running and buffering into memory. Termination happened only when the function returned.
+
+   To fix it, don't keep the stream in a variable that outlives the loop. Consume it directly (`for await v in makeStream()`), cancel the consuming task, or call `finish()`. P1.10 puzzle 7 shows the inline version terminating right at the `break`.
 </details>
 
 ## 5. Exercise (10 min)

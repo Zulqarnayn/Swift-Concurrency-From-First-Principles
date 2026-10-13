@@ -4,11 +4,13 @@
 [← P1.04](./04-task.md) · [Roadmap](../../ROADMAP.md) · [P1.06 →](./06-async-sequences.md)
 <!-- nav:end -->
 
+<!-- dek: You will call callback APIs from async code for years. A continuation is the bridge, and it has exactly one rule. -->
+
 ⏱ 30 min · Demo `p1.05`, `p1.05b` (+ opt-in `p1.05c`) · Exercise `P1_05`
 
 ## 1. Concept (5 min)
 
-You'll spend years calling callback-based APIs from async code. The bridge is a **continuation**: a value that represents "the rest of this suspended task". You hand it to the callback, and the callback **resumes** the task.
+Here is an old weather API that takes a completion handler, wrapped so async code can `await` it:
 
 ```swift
 func temperature(in city: String) async throws -> Int {
@@ -20,27 +22,30 @@ func temperature(in city: String) async throws -> Int {
 }
 ```
 
-How it works:
-1. `withChecked…Continuation` **suspends the current task** and runs your closure **synchronously**, right away.
-2. Your closure starts the legacy work and **returns**. The task stays suspended with no thread used.
-3. Later, from any thread, the callback calls `resume(returning:)`, `resume(throwing:)` or `resume(with:)`.
-4. The task is enqueued back onto **its own executor**. A `@MainActor` caller continues on main even if the callback fired on a background queue.
+The `continuation` value represents "the rest of this suspended task". You hand it to the callback, and the callback **resumes** the task with it. Step by step:
 
-**THE RULE: resume exactly once on every path.**
+1. `withChecked…Continuation` suspends the current task and runs your closure synchronously, right away.
+2. Your closure starts the legacy work and returns. The task stays suspended and uses no thread.
+3. Later, from any thread, the callback calls `resume(returning:)`, `resume(throwing:)` or `resume(with:)`.
+4. The task is enqueued back onto its own executor. A `@MainActor` caller continues on main even if the callback fired on a background queue.
+
+The one rule: **resume exactly once, on every path.**
 
 | Resumed | Result |
 |---|---|
-| 0 times | Task suspended **forever**: a silent hang plus leaked memory. A *checked* continuation prints `SWIFT TASK CONTINUATION MISUSE: … leaked its continuation` when it's destroyed. |
-| 2+ times | **Crash**: `Fatal error: SWIFT TASK CONTINUATION MISUSE: … tried to resume its continuation more than once` |
+| 0 times | The task is suspended forever: a silent hang plus leaked memory. A *checked* continuation prints `SWIFT TASK CONTINUATION MISUSE: … leaked its continuation` when it's destroyed. |
+| 2+ times | A crash: `Fatal error: SWIFT TASK CONTINUATION MISUSE: … tried to resume its continuation more than once` |
 
-**Checked vs Unsafe:** `withCheckedContinuation` adds the runtime checks above. `withUnsafeContinuation` skips them for a tiny speedup. Use Checked unless profiling proves otherwise.
+`withCheckedContinuation` adds the runtime checks in that table. `withUnsafeContinuation` skips them for a tiny speedup. Use the checked version unless profiling proves otherwise.
 
-Watch out for:
-- **APIs that call back more than once.** `PHImageManager.requestImage` delivers a degraded image first, then the full one. Resume once, on the final call.
-- **APIs that sometimes never call back** (error paths that return early, the P0.07 bug). The task hangs forever. Read the legacy code, or add a timeout.
-- **Delegate APIs:** store the continuation in a property, resume it from the delegate method, then set the property to `nil`.
-- **Cancellation isn't automatic.** If the task is cancelled, the legacy work keeps going. Bridging cancellation needs `withTaskCancellationHandler` (P3).
-- Many Apple callback APIs already have **compiler-generated async versions** (Objective-C `completionHandler:` methods are imported as `async`). Check before you wrap.
+Four situations need care:
+
+- Some APIs call back more than once. `PHImageManager.requestImage` delivers a degraded image first, then the full one. Resume once, on the final call.
+- Some APIs sometimes never call back, through error paths that return early (the P0.07 bug). The task hangs forever. Read the legacy code, or add a timeout.
+- Delegate APIs have no closure to resume from. Store the continuation in a property, resume it from the delegate method, then set the property to `nil`.
+- Cancellation isn't automatic. If the task is cancelled, the legacy work keeps going. Bridging cancellation needs `withTaskCancellationHandler` (P3).
+
+Before you wrap anything, check whether the compiler has done it already. Many Apple callback APIs have generated async versions: Objective-C `completionHandler:` methods are imported as `async`.
 
 ## 2. Predict (5 min)
 
@@ -66,16 +71,16 @@ MAIN |   inside withCheckedContinuation: body returned (task now suspended)
 T1   |   legacy callback fires for Paris
 MAIN | got 15
 ```
-1. **MAIN.** The callback ran on T1 and called `resume`, and the task continued on its own executor, the main actor. Thread hops back are handled for you; no `DispatchQueue.main.async` needed.
-2. **Body returns first.** The closure runs synchronously and returns immediately; the callback comes 30 ms later.
-3. Console output:
+1. MAIN. The callback ran on T1 and called `resume`, and the task continued on its own executor, the main actor. The hop back is handled for you, with no `DispatchQueue.main.async`.
+2. The body returns first. The closure runs synchronously and returns immediately; the callback comes 30 ms later.
+3. The console shows:
    ```
    legacy callback fires for Atlantis
    SWIFT TASK CONTINUATION MISUSE: temperature(city:) leaked its continuation without resuming it. This may cause tasks waiting on it to remain suspended forever.
    Timed out after 1.0s (hang / deadlock / never-resumed continuation?)
    ```
-   The warning appears when the dropped closure (and with it the continuation) is destroyed. Without our 1 s timeout the caller would wait **forever**. (Here the trace shows T1 instead of MAIN only because the timeout helper runs the work in its own Task.)
-4. Console output:
+   The warning appears when the dropped closure, and the continuation with it, is destroyed. Without the demo's 1 s timeout the caller would wait forever. (The trace shows T1 instead of MAIN here only because the timeout helper runs the work in its own Task.)
+4. The console shows:
    ```
    Fatal error: SWIFT TASK CONTINUATION MISUSE: p1_05c() tried to resume its continuation more than once, returning 15!
    ```
@@ -91,7 +96,7 @@ File: `Sources/Exercises/P1_05_Continuations.swift`.
 swift test --filter P1_05
 ```
 
-Bonus thought: what if `requestImage` hits an error and never sends a non-degraded image? What would you change?
+A question to think about afterwards: what if `requestImage` hits an error and never sends a non-degraded image? What would you change?
 
 ## 6. Interview cards
 
