@@ -1,7 +1,7 @@
 # P3.03 — TaskGroup and ThrowingTaskGroup ⭐
 
 <!-- nav:start -->
-[← P3.02](./02-async-let.md) · [Roadmap](../../README.md) · [P3.04 →](./04-bounded-concurrency.md)
+[← P3.02](./02-async-let.md) · [Roadmap](../../ROADMAP.md) · [P3.04 →](./04-bounded-concurrency.md)
 <!-- nav:end -->
 
 ⏱ 30 min · Demo `p3.03` · Diagnostics `P3_03a…`, `P3_03b…` · Exercise `P3_03`
@@ -93,5 +93,5 @@ swift test --filter P3_03
 ---
 
 <!-- nav:start -->
-[← P3.02](./02-async-let.md) · [Roadmap](../../README.md) · [P3.04 →](./04-bounded-concurrency.md)
+[← P3.02](./02-async-let.md) · [Roadmap](../../ROADMAP.md) · [P3.04 →](./04-bounded-concurrency.md)
 <!-- nav:end -->

@@ -1,7 +1,7 @@
 # P7.04 — Timed kata: concurrent processing, in-order delivery
 
 <!-- nav:start -->
-[← P7.03](./03-kata-fetch-all.md) · [Roadmap](../../README.md) · [P7.05 →](./05-kata-async-value.md)
+[← P7.03](./03-kata-fetch-all.md) · [Roadmap](../../ROADMAP.md) · [P7.05 →](./05-kata-async-value.md)
 <!-- nav:end -->
 
 ⏱ **25 min coding** + 5 min debrief · Exercise `P7_04`
@@ -43,5 +43,5 @@ The classic mistake is collecting everything and sorting at the end: correct ord
 ---
 
 <!-- nav:start -->
-[← P7.03](./03-kata-fetch-all.md) · [Roadmap](../../README.md) · [P7.05 →](./05-kata-async-value.md)
+[← P7.03](./03-kata-fetch-all.md) · [Roadmap](../../ROADMAP.md) · [P7.05 →](./05-kata-async-value.md)
 <!-- nav:end -->

@@ -1,7 +1,7 @@
 # P0.06 — Starvation, priority inversion, thread explosion ⭐
 
 <!-- nav:start -->
-[← P0.05](./05-deadlock.md) · [Roadmap](../../README.md) · [P0.07 →](./07-blocking-vs-suspending.md)
+[← P0.05](./05-deadlock.md) · [Roadmap](../../ROADMAP.md) · [P0.07 →](./07-blocking-vs-suspending.md)
 <!-- nav:end -->
 
 ⏱ 30 min · Demo `p0.06` · Exercise `P0_06`
@@ -87,5 +87,5 @@ swift test --filter P0_06
 ---
 
 <!-- nav:start -->
-[← P0.05](./05-deadlock.md) · [Roadmap](../../README.md) · [P0.07 →](./07-blocking-vs-suspending.md)
+[← P0.05](./05-deadlock.md) · [Roadmap](../../ROADMAP.md) · [P0.07 →](./07-blocking-vs-suspending.md)
 <!-- nav:end -->

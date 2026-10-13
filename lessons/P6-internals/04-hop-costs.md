@@ -1,7 +1,7 @@
 # P6.04 — Hop costs and isolated parameters
 
 <!-- nav:start -->
-[← P6.03](./03-runtime-costs.md) · [Roadmap](../../README.md) · [P6.05 →](./05-memory-model.md)
+[← P6.03](./03-runtime-costs.md) · [Roadmap](../../ROADMAP.md) · [P6.05 →](./05-memory-model.md)
 <!-- nav:end -->
 
 ⏱ 30 min · Demo `p6.04` · Exercise `P6_04`
@@ -64,5 +64,5 @@ swift test --filter P6_04
 ---
 
 <!-- nav:start -->
-[← P6.03](./03-runtime-costs.md) · [Roadmap](../../README.md) · [P6.05 →](./05-memory-model.md)
+[← P6.03](./03-runtime-costs.md) · [Roadmap](../../ROADMAP.md) · [P6.05 →](./05-memory-model.md)
 <!-- nav:end -->

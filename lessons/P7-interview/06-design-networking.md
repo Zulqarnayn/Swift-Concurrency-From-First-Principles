@@ -1,7 +1,7 @@
 # P7.06 — iOS system design: the networking layer
 
 <!-- nav:start -->
-[← P7.05](./05-kata-async-value.md) · [Roadmap](../../README.md) · [P7.07 →](./07-design-offline-sync.md)
+[← P7.05](./05-kata-async-value.md) · [Roadmap](../../ROADMAP.md) · [P7.07 →](./07-design-offline-sync.md)
 <!-- nav:end -->
 
 ⏱ 30 min: 20 min designing out loud / on paper + 10 min comparing with the model answer
@@ -69,5 +69,5 @@ Callers are `@MainActor` view models running inside `.task {}`. Nothing on main 
 ---
 
 <!-- nav:start -->
-[← P7.05](./05-kata-async-value.md) · [Roadmap](../../README.md) · [P7.07 →](./07-design-offline-sync.md)
+[← P7.05](./05-kata-async-value.md) · [Roadmap](../../ROADMAP.md) · [P7.07 →](./07-design-offline-sync.md)
 <!-- nav:end -->

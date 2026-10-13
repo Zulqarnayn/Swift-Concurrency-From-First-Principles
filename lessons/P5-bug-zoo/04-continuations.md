@@ -1,7 +1,7 @@
 # P5.04 — Bug: "the location spinner sometimes spins forever"
 
 <!-- nav:start -->
-[← P5.03](./03-pagination.md) · [Roadmap](../../README.md) · [P5.05 →](./05-pool-starvation.md)
+[← P5.03](./03-pagination.md) · [Roadmap](../../ROADMAP.md) · [P5.05 →](./05-pool-starvation.md)
 <!-- nav:end -->
 
 ⏱ 30 min · Repro `p5.04` · Exercise `P5_04`
@@ -73,5 +73,5 @@ The robust shape: keep the adapter alive for the whole wait (a local outside the
 ---
 
 <!-- nav:start -->
-[← P5.03](./03-pagination.md) · [Roadmap](../../README.md) · [P5.05 →](./05-pool-starvation.md)
+[← P5.03](./03-pagination.md) · [Roadmap](../../ROADMAP.md) · [P5.05 →](./05-pool-starvation.md)
 <!-- nav:end -->

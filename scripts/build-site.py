@@ -46,7 +46,7 @@ INTERVIEW_PAGES = [
 NAV_BLOCK = re.compile(r"<!-- nav:start -->.*?<!-- nav:end -->\n*", re.DOTALL)
 TRAILING_RULES = re.compile(r"(\n+---[ \t]*)+\s*$")
 TABLE_SEPARATOR = re.compile(r"^\s*\|?\s*:?-{3,}:?\s*(\|\s*:?-{3,}:?\s*)+\|?\s*$")
-LINK_TO_README = re.compile(r"(\]\((?:\.{1,2}/)*)README\.md")
+LINK_TO_ROADMAP = re.compile(r"(\]\((?:\.{1,2}/)*)(?:README|ROADMAP)\.md")
 LESSON_H1 = re.compile(r"^# (P\d+\.\d+)\s*[—-]\s*(.*?)\s*$", re.MULTILINE)
 META_LINE = re.compile(r"^⏱\s*(.*)$", re.MULTILINE)
 MINUTES = re.compile(r"(\d+(?:–\d+)?)\s*min")
@@ -252,8 +252,7 @@ def stage() -> dict[str, list[tuple[str, str]]]:
     for name in (n for _, n in INTERVIEW_PAGES):
         shutil.copy(ROOT / "interview" / name, DOCS / "interview" / name)
     shutil.copy(ROOT / "reading-list.md", DOCS / "reading-list.md")
-    # README.md would collide with index.md in MkDocs, so it becomes the "Roadmap" page.
-    shutil.copy(ROOT / "README.md", DOCS / "roadmap.md")
+    shutil.copy(ROOT / "ROADMAP.md", DOCS / "roadmap.md")
     shutil.copy(ROOT / "site" / "index.md", DOCS / "index.md")
 
     lessons: dict[str, list[tuple[str, str]]] = {folder: [] for folder in PHASES}
@@ -268,7 +267,7 @@ def stage() -> dict[str, list[tuple[str, str]]]:
 
     for page in DOCS.rglob("*.md"):
         text = page.read_text()
-        text = LINK_TO_README.sub(r"\1roadmap.md", text)
+        text = LINK_TO_ROADMAP.sub(r"\1roadmap.md", text)
         text = fix_table_spacing(text)
         text = fix_numbered_indent(text)
         text = fix_list_spacing(text)

@@ -1,7 +1,7 @@
 # P7.08 — Mock interview ⭐
 
 <!-- nav:start -->
-[← P7.07](./07-design-offline-sync.md) · [Roadmap →](../../README.md)
+[← P7.07](./07-design-offline-sync.md) · [Roadmap →](../../ROADMAP.md)
 <!-- nav:end -->
 
 ⏱ 45–60 min (plan a longer session, or split it over two days)
@@ -61,5 +61,5 @@ Keep `interview/flashcards.md` in rotation, re-run the marathons before intervie
 ---
 
 <!-- nav:start -->
-[← P7.07](./07-design-offline-sync.md) · [Roadmap →](../../README.md)
+[← P7.07](./07-design-offline-sync.md) · [Roadmap →](../../ROADMAP.md)
 <!-- nav:end -->

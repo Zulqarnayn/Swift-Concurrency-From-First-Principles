@@ -1,7 +1,7 @@
 # P5.10 — Crash forensics: read the crash, name the cause
 
 <!-- nav:start -->
-[← P5.09](./09-ordering-streams.md) · [Roadmap](../../README.md) · [P5.11 →](./11-deterministic-testing.md)
+[← P5.09](./09-ordering-streams.md) · [Roadmap](../../ROADMAP.md) · [P5.11 →](./11-deterministic-testing.md)
 <!-- nav:end -->
 
 ⏱ 30 min · Repro `p5.10` (lists the crash demos) · Exercise `P5_10` (graded)
@@ -67,5 +67,5 @@ Patterns worth memorizing:
 ---
 
 <!-- nav:start -->
-[← P5.09](./09-ordering-streams.md) · [Roadmap](../../README.md) · [P5.11 →](./11-deterministic-testing.md)
+[← P5.09](./09-ordering-streams.md) · [Roadmap](../../ROADMAP.md) · [P5.11 →](./11-deterministic-testing.md)
 <!-- nav:end -->

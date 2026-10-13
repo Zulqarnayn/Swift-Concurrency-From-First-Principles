@@ -1,7 +1,7 @@
 # P1.07 — Errors in async code, typed throws
 
 <!-- nav:start -->
-[← P1.06](./06-async-sequences.md) · [Roadmap](../../README.md) · [P1.08 →](./08-async-entry-points.md)
+[← P1.06](./06-async-sequences.md) · [Roadmap](../../ROADMAP.md) · [P1.08 →](./08-async-entry-points.md)
 <!-- nav:end -->
 
 ⏱ 30 min · Demo `p1.07` · Exercise `P1_07`
@@ -89,5 +89,5 @@ swift test --filter P1_07
 ---
 
 <!-- nav:start -->
-[← P1.06](./06-async-sequences.md) · [Roadmap](../../README.md) · [P1.08 →](./08-async-entry-points.md)
+[← P1.06](./06-async-sequences.md) · [Roadmap](../../ROADMAP.md) · [P1.08 →](./08-async-entry-points.md)
 <!-- nav:end -->

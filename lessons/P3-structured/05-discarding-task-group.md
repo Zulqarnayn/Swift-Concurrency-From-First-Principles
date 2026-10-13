@@ -1,7 +1,7 @@
 # P3.05 — DiscardingTaskGroup and long-running work
 
 <!-- nav:start -->
-[← P3.04](./04-bounded-concurrency.md) · [Roadmap](../../README.md) · [P3.06 →](./06-cancellation.md)
+[← P3.04](./04-bounded-concurrency.md) · [Roadmap](../../ROADMAP.md) · [P3.06 →](./06-cancellation.md)
 <!-- nav:end -->
 
 ⏱ 30 min · Demo `p3.05` · Exercise `P3_05`
@@ -71,5 +71,5 @@ Then think: what changes if the handler can throw, and one failure should stop t
 ---
 
 <!-- nav:start -->
-[← P3.04](./04-bounded-concurrency.md) · [Roadmap](../../README.md) · [P3.06 →](./06-cancellation.md)
+[← P3.04](./04-bounded-concurrency.md) · [Roadmap](../../ROADMAP.md) · [P3.06 →](./06-cancellation.md)
 <!-- nav:end -->

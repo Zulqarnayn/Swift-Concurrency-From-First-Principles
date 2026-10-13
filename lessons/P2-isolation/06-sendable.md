@@ -1,7 +1,7 @@
 # P2.06 — `Sendable` from first principles ⭐
 
 <!-- nav:start -->
-[← P2.05](./05-global-actors.md) · [Roadmap](../../README.md) · [P2.07 →](./07-sending-regions.md)
+[← P2.05](./05-global-actors.md) · [Roadmap](../../ROADMAP.md) · [P2.07 →](./07-sending-regions.md)
 <!-- nav:end -->
 
 ⏱ 30 min · Demo `p2.06` · Diagnostics `P2_06_sendable_rules.swift` · Exercise **Fixme** `P2_06_make_it_sendable.swift`
@@ -84,5 +84,5 @@ Each type needs a *different* fix. Ask of each one: is it a value? Immutable? Sh
 ---
 
 <!-- nav:start -->
-[← P2.05](./05-global-actors.md) · [Roadmap](../../README.md) · [P2.07 →](./07-sending-regions.md)
+[← P2.05](./05-global-actors.md) · [Roadmap](../../ROADMAP.md) · [P2.07 →](./07-sending-regions.md)
 <!-- nav:end -->

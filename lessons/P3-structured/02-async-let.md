@@ -1,7 +1,7 @@
 # P3.02 — `async let` ⭐
 
 <!-- nav:start -->
-[← P3.01](./01-structured-concurrency.md) · [Roadmap](../../README.md) · [P3.03 →](./03-task-groups.md)
+[← P3.01](./01-structured-concurrency.md) · [Roadmap](../../ROADMAP.md) · [P3.03 →](./03-task-groups.md)
 <!-- nav:end -->
 
 ⏱ 30 min · Demo `p3.02` · Exercise `P3_02`
@@ -82,5 +82,5 @@ swift test --filter P3_02
 ---
 
 <!-- nav:start -->
-[← P3.01](./01-structured-concurrency.md) · [Roadmap](../../README.md) · [P3.03 →](./03-task-groups.md)
+[← P3.01](./01-structured-concurrency.md) · [Roadmap](../../ROADMAP.md) · [P3.03 →](./03-task-groups.md)
 <!-- nav:end -->

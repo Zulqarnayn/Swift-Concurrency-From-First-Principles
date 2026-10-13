@@ -1,7 +1,7 @@
 # P2.09 — MainActor by default (SE-0466)
 
 <!-- nav:start -->
-[← P2.08](./08-nonsending-vs-concurrent.md) · [Roadmap](../../README.md) · [P2.10 →](./10-isolation-inheritance.md)
+[← P2.08](./08-nonsending-vs-concurrent.md) · [Roadmap](../../ROADMAP.md) · [P2.10 →](./10-isolation-inheritance.md)
 <!-- nav:end -->
 
 ⏱ 30 min · Demo `p2.09` · Diagnostics `P2_09_decodable.swift` · Exercise **Fixme** `P2_09_default_isolation.swift`
@@ -74,5 +74,5 @@ scripts/fixme.sh ConcurrencyLab/Fixme/P2_09_default_isolation.swift
 ---
 
 <!-- nav:start -->
-[← P2.08](./08-nonsending-vs-concurrent.md) · [Roadmap](../../README.md) · [P2.10 →](./10-isolation-inheritance.md)
+[← P2.08](./08-nonsending-vs-concurrent.md) · [Roadmap](../../ROADMAP.md) · [P2.10 →](./10-isolation-inheritance.md)
 <!-- nav:end -->

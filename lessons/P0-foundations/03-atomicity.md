@@ -1,7 +1,7 @@
 # P0.03 — Atomicity, memory visibility, `Atomic`
 
 <!-- nav:start -->
-[← P0.02](./02-data-race.md) · [Roadmap](../../README.md) · [P0.04 →](./04-locks-race-conditions.md)
+[← P0.02](./02-data-race.md) · [Roadmap](../../ROADMAP.md) · [P0.04 →](./04-locks-race-conditions.md)
 <!-- nav:end -->
 
 ⏱ 30 min · Demo `p0.03` · Exercise `P0_03`
@@ -87,5 +87,5 @@ swift test --filter P0_03
 ---
 
 <!-- nav:start -->
-[← P0.02](./02-data-race.md) · [Roadmap](../../README.md) · [P0.04 →](./04-locks-race-conditions.md)
+[← P0.02](./02-data-race.md) · [Roadmap](../../ROADMAP.md) · [P0.04 →](./04-locks-race-conditions.md)
 <!-- nav:end -->

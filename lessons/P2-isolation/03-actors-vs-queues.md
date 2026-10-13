@@ -1,7 +1,7 @@
 # P2.03 — Actors vs serial queues ⭐
 
 <!-- nav:start -->
-[← P2.02](./02-isolation-first-principles.md) · [Roadmap](../../README.md) · [P2.04 →](./04-actor-reentrancy.md)
+[← P2.02](./02-isolation-first-principles.md) · [Roadmap](../../ROADMAP.md) · [P2.04 →](./04-actor-reentrancy.md)
 <!-- nav:end -->
 
 ⏱ 30 min · Demo `p2.03` · Exercise `P2_03`
@@ -100,5 +100,5 @@ Compare with P0.05. Can two actors transferring to each other deadlock? Why not?
 ---
 
 <!-- nav:start -->
-[← P2.02](./02-isolation-first-principles.md) · [Roadmap](../../README.md) · [P2.04 →](./04-actor-reentrancy.md)
+[← P2.02](./02-isolation-first-principles.md) · [Roadmap](../../ROADMAP.md) · [P2.04 →](./04-actor-reentrancy.md)
 <!-- nav:end -->

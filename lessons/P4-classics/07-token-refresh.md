@@ -1,7 +1,7 @@
 # P4.07 — Single-flight: the token-refresh race ⭐⭐
 
 <!-- nav:start -->
-[← P4.06](./06-debounce-throttle.md) · [Roadmap](../../README.md) · [P4.08 →](./08-latch-barrier.md)
+[← P4.06](./06-debounce-throttle.md) · [Roadmap](../../ROADMAP.md) · [P4.08 →](./08-latch-barrier.md)
 <!-- nav:end -->
 
 ⏱ 30 min · Demo `p4.07` · Exercise `P4_07`
@@ -82,5 +82,5 @@ swift test --filter P4_07
 ---
 
 <!-- nav:start -->
-[← P4.06](./06-debounce-throttle.md) · [Roadmap](../../README.md) · [P4.08 →](./08-latch-barrier.md)
+[← P4.06](./06-debounce-throttle.md) · [Roadmap](../../ROADMAP.md) · [P4.08 →](./08-latch-barrier.md)
 <!-- nav:end -->

@@ -1,7 +1,7 @@
 # P2.12 — Protocols and isolation; isolated conformances (SE-0470)
 
 <!-- nav:start -->
-[← P2.11](./11-globals-singletons.md) · [Roadmap](../../README.md) · [P2.13 →](./13-preconcurrency-migration.md)
+[← P2.11](./11-globals-singletons.md) · [Roadmap](../../ROADMAP.md) · [P2.13 →](./13-preconcurrency-migration.md)
 <!-- nav:end -->
 
 ⏱ 30 min · Demo `p2.12` (+ opt-in `p2.12c`) · Diagnostics `P2_12a…`, `P2_12b…` · Exercise **Fixme** `P2_12_conformances.swift`
@@ -70,5 +70,5 @@ scripts/fixme.sh ConcurrencyLab/Fixme/P2_12_conformances.swift
 ---
 
 <!-- nav:start -->
-[← P2.11](./11-globals-singletons.md) · [Roadmap](../../README.md) · [P2.13 →](./13-preconcurrency-migration.md)
+[← P2.11](./11-globals-singletons.md) · [Roadmap](../../ROADMAP.md) · [P2.13 →](./13-preconcurrency-migration.md)
 <!-- nav:end -->

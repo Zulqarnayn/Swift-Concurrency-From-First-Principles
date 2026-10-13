@@ -1,7 +1,7 @@
 # P7.01 — The GCD & OperationQueue round
 
 <!-- nav:start -->
-[← P6.08](../P6-internals/08-distributed-actors.md) · [Roadmap](../../README.md) · [P7.02 →](./02-output-marathon.md)
+[← P6.08](../P6-internals/08-distributed-actors.md) · [Roadmap](../../ROADMAP.md) · [P7.02 →](./02-output-marathon.md)
 <!-- nav:end -->
 
 ⏱ 30 min · Exercise `P7_01` · Bank: `interview/question-bank.md` → GCD section
@@ -49,5 +49,5 @@ Say how you'd write the same pipeline in Swift concurrency. (A TaskGroup with a 
 ---
 
 <!-- nav:start -->
-[← P6.08](../P6-internals/08-distributed-actors.md) · [Roadmap](../../README.md) · [P7.02 →](./02-output-marathon.md)
+[← P6.08](../P6-internals/08-distributed-actors.md) · [Roadmap](../../ROADMAP.md) · [P7.02 →](./02-output-marathon.md)
 <!-- nav:end -->

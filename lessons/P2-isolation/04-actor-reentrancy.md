@@ -1,7 +1,7 @@
 # P2.04 — Actor reentrancy ⭐⭐
 
 <!-- nav:start -->
-[← P2.03](./03-actors-vs-queues.md) · [Roadmap](../../README.md) · [P2.05 →](./05-global-actors.md)
+[← P2.03](./03-actors-vs-queues.md) · [Roadmap](../../ROADMAP.md) · [P2.05 →](./05-global-actors.md)
 <!-- nav:end -->
 
 ⏱ 30 min · Demo `p2.04` · Exercise `P2_04`
@@ -97,5 +97,5 @@ Extra challenge: what should happen if the first caller's task is **cancelled** 
 ---
 
 <!-- nav:start -->
-[← P2.03](./03-actors-vs-queues.md) · [Roadmap](../../README.md) · [P2.05 →](./05-global-actors.md)
+[← P2.03](./03-actors-vs-queues.md) · [Roadmap](../../ROADMAP.md) · [P2.05 →](./05-global-actors.md)
 <!-- nav:end -->

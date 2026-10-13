@@ -1,7 +1,7 @@
 # P6.05 — The memory model and happens-before
 
 <!-- nav:start -->
-[← P6.04](./04-hop-costs.md) · [Roadmap](../../README.md) · [P6.06 →](./06-isolated-any.md)
+[← P6.04](./04-hop-costs.md) · [Roadmap](../../ROADMAP.md) · [P6.06 →](./06-isolated-any.md)
 <!-- nav:end -->
 
 ⏱ 30 min · Demo `p6.05` · Exercise `P6_05` (graded)
@@ -84,5 +84,5 @@ Zero observations doesn't make scenario 2 correct. The model **allows** the reor
 ---
 
 <!-- nav:start -->
-[← P6.04](./04-hop-costs.md) · [Roadmap](../../README.md) · [P6.06 →](./06-isolated-any.md)
+[← P6.04](./04-hop-costs.md) · [Roadmap](../../ROADMAP.md) · [P6.06 →](./06-isolated-any.md)
 <!-- nav:end -->

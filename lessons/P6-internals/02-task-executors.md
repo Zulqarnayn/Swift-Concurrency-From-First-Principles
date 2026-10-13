@@ -1,7 +1,7 @@
 # P6.02 — Task executor preference (SE-0417)
 
 <!-- nav:start -->
-[← P6.01](./01-executors.md) · [Roadmap](../../README.md) · [P6.03 →](./03-runtime-costs.md)
+[← P6.01](./01-executors.md) · [Roadmap](../../ROADMAP.md) · [P6.03 →](./03-runtime-costs.md)
 <!-- nav:end -->
 
 ⏱ 30 min · Demo `p6.02` · Exercise `P6_02`
@@ -80,5 +80,5 @@ Think: why is it fine for *your* thread to block waiting for jobs, when blocking
 ---
 
 <!-- nav:start -->
-[← P6.01](./01-executors.md) · [Roadmap](../../README.md) · [P6.03 →](./03-runtime-costs.md)
+[← P6.01](./01-executors.md) · [Roadmap](../../ROADMAP.md) · [P6.03 →](./03-runtime-costs.md)
 <!-- nav:end -->

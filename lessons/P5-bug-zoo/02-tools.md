@@ -1,7 +1,7 @@
 # P5.02 — Tools (bug: "rare EXC_BAD_ACCESS in SessionStore", tests pass)
 
 <!-- nav:start -->
-[← P5.01](./01-debugging-method.md) · [Roadmap](../../README.md) · [P5.03 →](./03-pagination.md)
+[← P5.01](./01-debugging-method.md) · [Roadmap](../../ROADMAP.md) · [P5.03 →](./03-pagination.md)
 <!-- nav:end -->
 
 ⏱ 30 min · Exercise `P5_02` (TSan-graded)
@@ -84,5 +84,5 @@ Also note the type is `@unchecked Sendable`. Swift 6 stopped checking because th
 ---
 
 <!-- nav:start -->
-[← P5.01](./01-debugging-method.md) · [Roadmap](../../README.md) · [P5.03 →](./03-pagination.md)
+[← P5.01](./01-debugging-method.md) · [Roadmap](../../ROADMAP.md) · [P5.03 →](./03-pagination.md)
 <!-- nav:end -->

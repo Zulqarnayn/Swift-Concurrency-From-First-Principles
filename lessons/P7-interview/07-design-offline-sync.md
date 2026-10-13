@@ -1,7 +1,7 @@
 # P7.07 — iOS system design: an offline-first sync engine
 
 <!-- nav:start -->
-[← P7.06](./06-design-networking.md) · [Roadmap](../../README.md) · [P7.08 →](./08-mock-interview.md)
+[← P7.06](./06-design-networking.md) · [Roadmap](../../ROADMAP.md) · [P7.08 →](./08-mock-interview.md)
 <!-- nav:end -->
 
 ⏱ 30 min: 20 min designing out loud + 10 min comparing with the model answer
@@ -51,5 +51,5 @@ Run it like P7.06: a timer, talking out loud, the structure below, then the rubr
 ---
 
 <!-- nav:start -->
-[← P7.06](./06-design-networking.md) · [Roadmap](../../README.md) · [P7.08 →](./08-mock-interview.md)
+[← P7.06](./06-design-networking.md) · [Roadmap](../../ROADMAP.md) · [P7.08 →](./08-mock-interview.md)
 <!-- nav:end -->

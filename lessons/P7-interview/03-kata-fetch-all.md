@@ -1,7 +1,7 @@
 # P7.03 — Timed kata: parallel fetch with a limit and a deadline
 
 <!-- nav:start -->
-[← P7.02](./02-output-marathon.md) · [Roadmap](../../README.md) · [P7.04 →](./04-kata-ordered-pipeline.md)
+[← P7.02](./02-output-marathon.md) · [Roadmap](../../ROADMAP.md) · [P7.04 →](./04-kata-ordered-pipeline.md)
 <!-- nav:end -->
 
 ⏱ **25 min coding** + 5 min debrief · Exercise `P7_03`
@@ -51,5 +51,5 @@ Common mistakes: forgetting to cancel the timer when everything finishes early (
 ---
 
 <!-- nav:start -->
-[← P7.02](./02-output-marathon.md) · [Roadmap](../../README.md) · [P7.04 →](./04-kata-ordered-pipeline.md)
+[← P7.02](./02-output-marathon.md) · [Roadmap](../../ROADMAP.md) · [P7.04 →](./04-kata-ordered-pipeline.md)
 <!-- nav:end -->

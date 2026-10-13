@@ -1,7 +1,7 @@
 # P4.01 — Producer–consumer: the bounded buffer
 
 <!-- nav:start -->
-[← P3.12](../P3-structured/12-review.md) · [Roadmap](../../README.md) · [P4.02 →](./02-readers-writers.md)
+[← P3.12](../P3-structured/12-review.md) · [Roadmap](../../ROADMAP.md) · [P4.02 →](./02-readers-writers.md)
 <!-- nav:end -->
 
 ⏱ 30 min · Demo `p4.01` · Exercise `P4_01`
@@ -75,5 +75,5 @@ swift test --filter P4_01
 ---
 
 <!-- nav:start -->
-[← P3.12](../P3-structured/12-review.md) · [Roadmap](../../README.md) · [P4.02 →](./02-readers-writers.md)
+[← P3.12](../P3-structured/12-review.md) · [Roadmap](../../ROADMAP.md) · [P4.02 →](./02-readers-writers.md)
 <!-- nav:end -->

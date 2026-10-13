@@ -1,7 +1,7 @@
 # P1.03 — The cooperative thread pool: never block it ⭐
 
 <!-- nav:start -->
-[← P1.02](./02-under-the-hood.md) · [Roadmap](../../README.md) · [P1.04 →](./04-task.md)
+[← P1.02](./02-under-the-hood.md) · [Roadmap](../../ROADMAP.md) · [P1.04 →](./04-task.md)
 <!-- nav:end -->
 
 ⏱ 30 min · Demo `p1.03` (+ opt-in `p1.03c`) · Diagnostics `P1_03_blocking_in_async.swift` · Exercise `P1_03`
@@ -85,5 +85,5 @@ Then ask yourself: if old sync code *really* needs that price, what are its hone
 ---
 
 <!-- nav:start -->
-[← P1.02](./02-under-the-hood.md) · [Roadmap](../../README.md) · [P1.04 →](./04-task.md)
+[← P1.02](./02-under-the-hood.md) · [Roadmap](../../ROADMAP.md) · [P1.04 →](./04-task.md)
 <!-- nav:end -->

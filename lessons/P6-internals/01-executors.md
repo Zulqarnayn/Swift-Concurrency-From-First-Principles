@@ -1,7 +1,7 @@
 # P6.01 — Executors: where jobs actually run
 
 <!-- nav:start -->
-[← P5.12](../P5-bug-zoo/12-timed-bug-hunt.md) · [Roadmap](../../README.md) · [P6.02 →](./02-task-executors.md)
+[← P5.12](../P5-bug-zoo/12-timed-bug-hunt.md) · [Roadmap](../../ROADMAP.md) · [P6.02 →](./02-task-executors.md)
 <!-- nav:end -->
 
 ⏱ 30 min · Demo `p6.01` · Exercise `P6_01`
@@ -81,5 +81,5 @@ swift test --filter P6_01
 ---
 
 <!-- nav:start -->
-[← P5.12](../P5-bug-zoo/12-timed-bug-hunt.md) · [Roadmap](../../README.md) · [P6.02 →](./02-task-executors.md)
+[← P5.12](../P5-bug-zoo/12-timed-bug-hunt.md) · [Roadmap](../../ROADMAP.md) · [P6.02 →](./02-task-executors.md)
 <!-- nav:end -->

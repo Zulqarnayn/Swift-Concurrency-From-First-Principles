@@ -1,7 +1,7 @@
 # P3.04 — Bounded concurrency: at most N in flight ⭐
 
 <!-- nav:start -->
-[← P3.03](./03-task-groups.md) · [Roadmap](../../README.md) · [P3.05 →](./05-discarding-task-group.md)
+[← P3.03](./03-task-groups.md) · [Roadmap](../../ROADMAP.md) · [P3.05 →](./05-discarding-task-group.md)
 <!-- nav:end -->
 
 ⏱ 30 min · Demo `p3.04` · Exercise `P3_04`
@@ -76,5 +76,5 @@ Edge cases the tests check: fewer items than the limit; an empty array.
 ---
 
 <!-- nav:start -->
-[← P3.03](./03-task-groups.md) · [Roadmap](../../README.md) · [P3.05 →](./05-discarding-task-group.md)
+[← P3.03](./03-task-groups.md) · [Roadmap](../../ROADMAP.md) · [P3.05 →](./05-discarding-task-group.md)
 <!-- nav:end -->

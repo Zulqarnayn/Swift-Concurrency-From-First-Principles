@@ -1,7 +1,7 @@
 # P2.05 — MainActor, global actors, and isolation inference ⭐
 
 <!-- nav:start -->
-[← P2.04](./04-actor-reentrancy.md) · [Roadmap](../../README.md) · [P2.06 →](./06-sendable.md)
+[← P2.04](./04-actor-reentrancy.md) · [Roadmap](../../ROADMAP.md) · [P2.06 →](./06-sendable.md)
 <!-- nav:end -->
 
 ⏱ 30 min · Demo `p2.05` (+ opt-in `p2.05c`) · Diagnostics `P2_05_inference.swift` · Exercise `P2_05`
@@ -101,5 +101,5 @@ swift test --filter P2_05
 ---
 
 <!-- nav:start -->
-[← P2.04](./04-actor-reentrancy.md) · [Roadmap](../../README.md) · [P2.06 →](./06-sendable.md)
+[← P2.04](./04-actor-reentrancy.md) · [Roadmap](../../ROADMAP.md) · [P2.06 →](./06-sendable.md)
 <!-- nav:end -->

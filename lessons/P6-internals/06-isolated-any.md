@@ -1,7 +1,7 @@
 # P6.06 — `@isolated(any)` and `#isolation`
 
 <!-- nav:start -->
-[← P6.05](./05-memory-model.md) · [Roadmap](../../README.md) · [P6.07 →](./07-swift-evolution.md)
+[← P6.05](./05-memory-model.md) · [Roadmap](../../ROADMAP.md) · [P6.07 →](./07-swift-evolution.md)
 <!-- nav:end -->
 
 ⏱ 30 min · Demo `p6.06` · Exercise `P6_06`
@@ -76,5 +76,5 @@ swift test --filter P6_06
 ---
 
 <!-- nav:start -->
-[← P6.05](./05-memory-model.md) · [Roadmap](../../README.md) · [P6.07 →](./07-swift-evolution.md)
+[← P6.05](./05-memory-model.md) · [Roadmap](../../ROADMAP.md) · [P6.07 →](./07-swift-evolution.md)
 <!-- nav:end -->

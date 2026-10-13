@@ -1,7 +1,7 @@
 # P6.08 — Distributed actors (overview)
 
 <!-- nav:start -->
-[← P6.07](./07-swift-evolution.md) · [Roadmap](../../README.md) · [P7.01 →](../P7-interview/01-gcd-operationqueue.md)
+[← P6.07](./07-swift-evolution.md) · [Roadmap](../../ROADMAP.md) · [P7.01 →](../P7-interview/01-gcd-operationqueue.md)
 <!-- nav:end -->
 
 ⏱ 30 min · Demo `p6.08` · Exercise **Fixme** `P6_08_distributed.swift`
@@ -86,5 +86,5 @@ Next: **Phase 7: interview mastery.**
 ---
 
 <!-- nav:start -->
-[← P6.07](./07-swift-evolution.md) · [Roadmap](../../README.md) · [P7.01 →](../P7-interview/01-gcd-operationqueue.md)
+[← P6.07](./07-swift-evolution.md) · [Roadmap](../../ROADMAP.md) · [P7.01 →](../P7-interview/01-gcd-operationqueue.md)
 <!-- nav:end -->

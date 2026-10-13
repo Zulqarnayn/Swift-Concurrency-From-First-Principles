@@ -1,7 +1,7 @@
 # P0.01 — Threads, cores, concurrency vs parallelism
 
 <!-- nav:start -->
-[← Roadmap](../../README.md) · [P0.02 →](./02-data-race.md)
+[← Roadmap](../../ROADMAP.md) · [P0.02 →](./02-data-race.md)
 <!-- nav:end -->
 
 ⏱ 30 min · Demo `p0.01` · Exercise `P0_01`
@@ -96,5 +96,5 @@ Stuck? `solutions/Exercises/P0_01_Cores.swift`
 ---
 
 <!-- nav:start -->
-[← Roadmap](../../README.md) · [P0.02 →](./02-data-race.md)
+[← Roadmap](../../ROADMAP.md) · [P0.02 →](./02-data-race.md)
 <!-- nav:end -->

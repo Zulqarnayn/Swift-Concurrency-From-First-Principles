@@ -1,7 +1,7 @@
 # P4.10 — An image pipeline: dedupe + limit + LRU ⭐
 
 <!-- nav:start -->
-[← P4.09](./09-leetcode-set.md) · [Roadmap](../../README.md) · [P4.11 →](./11-retry-backoff.md)
+[← P4.09](./09-leetcode-set.md) · [Roadmap](../../ROADMAP.md) · [P4.11 →](./11-retry-backoff.md)
 <!-- nav:end -->
 
 ⏱ 30 min · Demo `p4.10` · iOS lab **P4.10 Image pipeline grid** · Exercise `P4_10`
@@ -71,5 +71,5 @@ swift test --filter P4_10
 ---
 
 <!-- nav:start -->
-[← P4.09](./09-leetcode-set.md) · [Roadmap](../../README.md) · [P4.11 →](./11-retry-backoff.md)
+[← P4.09](./09-leetcode-set.md) · [Roadmap](../../ROADMAP.md) · [P4.11 →](./11-retry-backoff.md)
 <!-- nav:end -->

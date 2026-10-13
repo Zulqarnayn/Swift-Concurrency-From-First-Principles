@@ -1,7 +1,7 @@
 # P0.04 — Locks and race conditions (check-then-act) ⭐
 
 <!-- nav:start -->
-[← P0.03](./03-atomicity.md) · [Roadmap](../../README.md) · [P0.05 →](./05-deadlock.md)
+[← P0.03](./03-atomicity.md) · [Roadmap](../../ROADMAP.md) · [P0.05 →](./05-deadlock.md)
 <!-- nav:end -->
 
 ⏱ 30 min · Demo `p0.04` · Exercise `P0_04`
@@ -89,5 +89,5 @@ swift test --filter P0_04
 ---
 
 <!-- nav:start -->
-[← P0.03](./03-atomicity.md) · [Roadmap](../../README.md) · [P0.05 →](./05-deadlock.md)
+[← P0.03](./03-atomicity.md) · [Roadmap](../../ROADMAP.md) · [P0.05 →](./05-deadlock.md)
 <!-- nav:end -->

@@ -1,7 +1,7 @@
 # P4.09 — The LeetCode concurrency set, in async Swift
 
 <!-- nav:start -->
-[← P4.08](./08-latch-barrier.md) · [Roadmap](../../README.md) · [P4.10 →](./10-image-pipeline.md)
+[← P4.08](./08-latch-barrier.md) · [Roadmap](../../ROADMAP.md) · [P4.10 →](./10-image-pipeline.md)
 <!-- nav:end -->
 
 ⏱ 30 min · Demo `p4.09` · Exercise `P4_09`
@@ -66,5 +66,5 @@ Then try 1116 and 1195 on your own; they use the same technique.
 ---
 
 <!-- nav:start -->
-[← P4.08](./08-latch-barrier.md) · [Roadmap](../../README.md) · [P4.10 →](./10-image-pipeline.md)
+[← P4.08](./08-latch-barrier.md) · [Roadmap](../../ROADMAP.md) · [P4.10 →](./10-image-pipeline.md)
 <!-- nav:end -->

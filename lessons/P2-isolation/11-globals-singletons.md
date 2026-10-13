@@ -1,7 +1,7 @@
 # P2.11 — Globals, statics and singletons in Swift 6
 
 <!-- nav:start -->
-[← P2.10](./10-isolation-inheritance.md) · [Roadmap](../../README.md) · [P2.12 →](./12-protocols-isolation.md)
+[← P2.10](./10-isolation-inheritance.md) · [Roadmap](../../ROADMAP.md) · [P2.12 →](./12-protocols-isolation.md)
 <!-- nav:end -->
 
 ⏱ 30 min · Demo `p2.11` · Diagnostics `P2_11_globals.swift` · Exercise **Fixme** `P2_11_globals.swift`
@@ -77,5 +77,5 @@ scripts/fixme.sh ConcurrencyLab/Fixme/P2_11_globals.swift
 ---
 
 <!-- nav:start -->
-[← P2.10](./10-isolation-inheritance.md) · [Roadmap](../../README.md) · [P2.12 →](./12-protocols-isolation.md)
+[← P2.10](./10-isolation-inheritance.md) · [Roadmap](../../ROADMAP.md) · [P2.12 →](./12-protocols-isolation.md)
 <!-- nav:end -->

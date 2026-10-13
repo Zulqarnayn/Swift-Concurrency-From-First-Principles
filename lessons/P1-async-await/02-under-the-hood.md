@@ -1,7 +1,7 @@
 # P1.02 — Under the hood: async frames, jobs, continuations
 
 <!-- nav:start -->
-[← P1.01](./01-async-await.md) · [Roadmap](../../README.md) · [P1.03 →](./03-cooperative-pool.md)
+[← P1.01](./01-async-await.md) · [Roadmap](../../ROADMAP.md) · [P1.03 →](./03-cooperative-pool.md)
 <!-- nav:end -->
 
 ⏱ 30 min · Demo `p1.02` · Exercise `P1_02`
@@ -101,5 +101,5 @@ swift test --filter P1_02
 ---
 
 <!-- nav:start -->
-[← P1.01](./01-async-await.md) · [Roadmap](../../README.md) · [P1.03 →](./03-cooperative-pool.md)
+[← P1.01](./01-async-await.md) · [Roadmap](../../ROADMAP.md) · [P1.03 →](./03-cooperative-pool.md)
 <!-- nav:end -->

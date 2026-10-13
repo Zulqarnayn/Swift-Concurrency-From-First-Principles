@@ -1,7 +1,7 @@
 # P3.06 — Cancellation from first principles ⭐
 
 <!-- nav:start -->
-[← P3.05](./05-discarding-task-group.md) · [Roadmap](../../README.md) · [P3.07 →](./07-cancellation-propagation.md)
+[← P3.05](./05-discarding-task-group.md) · [Roadmap](../../ROADMAP.md) · [P3.07 →](./07-cancellation-propagation.md)
 <!-- nav:end -->
 
 ⏱ 30 min · Demo `p3.06` · Exercise `P3_06`
@@ -83,5 +83,5 @@ swift test --filter P3_06
 ---
 
 <!-- nav:start -->
-[← P3.05](./05-discarding-task-group.md) · [Roadmap](../../README.md) · [P3.07 →](./07-cancellation-propagation.md)
+[← P3.05](./05-discarding-task-group.md) · [Roadmap](../../ROADMAP.md) · [P3.07 →](./07-cancellation-propagation.md)
 <!-- nav:end -->

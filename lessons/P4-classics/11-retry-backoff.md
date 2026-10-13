@@ -1,7 +1,7 @@
 # P4.11 — Retry with exponential backoff
 
 <!-- nav:start -->
-[← P4.10](./10-image-pipeline.md) · [Roadmap](../../README.md) · [P4.12 →](./12-review.md)
+[← P4.10](./10-image-pipeline.md) · [Roadmap](../../ROADMAP.md) · [P4.12 →](./12-review.md)
 <!-- nav:end -->
 
 ⏱ 30 min · Demo `p4.11` · Exercise `P4_11`
@@ -66,5 +66,5 @@ Then add jitter yourself. The tests require each wait to be **at least** the nom
 ---
 
 <!-- nav:start -->
-[← P4.10](./10-image-pipeline.md) · [Roadmap](../../README.md) · [P4.12 →](./12-review.md)
+[← P4.10](./10-image-pipeline.md) · [Roadmap](../../ROADMAP.md) · [P4.12 →](./12-review.md)
 <!-- nav:end -->

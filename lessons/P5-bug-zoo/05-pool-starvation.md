@@ -1,7 +1,7 @@
 # P5.05 — Bug: "photo sync freezes for seconds" ⭐
 
 <!-- nav:start -->
-[← P5.04](./04-continuations.md) · [Roadmap](../../README.md) · [P5.06 →](./06-task-leaks.md)
+[← P5.04](./04-continuations.md) · [Roadmap](../../ROADMAP.md) · [P5.06 →](./06-task-leaks.md)
 <!-- nav:end -->
 
 ⏱ 30 min · Repro `p5.05` · Exercise `P5_05`
@@ -64,5 +64,5 @@ The war story worth telling in an interview: **a timeout added to "fix" a hang u
 ---
 
 <!-- nav:start -->
-[← P5.04](./04-continuations.md) · [Roadmap](../../README.md) · [P5.06 →](./06-task-leaks.md)
+[← P5.04](./04-continuations.md) · [Roadmap](../../ROADMAP.md) · [P5.06 →](./06-task-leaks.md)
 <!-- nav:end -->

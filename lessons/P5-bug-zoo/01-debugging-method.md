@@ -1,7 +1,7 @@
 # P5.01 — The debugging method (bug: "the cart total is wrong, sometimes") ⭐
 
 <!-- nav:start -->
-[← P4.12](../P4-classics/12-review.md) · [Roadmap](../../README.md) · [P5.02 →](./02-tools.md)
+[← P4.12](../P4-classics/12-review.md) · [Roadmap](../../ROADMAP.md) · [P5.02 →](./02-tools.md)
 <!-- nav:end -->
 
 ⏱ 30 min · Repro `p5.01` · Exercise `P5_01`
@@ -89,5 +89,5 @@ P0.04's check-then-act and P2.04's reentrancy, on the main actor. The state was 
 ---
 
 <!-- nav:start -->
-[← P4.12](../P4-classics/12-review.md) · [Roadmap](../../README.md) · [P5.02 →](./02-tools.md)
+[← P4.12](../P4-classics/12-review.md) · [Roadmap](../../ROADMAP.md) · [P5.02 →](./02-tools.md)
 <!-- nav:end -->

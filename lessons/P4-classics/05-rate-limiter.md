@@ -1,7 +1,7 @@
 # P4.05 — Rate limiting: the token bucket
 
 <!-- nav:start -->
-[← P4.04](./04-async-semaphore.md) · [Roadmap](../../README.md) · [P4.06 →](./06-debounce-throttle.md)
+[← P4.04](./04-async-semaphore.md) · [Roadmap](../../ROADMAP.md) · [P4.06 →](./06-debounce-throttle.md)
 <!-- nav:end -->
 
 ⏱ 30 min · Demo `p4.05` · Exercise `P4_05`
@@ -65,5 +65,5 @@ swift test --filter P4_05
 ---
 
 <!-- nav:start -->
-[← P4.04](./04-async-semaphore.md) · [Roadmap](../../README.md) · [P4.06 →](./06-debounce-throttle.md)
+[← P4.04](./04-async-semaphore.md) · [Roadmap](../../ROADMAP.md) · [P4.06 →](./06-debounce-throttle.md)
 <!-- nav:end -->

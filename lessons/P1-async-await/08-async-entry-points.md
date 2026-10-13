@@ -1,7 +1,7 @@
 # P1.08 — Where async begins; keeping order across the boundary ⭐
 
 <!-- nav:start -->
-[← P1.07](./07-errors.md) · [Roadmap](../../README.md) · [P1.09 →](./09-lab-convert-gcd.md)
+[← P1.07](./07-errors.md) · [Roadmap](../../ROADMAP.md) · [P1.09 →](./09-lab-convert-gcd.md)
 <!-- nav:end -->
 
 ⏱ 30 min · Demo `p1.08` · Exercise `P1_08`
@@ -87,5 +87,5 @@ swift test --filter P1_08
 ---
 
 <!-- nav:start -->
-[← P1.07](./07-errors.md) · [Roadmap](../../README.md) · [P1.09 →](./09-lab-convert-gcd.md)
+[← P1.07](./07-errors.md) · [Roadmap](../../ROADMAP.md) · [P1.09 →](./09-lab-convert-gcd.md)
 <!-- nav:end -->

@@ -1,7 +1,7 @@
 # P5.07 — Bug: "uploads keep running after leaving the screen; an error alert pops up on the next screen"
 
 <!-- nav:start -->
-[← P5.06](./06-task-leaks.md) · [Roadmap](../../README.md) · [P5.08 →](./08-main-thread-hangs.md)
+[← P5.06](./06-task-leaks.md) · [Roadmap](../../ROADMAP.md) · [P5.08 →](./08-main-thread-hangs.md)
 <!-- nav:end -->
 
 ⏱ 30 min · Repro `p5.07` · Exercise `P5_07`
@@ -70,5 +70,5 @@ Fix: `catch is CancellationError { return }` before the general catch; `try awai
 ---
 
 <!-- nav:start -->
-[← P5.06](./06-task-leaks.md) · [Roadmap](../../README.md) · [P5.08 →](./08-main-thread-hangs.md)
+[← P5.06](./06-task-leaks.md) · [Roadmap](../../ROADMAP.md) · [P5.08 →](./08-main-thread-hangs.md)
 <!-- nav:end -->

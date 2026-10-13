@@ -1,7 +1,7 @@
 # P5.12 — Timed bug hunt ⭐
 
 <!-- nav:start -->
-[← P5.11](./11-deterministic-testing.md) · [Roadmap](../../README.md) · [P6.01 →](../P6-internals/01-executors.md)
+[← P5.11](./11-deterministic-testing.md) · [Roadmap](../../ROADMAP.md) · [P6.01 →](../P6-internals/01-executors.md)
 <!-- nav:end -->
 
 ⏱ **25 min, timed.** Exercise `P5_12`
@@ -56,5 +56,5 @@ Next: **Phase 6: internals** (executors, the runtime, the memory model), then **
 ---
 
 <!-- nav:start -->
-[← P5.11](./11-deterministic-testing.md) · [Roadmap](../../README.md) · [P6.01 →](../P6-internals/01-executors.md)
+[← P5.11](./11-deterministic-testing.md) · [Roadmap](../../ROADMAP.md) · [P6.01 →](../P6-internals/01-executors.md)
 <!-- nav:end -->

@@ -1,7 +1,7 @@
 # P3.12 — Review: structured concurrency puzzles ⭐
 
 <!-- nav:start -->
-[← P3.11](./11-unstructured-tasks.md) · [Roadmap](../../README.md) · [P4.01 →](../P4-classics/01-producer-consumer.md)
+[← P3.11](./11-unstructured-tasks.md) · [Roadmap](../../ROADMAP.md) · [P4.01 →](../P4-classics/01-producer-consumer.md)
 <!-- nav:end -->
 
 ⏱ 30 min · Puzzles `Sources/Puzzles/StructuredPuzzles.swift` · Exercise `P3_12`
@@ -54,5 +54,5 @@ Next: **Phase 4: classic concurrency problems.**
 ---
 
 <!-- nav:start -->
-[← P3.11](./11-unstructured-tasks.md) · [Roadmap](../../README.md) · [P4.01 →](../P4-classics/01-producer-consumer.md)
+[← P3.11](./11-unstructured-tasks.md) · [Roadmap](../../ROADMAP.md) · [P4.01 →](../P4-classics/01-producer-consumer.md)
 <!-- nav:end -->

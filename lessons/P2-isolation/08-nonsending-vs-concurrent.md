@@ -1,7 +1,7 @@
 # P2.08 — `nonisolated(nonsending)` vs `@concurrent` ⭐
 
 <!-- nav:start -->
-[← P2.07](./07-sending-regions.md) · [Roadmap](../../README.md) · [P2.09 →](./09-default-mainactor.md)
+[← P2.07](./07-sending-regions.md) · [Roadmap](../../ROADMAP.md) · [P2.09 →](./09-default-mainactor.md)
 <!-- nav:end -->
 
 ⏱ 30 min · Demo `p2.08` · Exercise `P2_08`
@@ -91,5 +91,5 @@ swift test --filter P2_08
 ---
 
 <!-- nav:start -->
-[← P2.07](./07-sending-regions.md) · [Roadmap](../../README.md) · [P2.09 →](./09-default-mainactor.md)
+[← P2.07](./07-sending-regions.md) · [Roadmap](../../ROADMAP.md) · [P2.09 →](./09-default-mainactor.md)
 <!-- nav:end -->

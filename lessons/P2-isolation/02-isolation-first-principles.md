@@ -1,7 +1,7 @@
 # P2.02 — Isolation from first principles
 
 <!-- nav:start -->
-[← P2.01](./01-network-request-lab.md) · [Roadmap](../../README.md) · [P2.03 →](./03-actors-vs-queues.md)
+[← P2.01](./01-network-request-lab.md) · [Roadmap](../../ROADMAP.md) · [P2.03 →](./03-actors-vs-queues.md)
 <!-- nav:end -->
 
 ⏱ 30 min · Demo `p2.02` · Diagnostics `P2_02_crossing.swift` · Exercise `P2_02` (graded predictions)
@@ -96,5 +96,5 @@ The predictions you just graded are this lesson's exercise. Re-do any you got wr
 ---
 
 <!-- nav:start -->
-[← P2.01](./01-network-request-lab.md) · [Roadmap](../../README.md) · [P2.03 →](./03-actors-vs-queues.md)
+[← P2.01](./01-network-request-lab.md) · [Roadmap](../../ROADMAP.md) · [P2.03 →](./03-actors-vs-queues.md)
 <!-- nav:end -->

@@ -1,7 +1,7 @@
 # P3.01 — What "structured" means
 
 <!-- nav:start -->
-[← P2.16](../P2-isolation/16-review-gauntlet.md) · [Roadmap](../../README.md) · [P3.02 →](./02-async-let.md)
+[← P2.16](../P2-isolation/16-review-gauntlet.md) · [Roadmap](../../ROADMAP.md) · [P3.02 →](./02-async-let.md)
 <!-- nav:end -->
 
 ⏱ 30 min · Demo `p3.01` · Exercise `P3_01`
@@ -92,5 +92,5 @@ swift test --filter P3_01
 ---
 
 <!-- nav:start -->
-[← P2.16](../P2-isolation/16-review-gauntlet.md) · [Roadmap](../../README.md) · [P3.02 →](./02-async-let.md)
+[← P2.16](../P2-isolation/16-review-gauntlet.md) · [Roadmap](../../ROADMAP.md) · [P3.02 →](./02-async-let.md)
 <!-- nav:end -->

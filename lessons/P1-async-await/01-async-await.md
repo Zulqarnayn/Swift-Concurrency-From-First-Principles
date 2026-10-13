@@ -1,7 +1,7 @@
 # P1.01 — What `async` and `await` actually mean ⭐
 
 <!-- nav:start -->
-[← P0.08](../P0-foundations/08-review.md) · [Roadmap](../../README.md) · [P1.02 →](./02-under-the-hood.md)
+[← P0.08](../P0-foundations/08-review.md) · [Roadmap](../../ROADMAP.md) · [P1.02 →](./02-under-the-hood.md)
 <!-- nav:end -->
 
 ⏱ 30 min · Demo `p1.01`, `p1.01b` · Diagnostics `P1_01_async_from_sync.swift` · Exercise `P1_01`
@@ -105,5 +105,5 @@ swift test --filter P1_01
 ---
 
 <!-- nav:start -->
-[← P0.08](../P0-foundations/08-review.md) · [Roadmap](../../README.md) · [P1.02 →](./02-under-the-hood.md)
+[← P0.08](../P0-foundations/08-review.md) · [Roadmap](../../ROADMAP.md) · [P1.02 →](./02-under-the-hood.md)
 <!-- nav:end -->

@@ -1,7 +1,7 @@
 # P1.10 — Review: async output puzzles + spaced repetition
 
 <!-- nav:start -->
-[← P1.09](./09-lab-convert-gcd.md) · [Roadmap](../../README.md) · [P2.01 →](../P2-isolation/01-network-request-lab.md)
+[← P1.09](./09-lab-convert-gcd.md) · [Roadmap](../../ROADMAP.md) · [P2.01 →](../P2-isolation/01-network-request-lab.md)
 <!-- nav:end -->
 
 ⏱ 30 min · Puzzles `Sources/Puzzles/AsyncPuzzles.swift` · Exercise `P1_10`
@@ -52,5 +52,5 @@ P2 opens in the iOS app (`ConcurrencyLabApp`) with the Massicotte network-reques
 ---
 
 <!-- nav:start -->
-[← P1.09](./09-lab-convert-gcd.md) · [Roadmap](../../README.md) · [P2.01 →](../P2-isolation/01-network-request-lab.md)
+[← P1.09](./09-lab-convert-gcd.md) · [Roadmap](../../ROADMAP.md) · [P2.01 →](../P2-isolation/01-network-request-lab.md)
 <!-- nav:end -->

@@ -1,7 +1,7 @@
 # P3.09 — Priority, escalation, `Task.yield`
 
 <!-- nav:start -->
-[← P3.08](./08-timeouts.md) · [Roadmap](../../README.md) · [P3.10 →](./10-task-locals.md)
+[← P3.08](./08-timeouts.md) · [Roadmap](../../ROADMAP.md) · [P3.10 →](./10-task-locals.md)
 <!-- nav:end -->
 
 ⏱ 30 min · Demo `p3.09` · Exercise `P3_09`
@@ -72,5 +72,5 @@ Then answer for yourself: when is `@concurrent` the better fix?
 ---
 
 <!-- nav:start -->
-[← P3.08](./08-timeouts.md) · [Roadmap](../../README.md) · [P3.10 →](./10-task-locals.md)
+[← P3.08](./08-timeouts.md) · [Roadmap](../../ROADMAP.md) · [P3.10 →](./10-task-locals.md)
 <!-- nav:end -->

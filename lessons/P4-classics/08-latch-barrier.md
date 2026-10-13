@@ -1,7 +1,7 @@
 # P4.08 — Latches and barriers
 
 <!-- nav:start -->
-[← P4.07](./07-token-refresh.md) · [Roadmap](../../README.md) · [P4.09 →](./09-leetcode-set.md)
+[← P4.07](./07-token-refresh.md) · [Roadmap](../../ROADMAP.md) · [P4.09 →](./09-leetcode-set.md)
 <!-- nav:end -->
 
 ⏱ 30 min · Demo `p4.08` · Exercise `P4_08`
@@ -63,5 +63,5 @@ swift test --filter P4_08
 ---
 
 <!-- nav:start -->
-[← P4.07](./07-token-refresh.md) · [Roadmap](../../README.md) · [P4.09 →](./09-leetcode-set.md)
+[← P4.07](./07-token-refresh.md) · [Roadmap](../../ROADMAP.md) · [P4.09 →](./09-leetcode-set.md)
 <!-- nav:end -->

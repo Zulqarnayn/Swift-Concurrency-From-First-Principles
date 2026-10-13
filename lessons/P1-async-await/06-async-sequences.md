@@ -1,7 +1,7 @@
 # P1.06 — AsyncSequence and AsyncStream
 
 <!-- nav:start -->
-[← P1.05](./05-continuations.md) · [Roadmap](../../README.md) · [P1.07 →](./07-errors.md)
+[← P1.05](./05-continuations.md) · [Roadmap](../../ROADMAP.md) · [P1.07 →](./07-errors.md)
 <!-- nav:end -->
 
 ⏱ 30 min · Demo `p1.06` · Exercise `P1_06`
@@ -90,5 +90,5 @@ swift test --filter P1_06
 ---
 
 <!-- nav:start -->
-[← P1.05](./05-continuations.md) · [Roadmap](../../README.md) · [P1.07 →](./07-errors.md)
+[← P1.05](./05-continuations.md) · [Roadmap](../../ROADMAP.md) · [P1.07 →](./07-errors.md)
 <!-- nav:end -->

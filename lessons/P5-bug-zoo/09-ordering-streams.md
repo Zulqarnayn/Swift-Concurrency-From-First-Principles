@@ -1,7 +1,7 @@
 # P5.09 — Bug: "the second screen misses half the live updates, and never closes"
 
 <!-- nav:start -->
-[← P5.08](./08-main-thread-hangs.md) · [Roadmap](../../README.md) · [P5.10 →](./10-crash-forensics.md)
+[← P5.08](./08-main-thread-hangs.md) · [Roadmap](../../ROADMAP.md) · [P5.10 →](./10-crash-forensics.md)
 <!-- nav:end -->
 
 ⏱ 30 min · Repro `p5.09` · Exercise `P5_09`
@@ -62,5 +62,5 @@ A confession that teaches: the first version of this lesson's *test* kept `let s
 ---
 
 <!-- nav:start -->
-[← P5.08](./08-main-thread-hangs.md) · [Roadmap](../../README.md) · [P5.10 →](./10-crash-forensics.md)
+[← P5.08](./08-main-thread-hangs.md) · [Roadmap](../../ROADMAP.md) · [P5.10 →](./10-crash-forensics.md)
 <!-- nav:end -->

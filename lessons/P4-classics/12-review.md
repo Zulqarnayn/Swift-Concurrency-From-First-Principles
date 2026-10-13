@@ -1,7 +1,7 @@
 # P4.12 — Review: pick the right tool ⭐
 
 <!-- nav:start -->
-[← P4.11](./11-retry-backoff.md) · [Roadmap](../../README.md) · [P5.01 →](../P5-bug-zoo/01-debugging-method.md)
+[← P4.11](./11-retry-backoff.md) · [Roadmap](../../ROADMAP.md) · [P5.01 →](../P5-bug-zoo/01-debugging-method.md)
 <!-- nav:end -->
 
 ⏱ 30 min · Exercise `P4_12` (graded)
@@ -71,5 +71,5 @@ Next: **Phase 5: the Bug Zoo**, where you debug systems built from these parts.
 ---
 
 <!-- nav:start -->
-[← P4.11](./11-retry-backoff.md) · [Roadmap](../../README.md) · [P5.01 →](../P5-bug-zoo/01-debugging-method.md)
+[← P4.11](./11-retry-backoff.md) · [Roadmap](../../ROADMAP.md) · [P5.01 →](../P5-bug-zoo/01-debugging-method.md)
 <!-- nav:end -->

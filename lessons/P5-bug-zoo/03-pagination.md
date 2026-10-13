@@ -1,7 +1,7 @@
 # P5.03 — Bug: "duplicate posts while scrolling; old posts after pull-to-refresh" ⭐
 
 <!-- nav:start -->
-[← P5.02](./02-tools.md) · [Roadmap](../../README.md) · [P5.04 →](./04-continuations.md)
+[← P5.02](./02-tools.md) · [Roadmap](../../ROADMAP.md) · [P5.04 →](./04-continuations.md)
 <!-- nav:end -->
 
 ⏱ 30 min · Repro `p5.03` · iOS lab **P5.03 Pagination bugs** · Exercise `P5_03`
@@ -72,5 +72,5 @@ The general lesson: **every async result must be checked against the state of th
 ---
 
 <!-- nav:start -->
-[← P5.02](./02-tools.md) · [Roadmap](../../README.md) · [P5.04 →](./04-continuations.md)
+[← P5.02](./02-tools.md) · [Roadmap](../../ROADMAP.md) · [P5.04 →](./04-continuations.md)
 <!-- nav:end -->

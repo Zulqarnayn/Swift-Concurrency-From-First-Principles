@@ -1,7 +1,7 @@
 # P3.08 — Build `withTimeout` ⭐
 
 <!-- nav:start -->
-[← P3.07](./07-cancellation-propagation.md) · [Roadmap](../../README.md) · [P3.09 →](./09-priority-yield.md)
+[← P3.07](./07-cancellation-propagation.md) · [Roadmap](../../ROADMAP.md) · [P3.09 →](./09-priority-yield.md)
 <!-- nav:end -->
 
 ⏱ 30 min · Demo `p3.08` · Exercise `P3_08`
@@ -72,5 +72,5 @@ swift test --filter P3_08
 ---
 
 <!-- nav:start -->
-[← P3.07](./07-cancellation-propagation.md) · [Roadmap](../../README.md) · [P3.09 →](./09-priority-yield.md)
+[← P3.07](./07-cancellation-propagation.md) · [Roadmap](../../ROADMAP.md) · [P3.09 →](./09-priority-yield.md)
 <!-- nav:end -->

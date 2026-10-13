@@ -1,7 +1,7 @@
 # P3.11 — Unstructured tasks: when, ordering, `Task.immediate`
 
 <!-- nav:start -->
-[← P3.10](./10-task-locals.md) · [Roadmap](../../README.md) · [P3.12 →](./12-review.md)
+[← P3.10](./10-task-locals.md) · [Roadmap](../../ROADMAP.md) · [P3.12 →](./12-review.md)
 <!-- nav:end -->
 
 ⏱ 30 min · Demo `p3.11` · Exercise `P3_11`
@@ -69,5 +69,5 @@ swift test --filter P3_11
 ---
 
 <!-- nav:start -->
-[← P3.10](./10-task-locals.md) · [Roadmap](../../README.md) · [P3.12 →](./12-review.md)
+[← P3.10](./10-task-locals.md) · [Roadmap](../../ROADMAP.md) · [P3.12 →](./12-review.md)
 <!-- nav:end -->

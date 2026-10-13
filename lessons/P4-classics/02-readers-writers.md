@@ -1,7 +1,7 @@
 # P4.02 — Readers–writers
 
 <!-- nav:start -->
-[← P4.01](./01-producer-consumer.md) · [Roadmap](../../README.md) · [P4.03 →](./03-dining-philosophers.md)
+[← P4.01](./01-producer-consumer.md) · [Roadmap](../../ROADMAP.md) · [P4.03 →](./03-dining-philosophers.md)
 <!-- nav:end -->
 
 ⏱ 30 min · Demo `p4.02` · Exercise `P4_02`
@@ -75,5 +75,5 @@ Question for yourself: your `set` probably returns before the write happens. Is 
 ---
 
 <!-- nav:start -->
-[← P4.01](./01-producer-consumer.md) · [Roadmap](../../README.md) · [P4.03 →](./03-dining-philosophers.md)
+[← P4.01](./01-producer-consumer.md) · [Roadmap](../../ROADMAP.md) · [P4.03 →](./03-dining-philosophers.md)
 <!-- nav:end -->

@@ -1,7 +1,7 @@
 # P7.02 — "Explain the output" marathon ⭐
 
 <!-- nav:start -->
-[← P7.01](./01-gcd-operationqueue.md) · [Roadmap](../../README.md) · [P7.03 →](./03-kata-fetch-all.md)
+[← P7.01](./01-gcd-operationqueue.md) · [Roadmap](../../ROADMAP.md) · [P7.03 →](./03-kata-fetch-all.md)
 <!-- nav:end -->
 
 ⏱ **20 minutes for 10 puzzles** (timed), plus 10 min of debrief · Puzzles `Sources/Puzzles/MarathonPuzzles.swift` · Exercise `P7_02`
@@ -49,5 +49,5 @@ Scoring: **9–10** interview-ready · **7–8** solid, review the misses · **�
 ---
 
 <!-- nav:start -->
-[← P7.01](./01-gcd-operationqueue.md) · [Roadmap](../../README.md) · [P7.03 →](./03-kata-fetch-all.md)
+[← P7.01](./01-gcd-operationqueue.md) · [Roadmap](../../ROADMAP.md) · [P7.03 →](./03-kata-fetch-all.md)
 <!-- nav:end -->

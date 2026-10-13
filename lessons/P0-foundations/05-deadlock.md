@@ -1,7 +1,7 @@
 # P0.05 — Deadlock ⭐
 
 <!-- nav:start -->
-[← P0.04](./04-locks-race-conditions.md) · [Roadmap](../../README.md) · [P0.06 →](./06-starvation-inversion-explosion.md)
+[← P0.04](./04-locks-race-conditions.md) · [Roadmap](../../ROADMAP.md) · [P0.06 →](./06-starvation-inversion-explosion.md)
 <!-- nav:end -->
 
 ⏱ 30 min · Demo `p0.05` (+ opt-in `p0.05b`, `p0.05c`) · Exercise `P0_05`
@@ -94,5 +94,5 @@ swift test --filter P0_05
 ---
 
 <!-- nav:start -->
-[← P0.04](./04-locks-race-conditions.md) · [Roadmap](../../README.md) · [P0.06 →](./06-starvation-inversion-explosion.md)
+[← P0.04](./04-locks-race-conditions.md) · [Roadmap](../../ROADMAP.md) · [P0.06 →](./06-starvation-inversion-explosion.md)
 <!-- nav:end -->

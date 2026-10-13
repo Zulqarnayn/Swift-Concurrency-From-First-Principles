@@ -1,7 +1,7 @@
 # P2.15 — Non-Sendable first design
 
 <!-- nav:start -->
-[← P2.14](./14-massicotte-storage-stateful.md) · [Roadmap](../../README.md) · [P2.16 →](./16-review-gauntlet.md)
+[← P2.14](./14-massicotte-storage-stateful.md) · [Roadmap](../../ROADMAP.md) · [P2.16 →](./16-review-gauntlet.md)
 <!-- nav:end -->
 
 ⏱ 30 min · Demo `p2.15` · Diagnostics `P2_15_nonsendable_legacy.swift` · Exercise **Fixme** `P2_15_nonsendable_first.swift`
@@ -74,5 +74,5 @@ scripts/fixme.sh ConcurrencyLab/Fixme/P2_15_nonsendable_first.swift
 ---
 
 <!-- nav:start -->
-[← P2.14](./14-massicotte-storage-stateful.md) · [Roadmap](../../README.md) · [P2.16 →](./16-review-gauntlet.md)
+[← P2.14](./14-massicotte-storage-stateful.md) · [Roadmap](../../ROADMAP.md) · [P2.16 →](./16-review-gauntlet.md)
 <!-- nav:end -->

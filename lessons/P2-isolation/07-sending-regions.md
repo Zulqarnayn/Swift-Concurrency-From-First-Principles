@@ -1,7 +1,7 @@
 # P2.07 — `sending` and region-based isolation
 
 <!-- nav:start -->
-[← P2.06](./06-sendable.md) · [Roadmap](../../README.md) · [P2.08 →](./08-nonsending-vs-concurrent.md)
+[← P2.06](./06-sendable.md) · [Roadmap](../../ROADMAP.md) · [P2.08 →](./08-nonsending-vs-concurrent.md)
 <!-- nav:end -->
 
 ⏱ 30 min · Demo `p2.07` · Diagnostics `P2_07_regions.swift` · Exercise **Fixme** `P2_07_sending.swift`
@@ -80,5 +80,5 @@ scripts/fixme.sh ConcurrencyLab/Fixme/P2_07_sending.swift
 ---
 
 <!-- nav:start -->
-[← P2.06](./06-sendable.md) · [Roadmap](../../README.md) · [P2.08 →](./08-nonsending-vs-concurrent.md)
+[← P2.06](./06-sendable.md) · [Roadmap](../../ROADMAP.md) · [P2.08 →](./08-nonsending-vs-concurrent.md)
 <!-- nav:end -->

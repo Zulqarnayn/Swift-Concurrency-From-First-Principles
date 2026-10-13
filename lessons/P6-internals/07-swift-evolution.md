@@ -1,7 +1,7 @@
 # P6.07 — Swift Evolution reading sprint
 
 <!-- nav:start -->
-[← P6.06](./06-isolated-any.md) · [Roadmap](../../README.md) · [P6.08 →](./08-distributed-actors.md)
+[← P6.06](./06-isolated-any.md) · [Roadmap](../../ROADMAP.md) · [P6.08 →](./08-distributed-actors.md)
 <!-- nav:end -->
 
 ⏱ 30 min · Exercise `P6_07` (graded)
@@ -45,5 +45,5 @@ swift test --filter P6_07
 ---
 
 <!-- nav:start -->
-[← P6.06](./06-isolated-any.md) · [Roadmap](../../README.md) · [P6.08 →](./08-distributed-actors.md)
+[← P6.06](./06-isolated-any.md) · [Roadmap](../../ROADMAP.md) · [P6.08 →](./08-distributed-actors.md)
 <!-- nav:end -->

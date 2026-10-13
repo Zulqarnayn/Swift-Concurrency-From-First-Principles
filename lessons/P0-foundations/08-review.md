@@ -1,7 +1,7 @@
 # P0.08 — Review: GCD output puzzles + spaced repetition
 
 <!-- nav:start -->
-[← P0.07](./07-blocking-vs-suspending.md) · [Roadmap](../../README.md) · [P1.01 →](../P1-async-await/01-async-await.md)
+[← P0.07](./07-blocking-vs-suspending.md) · [Roadmap](../../ROADMAP.md) · [P1.01 →](../P1-async-await/01-async-await.md)
 <!-- nav:end -->
 
 ⏱ 30 min · Puzzles `Sources/Puzzles/GCDPuzzles.swift` · Exercise `P0_08`
@@ -68,5 +68,5 @@ Next: **P1.01 — what `async` and `await` actually mean.**
 ---
 
 <!-- nav:start -->
-[← P0.07](./07-blocking-vs-suspending.md) · [Roadmap](../../README.md) · [P1.01 →](../P1-async-await/01-async-await.md)
+[← P0.07](./07-blocking-vs-suspending.md) · [Roadmap](../../ROADMAP.md) · [P1.01 →](../P1-async-await/01-async-await.md)
 <!-- nav:end -->

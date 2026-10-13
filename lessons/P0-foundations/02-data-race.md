@@ -1,7 +1,7 @@
 # P0.02 — Data races ⭐
 
 <!-- nav:start -->
-[← P0.01](./01-threads-cores.md) · [Roadmap](../../README.md) · [P0.03 →](./03-atomicity.md)
+[← P0.01](./01-threads-cores.md) · [Roadmap](../../ROADMAP.md) · [P0.03 →](./03-atomicity.md)
 <!-- nav:end -->
 
 ⏱ 30 min · Demo `p0.02` (+ opt-in `p0.02b`) · Diagnostics `P0_02_racy_counter.swift` · Exercise `P0_02`
@@ -99,5 +99,5 @@ Think about: does `current` (a read) need protection too? Why?
 ---
 
 <!-- nav:start -->
-[← P0.01](./01-threads-cores.md) · [Roadmap](../../README.md) · [P0.03 →](./03-atomicity.md)
+[← P0.01](./01-threads-cores.md) · [Roadmap](../../ROADMAP.md) · [P0.03 →](./03-atomicity.md)
 <!-- nav:end -->

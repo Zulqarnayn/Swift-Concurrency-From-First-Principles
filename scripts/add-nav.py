@@ -24,9 +24,9 @@ for i, f in enumerate(files):
             rel = "./" + rel
         return f"[{label}]({rel})"
     parts = []
-    parts.append(link(f"← {title(files[i-1])}", files[i-1]) if i > 0 else "[← Roadmap](../../README.md)")
-    parts.append(f"[Roadmap](../../README.md)") if 0 < i < len(files) - 1 else None
-    parts.append(link(f"{title(files[i+1])} →", files[i+1]) if i < len(files) - 1 else "[Roadmap →](../../README.md)")
+    parts.append(link(f"← {title(files[i-1])}", files[i-1]) if i > 0 else "[← Roadmap](../../ROADMAP.md)")
+    parts.append(f"[Roadmap](../../ROADMAP.md)") if 0 < i < len(files) - 1 else None
+    parts.append(link(f"{title(files[i+1])} →", files[i+1]) if i < len(files) - 1 else "[Roadmap →](../../ROADMAP.md)")
     nav = f"{START}\n" + " · ".join(parts) + f"\n{END}\n"
 
     text = strip(open(f).read()).rstrip("\n")

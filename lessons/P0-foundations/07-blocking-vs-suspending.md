@@ -1,7 +1,7 @@
 # P0.07 — Blocking vs suspending; why completion handlers hurt
 
 <!-- nav:start -->
-[← P0.06](./06-starvation-inversion-explosion.md) · [Roadmap](../../README.md) · [P0.08 →](./08-review.md)
+[← P0.06](./06-starvation-inversion-explosion.md) · [Roadmap](../../ROADMAP.md) · [P0.08 →](./08-review.md)
 <!-- nav:end -->
 
 ⏱ 30 min · Demo `p0.07` · Exercise `P0_07`
@@ -98,5 +98,5 @@ swift test --filter P0_07
 ---
 
 <!-- nav:start -->
-[← P0.06](./06-starvation-inversion-explosion.md) · [Roadmap](../../README.md) · [P0.08 →](./08-review.md)
+[← P0.06](./06-starvation-inversion-explosion.md) · [Roadmap](../../ROADMAP.md) · [P0.08 →](./08-review.md)
 <!-- nav:end -->

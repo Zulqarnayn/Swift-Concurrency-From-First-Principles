@@ -1,7 +1,7 @@
 # P1.09 — Lab: convert a GCD service to async/await
 
 <!-- nav:start -->
-[← P1.08](./08-async-entry-points.md) · [Roadmap](../../README.md) · [P1.10 →](./10-review.md)
+[← P1.08](./08-async-entry-points.md) · [Roadmap](../../ROADMAP.md) · [P1.10 →](./10-review.md)
 <!-- nav:end -->
 
 ⏱ 30 min · Exercise `P1_09`
@@ -61,5 +61,5 @@ Read: Massicotte, [Migrating from the Outside in](https://massicotte.org/outside
 ---
 
 <!-- nav:start -->
-[← P1.08](./08-async-entry-points.md) · [Roadmap](../../README.md) · [P1.10 →](./10-review.md)
+[← P1.08](./08-async-entry-points.md) · [Roadmap](../../ROADMAP.md) · [P1.10 →](./10-review.md)
 <!-- nav:end -->

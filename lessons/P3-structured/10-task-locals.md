@@ -1,7 +1,7 @@
 # P3.10 — `@TaskLocal`: context that flows down the tree
 
 <!-- nav:start -->
-[← P3.09](./09-priority-yield.md) · [Roadmap](../../README.md) · [P3.11 →](./11-unstructured-tasks.md)
+[← P3.09](./09-priority-yield.md) · [Roadmap](../../ROADMAP.md) · [P3.11 →](./11-unstructured-tasks.md)
 <!-- nav:end -->
 
 ⏱ 30 min · Demo `p3.10` · Exercise `P3_10`
@@ -80,5 +80,5 @@ swift test --filter P3_10
 ---
 
 <!-- nav:start -->
-[← P3.09](./09-priority-yield.md) · [Roadmap](../../README.md) · [P3.11 →](./11-unstructured-tasks.md)
+[← P3.09](./09-priority-yield.md) · [Roadmap](../../ROADMAP.md) · [P3.11 →](./11-unstructured-tasks.md)
 <!-- nav:end -->

@@ -1,7 +1,7 @@
 # P1.04 — `Task`: the unit of async work
 
 <!-- nav:start -->
-[← P1.03](./03-cooperative-pool.md) · [Roadmap](../../README.md) · [P1.05 →](./05-continuations.md)
+[← P1.03](./03-cooperative-pool.md) · [Roadmap](../../ROADMAP.md) · [P1.05 →](./05-continuations.md)
 <!-- nav:end -->
 
 ⏱ 30 min · Demo `p1.04` · Exercise `P1_04`
@@ -92,5 +92,5 @@ swift test --filter P1_04
 ---
 
 <!-- nav:start -->
-[← P1.03](./03-cooperative-pool.md) · [Roadmap](../../README.md) · [P1.05 →](./05-continuations.md)
+[← P1.03](./03-cooperative-pool.md) · [Roadmap](../../ROADMAP.md) · [P1.05 →](./05-continuations.md)
 <!-- nav:end -->

@@ -1,7 +1,7 @@
 # P4.06 — Debounce and throttle ⭐
 
 <!-- nav:start -->
-[← P4.05](./05-rate-limiter.md) · [Roadmap](../../README.md) · [P4.07 →](./07-token-refresh.md)
+[← P4.05](./05-rate-limiter.md) · [Roadmap](../../ROADMAP.md) · [P4.07 →](./07-token-refresh.md)
 <!-- nav:end -->
 
 ⏱ 30 min · Demo `p4.06` · iOS lab **P4.06 Debounced search** · Exercise `P4_06`
@@ -80,5 +80,5 @@ swift test --filter P4_06
 ---
 
 <!-- nav:start -->
-[← P4.05](./05-rate-limiter.md) · [Roadmap](../../README.md) · [P4.07 →](./07-token-refresh.md)
+[← P4.05](./05-rate-limiter.md) · [Roadmap](../../ROADMAP.md) · [P4.07 →](./07-token-refresh.md)
 <!-- nav:end -->

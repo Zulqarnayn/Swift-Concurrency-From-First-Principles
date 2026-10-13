@@ -1,7 +1,7 @@
 # P3.07 — Cancellation propagation, `.task(id:)`, owning unstructured tasks
 
 <!-- nav:start -->
-[← P3.06](./06-cancellation.md) · [Roadmap](../../README.md) · [P3.08 →](./08-timeouts.md)
+[← P3.06](./06-cancellation.md) · [Roadmap](../../ROADMAP.md) · [P3.08 →](./08-timeouts.md)
 <!-- nav:end -->
 
 ⏱ 30 min · Demo `p3.07` · iOS lab **P3.07 Task lifecycle** · Exercise `P3_07`
@@ -79,5 +79,5 @@ swift test --filter P3_07
 ---
 
 <!-- nav:start -->
-[← P3.06](./06-cancellation.md) · [Roadmap](../../README.md) · [P3.08 →](./08-timeouts.md)
+[← P3.06](./06-cancellation.md) · [Roadmap](../../ROADMAP.md) · [P3.08 →](./08-timeouts.md)
 <!-- nav:end -->

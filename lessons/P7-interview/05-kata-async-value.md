@@ -1,7 +1,7 @@
 # P7.05 — Timed kata: an observable async value
 
 <!-- nav:start -->
-[← P7.04](./04-kata-ordered-pipeline.md) · [Roadmap](../../README.md) · [P7.06 →](./06-design-networking.md)
+[← P7.04](./04-kata-ordered-pipeline.md) · [Roadmap](../../ROADMAP.md) · [P7.06 →](./06-design-networking.md)
 <!-- nav:end -->
 
 ⏱ **25 min coding** + 5 min debrief · Exercise `P7_05`
@@ -36,5 +36,5 @@ Spec and signature: `Sources/Exercises/P7_05_KataAsyncValue.swift`. (Think `Curr
 ---
 
 <!-- nav:start -->
-[← P7.04](./04-kata-ordered-pipeline.md) · [Roadmap](../../README.md) · [P7.06 →](./06-design-networking.md)
+[← P7.04](./04-kata-ordered-pipeline.md) · [Roadmap](../../ROADMAP.md) · [P7.06 →](./06-design-networking.md)
 <!-- nav:end -->

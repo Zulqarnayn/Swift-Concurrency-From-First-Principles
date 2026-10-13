@@ -1,7 +1,7 @@
 # P2.13 — `@preconcurrency`, legacy code, and outside-in migration
 
 <!-- nav:start -->
-[← P2.12](./12-protocols-isolation.md) · [Roadmap](../../README.md) · [P2.14 →](./14-massicotte-storage-stateful.md)
+[← P2.12](./12-protocols-isolation.md) · [Roadmap](../../ROADMAP.md) · [P2.14 →](./14-massicotte-storage-stateful.md)
 <!-- nav:end -->
 
 ⏱ 30 min · Demo `p2.13`, `p2.13b` (+ opt-in `p2.13c`) · Exercise `P2_13`
@@ -78,5 +78,5 @@ swift test --filter P2_13
 ---
 
 <!-- nav:start -->
-[← P2.12](./12-protocols-isolation.md) · [Roadmap](../../README.md) · [P2.14 →](./14-massicotte-storage-stateful.md)
+[← P2.12](./12-protocols-isolation.md) · [Roadmap](../../ROADMAP.md) · [P2.14 →](./14-massicotte-storage-stateful.md)
 <!-- nav:end -->

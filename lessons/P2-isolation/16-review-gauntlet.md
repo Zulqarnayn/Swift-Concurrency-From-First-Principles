@@ -1,7 +1,7 @@
 # P2.16 — Review: isolation puzzles + the diagnostics gauntlet ⭐
 
 <!-- nav:start -->
-[← P2.15](./15-nonsendable-first.md) · [Roadmap](../../README.md) · [P3.01 →](../P3-structured/01-structured-concurrency.md)
+[← P2.15](./15-nonsendable-first.md) · [Roadmap](../../ROADMAP.md) · [P3.01 →](../P3-structured/01-structured-concurrency.md)
 <!-- nav:end -->
 
 ⏱ 30 min · Puzzles `Sources/Puzzles/IsolationPuzzles.swift` · Exercise `P2_16` (graded predictions)
@@ -64,5 +64,5 @@ Next: **Phase 3: structured concurrency.** Tell Claude "next phase", along with 
 ---
 
 <!-- nav:start -->
-[← P2.15](./15-nonsendable-first.md) · [Roadmap](../../README.md) · [P3.01 →](../P3-structured/01-structured-concurrency.md)
+[← P2.15](./15-nonsendable-first.md) · [Roadmap](../../ROADMAP.md) · [P3.01 →](../P3-structured/01-structured-concurrency.md)
 <!-- nav:end -->

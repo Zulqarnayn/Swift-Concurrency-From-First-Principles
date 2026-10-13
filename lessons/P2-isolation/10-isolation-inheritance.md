@@ -1,7 +1,7 @@
 # P2.10 — Isolation inheritance: tasks, closures, isolated parameters
 
 <!-- nav:start -->
-[← P2.09](./09-default-mainactor.md) · [Roadmap](../../README.md) · [P2.11 →](./11-globals-singletons.md)
+[← P2.09](./09-default-mainactor.md) · [Roadmap](../../ROADMAP.md) · [P2.11 →](./11-globals-singletons.md)
 <!-- nav:end -->
 
 ⏱ 30 min · Demo `p2.10` · Exercise `P2_10`
@@ -87,5 +87,5 @@ swift test --filter P2_10
 ---
 
 <!-- nav:start -->
-[← P2.09](./09-default-mainactor.md) · [Roadmap](../../README.md) · [P2.11 →](./11-globals-singletons.md)
+[← P2.09](./09-default-mainactor.md) · [Roadmap](../../ROADMAP.md) · [P2.11 →](./11-globals-singletons.md)
 <!-- nav:end -->

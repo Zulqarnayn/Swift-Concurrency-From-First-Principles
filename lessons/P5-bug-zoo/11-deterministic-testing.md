@@ -1,7 +1,7 @@
 # P5.11 — Deterministic async testing
 
 <!-- nav:start -->
-[← P5.10](./10-crash-forensics.md) · [Roadmap](../../README.md) · [P5.12 →](./12-timed-bug-hunt.md)
+[← P5.10](./10-crash-forensics.md) · [Roadmap](../../ROADMAP.md) · [P5.12 →](./12-timed-bug-hunt.md)
 <!-- nav:end -->
 
 ⏱ 30 min · Exercise `P5_11`
@@ -66,5 +66,5 @@ All three are invisible to "sleep 600 ms then check that the last save is the la
 ---
 
 <!-- nav:start -->
-[← P5.10](./10-crash-forensics.md) · [Roadmap](../../README.md) · [P5.12 →](./12-timed-bug-hunt.md)
+[← P5.10](./10-crash-forensics.md) · [Roadmap](../../ROADMAP.md) · [P5.12 →](./12-timed-bug-hunt.md)
 <!-- nav:end -->

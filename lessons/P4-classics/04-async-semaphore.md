@@ -1,7 +1,7 @@
 # P4.04 — An async semaphore ⭐
 
 <!-- nav:start -->
-[← P4.03](./03-dining-philosophers.md) · [Roadmap](../../README.md) · [P4.05 →](./05-rate-limiter.md)
+[← P4.03](./03-dining-philosophers.md) · [Roadmap](../../ROADMAP.md) · [P4.05 →](./05-rate-limiter.md)
 <!-- nav:end -->
 
 ⏱ 30 min · Demo `p4.04` (+ opt-in `p4.04c`) · Exercise `P4_04`
@@ -73,5 +73,5 @@ swift test --filter P4_04
 ---
 
 <!-- nav:start -->
-[← P4.03](./03-dining-philosophers.md) · [Roadmap](../../README.md) · [P4.05 →](./05-rate-limiter.md)
+[← P4.03](./03-dining-philosophers.md) · [Roadmap](../../ROADMAP.md) · [P4.05 →](./05-rate-limiter.md)
 <!-- nav:end -->

@@ -1,7 +1,7 @@
 # P1.05 — Continuations: bridging callbacks to async ⭐
 
 <!-- nav:start -->
-[← P1.04](./04-task.md) · [Roadmap](../../README.md) · [P1.06 →](./06-async-sequences.md)
+[← P1.04](./04-task.md) · [Roadmap](../../ROADMAP.md) · [P1.06 →](./06-async-sequences.md)
 <!-- nav:end -->
 
 ⏱ 30 min · Demo `p1.05`, `p1.05b` (+ opt-in `p1.05c`) · Exercise `P1_05`
@@ -107,5 +107,5 @@ Bonus thought: what if `requestImage` hits an error and never sends a non-degrad
 ---
 
 <!-- nav:start -->
-[← P1.04](./04-task.md) · [Roadmap](../../README.md) · [P1.06 →](./06-async-sequences.md)
+[← P1.04](./04-task.md) · [Roadmap](../../ROADMAP.md) · [P1.06 →](./06-async-sequences.md)
 <!-- nav:end -->

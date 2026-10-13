@@ -1,7 +1,7 @@
 # P2.01 — Lab: a network request, step by step (iOS app) ⭐
 
 <!-- nav:start -->
-[← P1.10](../P1-async-await/10-review.md) · [Roadmap](../../README.md) · [P2.02 →](./02-isolation-first-principles.md)
+[← P1.10](../P1-async-await/10-review.md) · [Roadmap](../../ROADMAP.md) · [P2.02 →](./02-isolation-first-principles.md)
 <!-- nav:end -->
 
 ⏱ 30 min (could be split over 2 days) · App `ConcurrencyLabApp` · Diagnostics `P2_01_default_isolation.swift`
@@ -150,5 +150,5 @@ In the app, change `fetchAndDecode` (Step 3):
 ---
 
 <!-- nav:start -->
-[← P1.10](../P1-async-await/10-review.md) · [Roadmap](../../README.md) · [P2.02 →](./02-isolation-first-principles.md)
+[← P1.10](../P1-async-await/10-review.md) · [Roadmap](../../ROADMAP.md) · [P2.02 →](./02-isolation-first-principles.md)
 <!-- nav:end -->

@@ -1,7 +1,7 @@
 # P4.03 — Dining philosophers (can actors deadlock?)
 
 <!-- nav:start -->
-[← P4.02](./02-readers-writers.md) · [Roadmap](../../README.md) · [P4.04 →](./04-async-semaphore.md)
+[← P4.02](./02-readers-writers.md) · [Roadmap](../../ROADMAP.md) · [P4.04 →](./04-async-semaphore.md)
 <!-- nav:end -->
 
 ⏱ 30 min · Demo `p4.03` · Exercise `P4_03`
@@ -70,5 +70,5 @@ Bonus: implement the *waiter* solution instead (hint: the `AsyncSemaphore` from 
 ---
 
 <!-- nav:start -->
-[← P4.02](./02-readers-writers.md) · [Roadmap](../../README.md) · [P4.04 →](./04-async-semaphore.md)
+[← P4.02](./02-readers-writers.md) · [Roadmap](../../ROADMAP.md) · [P4.04 →](./04-async-semaphore.md)
 <!-- nav:end -->

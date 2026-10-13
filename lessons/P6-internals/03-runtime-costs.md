@@ -1,7 +1,7 @@
 # P6.03 — The runtime: what tasks and hops cost
 
 <!-- nav:start -->
-[← P6.02](./02-task-executors.md) · [Roadmap](../../README.md) · [P6.04 →](./04-hop-costs.md)
+[← P6.02](./02-task-executors.md) · [Roadmap](../../ROADMAP.md) · [P6.04 →](./04-hop-costs.md)
 <!-- nav:end -->
 
 ⏱ 30 min · Demo `p6.03` · Exercise `P6_03` (graded **against measurements of your machine**)
@@ -69,5 +69,5 @@ Measure on your own device when it matters. These numbers vary with hardware, OS
 ---
 
 <!-- nav:start -->
-[← P6.02](./02-task-executors.md) · [Roadmap](../../README.md) · [P6.04 →](./04-hop-costs.md)
+[← P6.02](./02-task-executors.md) · [Roadmap](../../ROADMAP.md) · [P6.04 →](./04-hop-costs.md)
 <!-- nav:end -->

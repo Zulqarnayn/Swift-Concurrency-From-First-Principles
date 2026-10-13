@@ -1,7 +1,7 @@
 # P5.08 — Bug: "tapping Export freezes the app" ⭐
 
 <!-- nav:start -->
-[← P5.07](./07-cancellation-bugs.md) · [Roadmap](../../README.md) · [P5.09 →](./09-ordering-streams.md)
+[← P5.07](./07-cancellation-bugs.md) · [Roadmap](../../ROADMAP.md) · [P5.09 →](./09-ordering-streams.md)
 <!-- nav:end -->
 
 ⏱ 30 min · Repro `p5.08` · iOS lab **P5.08 Main-thread hang** · Exercise `P5_08`
@@ -67,5 +67,5 @@ Fix: a `@concurrent` helper that does both. Because `compress` is nonsending, it
 ---
 
 <!-- nav:start -->
-[← P5.07](./07-cancellation-bugs.md) · [Roadmap](../../README.md) · [P5.09 →](./09-ordering-streams.md)
+[← P5.07](./07-cancellation-bugs.md) · [Roadmap](../../ROADMAP.md) · [P5.09 →](./09-ordering-streams.md)
 <!-- nav:end -->

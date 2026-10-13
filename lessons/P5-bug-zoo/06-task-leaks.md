@@ -1,7 +1,7 @@
 # P5.06 — Bug: "memory grows every time the user opens a chat"
 
 <!-- nav:start -->
-[← P5.05](./05-pool-starvation.md) · [Roadmap](../../README.md) · [P5.07 →](./07-cancellation-bugs.md)
+[← P5.05](./05-pool-starvation.md) · [Roadmap](../../ROADMAP.md) · [P5.07 →](./07-cancellation-bugs.md)
 <!-- nav:end -->
 
 ⏱ 30 min · Repro `p5.06` · Exercise `P5_06`
@@ -67,5 +67,5 @@ Fix:
 ---
 
 <!-- nav:start -->
-[← P5.05](./05-pool-starvation.md) · [Roadmap](../../README.md) · [P5.07 →](./07-cancellation-bugs.md)
+[← P5.05](./05-pool-starvation.md) · [Roadmap](../../ROADMAP.md) · [P5.07 →](./07-cancellation-bugs.md)
 <!-- nav:end -->
