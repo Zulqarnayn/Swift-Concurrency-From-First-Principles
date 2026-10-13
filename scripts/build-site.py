@@ -49,6 +49,7 @@ TABLE_SEPARATOR = re.compile(r"^\s*\|?\s*:?-{3,}:?\s*(\|\s*:?-{3,}:?\s*)+\|?\s*$
 LINK_TO_ROADMAP = re.compile(r"(\]\((?:\.{1,2}/)*)(?:README|ROADMAP)\.md")
 LESSON_H1 = re.compile(r"^# (P\d+\.\d+)\s*[—-]\s*(.*?)\s*$", re.MULTILINE)
 META_LINE = re.compile(r"^⏱\s*(.*)$", re.MULTILINE)
+DEK = re.compile(r"^<!--\s*dek:\s*(.*?)\s*-->\n?", re.MULTILINE | re.DOTALL)
 MINUTES = re.compile(r"(\d+(?:–\d+)?)\s*min")
 STEP_H2 = re.compile(r"^## (\d+)\.\s+(.*?)\s*$")
 TIMEBOX = re.compile(r"\s*\((\d+(?:–\d+)?)\s*min\b[^)]*\)")
@@ -76,6 +77,10 @@ def lesson_front_matter(text: str, folder: str, position: int, total: int) -> tu
         meta["heading"] = clean.replace("`", "")
         meta["heading_html"] = re.sub(r"`([^`]+)`", r"<code>\1</code>", html.escape(clean, quote=False))
         text = text[: heading.start()] + text[heading.end() :]
+    dek = DEK.search(text)
+    if dek:
+        meta["dek"] = dek.group(1)
+        text = text[: dek.start()] + text[dek.end() :]
     line = META_LINE.search(text)
     if line:
         rest = line.group(1).strip()
